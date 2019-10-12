@@ -17,14 +17,10 @@ class Piece {
   boolean has_moved;
   //CAN BE CAPTURED EN PASSANT
   boolean en_passant;
-  //IMAGE FOR WHITE PIECE
-  PImage white_image;
-  //IMAGE FOR BLACK PIECE
-  PImage black_image;
-  //LETTER REPRESENTING WHITE PIECE
-  String white_letter;
-  //LETTER REPRESENTING BLACK PIECE
-  String black_letter;     
+  //IMAGE FOR PIECE
+  PImage visual; 
+  //LETTER FOR NOTATION
+  String letter; 
 
   //CONSTRUCTOR
   Piece(int xpos, int ypos, boolean white) {
@@ -86,19 +82,10 @@ class Piece {
     return true;
   }
   
-  //RETURN LETTER
-  String get_letter() {
-    return (iswhite) ? white_letter : black_letter; 
-  }
   
   //DISPLAY PIECE
   void display() {
-    if (iswhite) {
-      image(white_image, x_coord, y_coord, piecedim, piecedim); 
-    }
-    else {
-      image(black_image, x_coord, y_coord, piecedim, piecedim); 
-    }
+    image(visual, x_coord, y_coord, piecedim, piecedim); 
   }
 
   //ASSIGN PROTECTED SQUARES
@@ -114,10 +101,8 @@ class Pawn extends Piece {
   Pawn(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white);
     material_value = 1;
-    white_image = whitepawnimg; 
-    black_image = blackpawnimg;
-    white_letter = "p"; 
-    black_letter = "P";
+    visual = (white) ? whitepawnimg : blackpawnimg; 
+    letter = (white) ? "p" : "P"; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -260,10 +245,8 @@ class Knight extends Piece {
   Knight(int xpos, int ypos, boolean white) {
      super(xpos, ypos, white); 
      material_value = 3;
-     white_image = whiteknightimg; 
-     black_image = blackknightimg;
-     white_letter = "n";
-     black_letter = "N";
+     visual = (white) ? whiteknightimg : blackknightimg; 
+     letter = (white) ? "n" : "N"; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -315,10 +298,8 @@ class Bishop extends Piece {
   Bishop(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 3; 
-    white_image = whitebishopimg; 
-    black_image = blackbishopimg; 
-    white_letter = "b"; 
-    black_letter = "B";
+    visual = (white) ? whitebishopimg : blackbishopimg; 
+    letter = (white) ? "b" : "B"; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -486,10 +467,8 @@ class Rook extends Piece {
   Rook(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 5; 
-    white_image = whiterookimg; 
-    black_image = blackrookimg;
-    white_letter = "r"; 
-    black_letter = "R";
+    visual = (white) ? whiterookimg : blackrookimg; 
+    letter = (white) ? "r" : "R"; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -647,11 +626,9 @@ class Queen extends Piece {
 
   Queen(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
-    material_value = 9; 
-    white_image = whitequeenimg; 
-    black_image = blackqueenimg; 
-    white_letter = "q"; 
-    black_letter = "Q";
+    material_value = 9;
+    visual = (white) ? whitequeenimg : blackqueenimg; 
+    letter = (white) ? "q" : "Q";
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -692,11 +669,9 @@ class King extends Piece {
   
   King(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
-    material_value = 50; 
-    white_image = whitekingimg; 
-    black_image = blackkingimg;
-    white_letter = "k"; 
-    black_letter = "K";
+    material_value = 50;
+    visual = (white) ? whitekingimg : blackkingimg; 
+    letter = (white) ? "k" : "K"; 
   }
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
@@ -734,7 +709,7 @@ class King extends Piece {
   }
 	//castling kingside and queenside, fix for protected squares 
 	if (y == SquareY && !has_moved) {
-		if (x == 6 && (my_board[y][7].get_letter() == "r" || my_board[y][7].get_letter() == "R") 
+		if (x == 6 && (my_board[y][7].letter == "r" || my_board[y][7].letter == "R") 
 			&& my_board[y][5] == null && my_board[y][6] == null && !my_board[y][7].has_moved && !in_check(for_white, for_black)) {
       if (get_color() && for_black[y][5] == null && for_black[y][6] == null) {
         my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].get_color());
@@ -749,7 +724,7 @@ class King extends Piece {
         return true;
       }
 		}
-		else if (x == SquareX - 2 && (my_board[y][x - 2].get_letter() == "r" || my_board[y][x - 2].get_letter() == "R") 
+		else if (x == SquareX - 2 && (my_board[y][x - 2].letter == "r" || my_board[y][x - 2].letter == "R") 
 			&& my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][x-2].has_moved && !in_check(for_white, for_black)) {
       if (get_color() && for_black[y][2] == null && for_black[y][3] == null) {
         my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].get_color()); 
@@ -1057,7 +1032,7 @@ class MoveRecord {
     stored_position = duplicate_board(new_pos); 
     to_move = my_piece.get_color();
     move_num = move_no;
-    notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.get_letter().toUpperCase(); 
+    notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.letter.toUpperCase(); 
     switch (prev_x) {
       case 0: 
         previous_x = "a";

@@ -162,7 +162,7 @@ void promotion_actions() {
     game_active = true; 
     refresh_protected(piece_board, white_protected_squares, black_protected_squares);
     eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
-    main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].get_letter().toUpperCase();
+    main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
     main_move_list.tail.equals_sign = "=";
     main_move_list.tail.stored_position = duplicate_board(piece_board);  
     if (white_king.checkmate(piece_board, white_protected_squares, black_protected_squares)) {
@@ -304,11 +304,11 @@ void mouseReleased() {
         last_moved = my_piece; 
       
       //promotion
-      if (my_piece.get_letter() == "p" && my_piece.SquareY == 0) {
+      if (my_piece.letter == "p" && my_piece.SquareY == 0) {
 		    game_active = false; 
 		    underpromotion_on = true;  
       }
-      else if (my_piece.get_letter() == "P" && my_piece.SquareY == 7) {
+      else if (my_piece.letter == "P" && my_piece.SquareY == 7) {
         game_active = false; 
 		    underpromotion_on = true; 
       }
