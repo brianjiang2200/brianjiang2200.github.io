@@ -1163,13 +1163,13 @@ class MoveRecord {
         return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece;
       }
     }
-    return ""; 
   }
   
-  void print_move(int x_pos, int y_pos) {
-    textSize(27); 
-    fill(255);
-    text(full_move, x_pos, y_pos); 
+   void print_move(int x_pos, int y_pos) {
+     textSize(27); 
+     fill(255);
+     text(full_move, x_pos, y_pos); 
+  } //<>//
 }
 
 class MoveList {
