@@ -252,12 +252,7 @@ void mouseReleased() {
     if (my_piece.is_legal(piece_board, white_protected_squares, black_protected_squares, newX, newY)) {
       
       //for captures in notation
-      if (white_to_move) {
-        material_count = count_black_material(piece_board); 
-      }
-      else {
-        material_count = count_white_material(piece_board); 
-      }
+      material_count = (white_to_move) ? count_black_material(piece_board) : count_white_material(piece_board); 
       
       my_piece.x_coord = newX * 100; 
       my_piece.y_coord = newY * 100; 

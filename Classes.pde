@@ -1062,12 +1062,7 @@ class MoveRecord {
     this.stored_position = duplicate_board(new_pos); 
     this.to_move = my_piece.get_color();
     this.move_num = move_no;
-    if (my_piece.get_material_value() == 1) {
-      this.notation_piece = ""; 
-    }
-    else {
-      this.notation_piece = my_piece.get_letter().toUpperCase();
-    }
+    this.notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.get_letter().toUpperCase(); 
     switch (prev_x) {
       case 0: 
         this.previous_x = "a";
