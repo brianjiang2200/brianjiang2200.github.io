@@ -18,11 +18,8 @@ PImage blackqueenimg;
 PImage blackkingimg; 
 PImage blackrookimg;
 
-void settings() {
-  size(1400, 900);
-}
-
 void setup() {
+  size(1400, 900);
   frameRate(60);
   try {
 	  boardimg = loadImage("/Images/Board.png");
