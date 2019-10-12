@@ -1039,8 +1039,6 @@ class MoveRecord {
   int move_num;
   //Side to Move
   boolean to_move;
-  //piece_captured
-  boolean piece_captured; 
   //Notation elements
   boolean check; 
   String notation_piece;
@@ -1049,6 +1047,7 @@ class MoveRecord {
   String notation_col; 
   int notation_row;
   String promotion_piece = "";
+  String captures = ""; 
   String equals_sign = "";
   String full_move; 
   MoveRecord next;
@@ -1119,7 +1118,7 @@ class MoveRecord {
     }
     this.next = null;
     this.prev = null;
-    this.piece_captured = capture;
+    this.captures = (capture) ? " x " : " - ";
     this.check = is_check;
     this.full_move = generate_move(); 
   }
@@ -1141,26 +1140,15 @@ class MoveRecord {
              return str(move_num) + ". " + "O-O-O";
            } 
        }
-    else if (piece_captured) {
-      if (color_won != 0 && this == main_move_list.tail) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
-      }
-      else if (check) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece + "+";
-      }
-      else {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece;
-      }
-    }
     else {
       if (color_won != 0 && this == main_move_list.tail) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
       }
       else if (check) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece + "+";
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + "+";
       }
       else {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece;
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece;
       }
     }
   }
