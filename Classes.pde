@@ -93,11 +93,11 @@ class Piece {
   
   //DISPLAY PIECE
   void display() {
-    if (this.iswhite) {
-      image(this.white_image, this.x_coord, this.y_coord, piecedim, piecedim); 
+    if (iswhite) {
+      image(white_image, x_coord, y_coord, piecedim, piecedim); 
     }
     else {
-      image(this.black_image, this.x_coord, this.y_coord, piecedim, piecedim); 
+      image(black_image, x_coord, y_coord, piecedim, piecedim); 
     }
   }
 
@@ -122,36 +122,36 @@ class Pawn extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
    
-    if (this.get_color()) {
+    if (get_color()) {
 	
       //FORWARD MOVEMENT FOR WHITE PAWNS
-      if (x == this.SquareX && my_board[this.SquareY - 1][x] == null) { 
-			  if (y == this.SquareY - 1) {
-			    return this.verify_not_check(my_board, y, x);
+      if (x == SquareX && my_board[SquareY - 1][x] == null) { 
+			  if (y == SquareY - 1) {
+			    return verify_not_check(my_board, y, x);
 			  }
-        if (this.SquareY == 6 && y == this.SquareY - 2 && my_board[this.SquareY - 2][x] == null) {
-			    return this.verify_not_check(my_board, y, x);
+        if (SquareY == 6 && y == SquareY - 2 && my_board[SquareY - 2][x] == null) {
+			    return verify_not_check(my_board, y, x);
 		    }
       }
 	  
-      if (y == this.SquareY - 1) {
+      if (y == SquareY - 1) {
         //CAPTURING TO THE LEFT
-        if (x == this.SquareX - 1 && my_board[this.SquareY - 1][x] != null && my_board[this.SquareY - 1][x].get_color() == false) {
-          return this.verify_not_check(my_board, y, x); 
+        if (x == SquareX - 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].get_color() == false) {
+          return verify_not_check(my_board, y, x); 
         }
         //CAPTURING TO THE RIGHT
-        else if (x == this.SquareX + 1 && my_board[this.SquareY - 1][x] != null && my_board[this.SquareY - 1][x].get_color() == false) {
-           return this.verify_not_check(my_board, y, x);
+        else if (x == SquareX + 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].get_color() == false) {
+           return verify_not_check(my_board, y, x);
         }
         //EN PASSANT TO THE LEFT
-        else if (x == this.SquareX - 1 && my_board[this.SquareY][x] != null && my_board[this.SquareY][x].en_passant) {
+        else if (x == SquareX - 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
           Piece[][] local_board = duplicate_board(my_board);
 		      ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
 		      ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-          local_board[this.SquareY][this.SquareX].SquareY = y;
-          local_board[this.SquareY][this.SquareX].SquareX = x; 
+          local_board[SquareY][SquareX].SquareY = y;
+          local_board[SquareY][SquareX].SquareX = x; 
           local_board[y][x] = this; 
-          local_board[this.SquareY][this.SquareX] = null;
+          local_board[SquareY][SquareX] = null;
           local_board[y + 1][x] = null;
 		      duplicate_protected_squares(local_board, whites_squares, blacks_squares);
           if (copy_white_king.in_check(whites_squares, blacks_squares)) {
@@ -160,14 +160,14 @@ class Pawn extends Piece {
           return true; 
         }
         //EN PASSANT TO THE RIGHT
-        else if (x == this.SquareX + 1 && my_board[this.SquareY][x] != null && my_board[this.SquareY][x].en_passant) {
+        else if (x == SquareX + 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
           Piece[][] local_board = duplicate_board(my_board);
 		      ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
 		      ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-          local_board[this.SquareY][this.SquareX].SquareY = y;
-          local_board[this.SquareY][this.SquareX].SquareX = x; 
+          local_board[SquareY][SquareX].SquareY = y;
+          local_board[SquareY][SquareX].SquareX = x; 
           local_board[y][x] = this; 
-          local_board[this.SquareY][this.SquareX] = null; 
+          local_board[SquareY][SquareX] = null; 
           local_board[y + 1][x] = null;
 		      duplicate_protected_squares(local_board, whites_squares, blacks_squares);
           if (copy_white_king.in_check(whites_squares, blacks_squares)) {
@@ -178,34 +178,34 @@ class Pawn extends Piece {
        }
       }
       
-    else if (!this.get_color()) {
+    else if (!get_color()) {
       //forward movement for black pawns
-      if (x == this.SquareX && my_board[this.SquareY + 1][x] == null) {
-         if (y == this.SquareY + 1) {
-			      return this.verify_not_check(my_board, y, x);
+      if (x == SquareX && my_board[SquareY + 1][x] == null) {
+         if (y == SquareY + 1) {
+			      return verify_not_check(my_board, y, x);
          }
-         if (this.SquareY == 1 && y == this.SquareY + 2 && piece_board[this.SquareY + 2][x] == null) {
-           return this.verify_not_check(my_board, y, x);
+         if (SquareY == 1 && y == SquareY + 2 && piece_board[SquareY + 2][x] == null) {
+           return verify_not_check(my_board, y, x);
          }
        }
-      if (y == this.SquareY + 1) {
+      if (y == SquareY + 1) {
         //capturing to the left
-        if (x == this.SquareX - 1 && my_board[this.SquareY + 1][x] != null && my_board[this.SquareY + 1][x].get_color() == true) {
-          return this.verify_not_check(my_board, y, x); 
+        if (x == SquareX - 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].get_color() == true) {
+          return verify_not_check(my_board, y, x); 
         }
         //capturing to the right
-        else if (x == this.SquareX + 1 && my_board[this.SquareY + 1][x] != null && my_board[this.SquareY + 1][x].get_color() == true) {
-          return this.verify_not_check(my_board, y, x); 
+        else if (x == SquareX + 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].get_color() == true) {
+          return verify_not_check(my_board, y, x); 
         }
         //en passant to the left
-        else if (x == this.SquareX - 1 && my_board[this.SquareY][x] != null && my_board[this.SquareY][x].en_passant) {
+        else if (x == SquareX - 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
            Piece[][] local_board = duplicate_board(my_board);
 		       ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
 		       ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-           local_board[this.SquareY][this.SquareX].SquareY = y;
-           local_board[this.SquareY][this.SquareX].SquareX = x; 
+           local_board[SquareY][SquareX].SquareY = y;
+           local_board[SquareY][SquareX].SquareX = x; 
            local_board[y][x] = this; 
-           local_board[this.SquareY][this.SquareX] = null;
+           local_board[SquareY][SquareX] = null;
 		       duplicate_protected_squares(local_board, whites_squares, blacks_squares);		  
            if (copy_black_king.in_check(whites_squares, blacks_squares)) {
              return false; 
@@ -213,14 +213,14 @@ class Pawn extends Piece {
            return true;
         }
         //en passant to the right
-        else if (x == this.SquareX + 1 && my_board[this.SquareY][x] != null && my_board[this.SquareY][x].en_passant) {
+        else if (x == SquareX + 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
            Piece[][] local_board = duplicate_board(my_board);
 		       ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
 		       ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-          local_board[this.SquareY][this.SquareX].SquareY = y;
-          local_board[this.SquareY][this.SquareX].SquareX = x; 
+          local_board[SquareY][SquareX].SquareY = y;
+          local_board[SquareY][SquareX].SquareX = x; 
           local_board[y][x] = this; 
-          local_board[this.SquareY][this.SquareX] = null;
+          local_board[SquareY][SquareX] = null;
 		      duplicate_protected_squares(local_board, whites_squares, blacks_squares);
           if (copy_black_king.in_check(whites_squares, blacks_squares)) {
             return false; 
@@ -233,21 +233,21 @@ class Pawn extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-     if (this.SquareY != 0 && this.SquareY != 7) {
-      if (this.get_color()) {
-        if (this.SquareX > 0) {
-          new_white_protected(this.SquareX - 1, this.SquareY - 1, this, white_protected);
+     if (SquareY != 0 && SquareY != 7) {
+      if (get_color()) {
+        if (SquareX > 0) {
+          new_white_protected(SquareX - 1, SquareY - 1, this, white_protected);
         }
-        if (this.SquareX < 7) {
-          new_white_protected(this.SquareX + 1, this.SquareY - 1, this, white_protected); 
+        if (SquareX < 7) {
+          new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
         }
       }
       else {
-        if (this.SquareX > 0) {
-          new_black_protected(this.SquareX - 1, this.SquareY + 1, this, black_protected); 
+        if (SquareX > 0) {
+          new_black_protected(SquareX - 1, SquareY + 1, this, black_protected); 
         }
-        if (this.SquareX < 7) {
-          new_black_protected(this.SquareX + 1, this.SquareY + 1, this, black_protected); 
+        if (SquareX < 7) {
+          new_black_protected(SquareX + 1, SquareY + 1, this, black_protected); 
         }
       }
     }
@@ -268,17 +268,17 @@ class Knight extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-		if (my_board[y][x] != null && my_board[y][x].get_color() == this.get_color()) {
+		if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
 			return false; 
 		} 
-		if (x == this.SquareX + 2 || x == this.SquareX - 2) {
-			if (y == this.SquareY + 1 || y == this.SquareY - 1) {
-				return this.verify_not_check(my_board, y, x);
+		if (x == SquareX + 2 || x == SquareX - 2) {
+			if (y == SquareY + 1 || y == SquareY - 1) {
+				return verify_not_check(my_board, y, x);
 			}
 		}
-		if (x == this.SquareX + 1 || x == this.SquareX - 1) {
-			if (y == this.SquareY + 2 || y == this.SquareY - 2) {
-				return this.verify_not_check(my_board, y, x);
+		if (x == SquareX + 1 || x == SquareX - 1) {
+			if (y == SquareY + 2 || y == SquareY - 2) {
+				return verify_not_check(my_board, y, x);
 			}
 		} 
     }
@@ -286,25 +286,25 @@ class Knight extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    if (this.get_color()) {
-      new_white_protected(this.SquareX - 2, this.SquareY - 1, this, white_protected); 
-      new_white_protected(this.SquareX - 2, this.SquareY + 1, this, white_protected); 
-      new_white_protected(this.SquareX - 1, this.SquareY - 2, this, white_protected); 
-      new_white_protected(this.SquareX - 1, this.SquareY + 2, this, white_protected); 
-      new_white_protected(this.SquareX + 1, this.SquareY - 2, this, white_protected); 
-      new_white_protected(this.SquareX + 1, this.SquareY + 2, this, white_protected); 
-      new_white_protected(this.SquareX + 2, this.SquareY - 1, this, white_protected); 
-      new_white_protected(this.SquareX + 2, this.SquareY + 1, this, white_protected); 
+    if (get_color()) {
+      new_white_protected(SquareX - 2, SquareY - 1, this, white_protected); 
+      new_white_protected(SquareX - 2, SquareY + 1, this, white_protected); 
+      new_white_protected(SquareX - 1, SquareY - 2, this, white_protected); 
+      new_white_protected(SquareX - 1, SquareY + 2, this, white_protected); 
+      new_white_protected(SquareX + 1, SquareY - 2, this, white_protected); 
+      new_white_protected(SquareX + 1, SquareY + 2, this, white_protected); 
+      new_white_protected(SquareX + 2, SquareY - 1, this, white_protected); 
+      new_white_protected(SquareX + 2, SquareY + 1, this, white_protected); 
     }
     else {
-      new_black_protected(this.SquareX - 2, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX - 2, this.SquareY + 1, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY - 2, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY + 2, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY - 2, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY + 2, this, black_protected); 
-      new_black_protected(this.SquareX + 2, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX + 2, this.SquareY + 1, this, black_protected);
+      new_black_protected(SquareX - 2, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX - 2, SquareY + 1, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY - 2, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY + 2, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY - 2, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY + 2, this, black_protected); 
+      new_black_protected(SquareX + 2, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX + 2, SquareY + 1, this, black_protected);
     }
   }
 
@@ -325,45 +325,45 @@ class Bishop extends Piece {
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
 	
 	//this already checks if a piece lands on the same square as itself. 
-	if (my_board[y][x] != null && my_board[y][x].get_color() == this.get_color()) {
+	if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
 		return false; 
 	}
-	if (abs(y - this.SquareY) == abs(x - this.SquareX)) {
+	if (abs(y - SquareY) == abs(x - SquareX)) {
 	
-		if (y > this.SquareY && x > this.SquareX) {
-			for (int z = 1; z < y - this.SquareY; ++z) {
-				if (my_board[this.SquareY + z][this.SquareX + z] != null) {
+		if (y > SquareY && x > SquareX) {
+			for (int z = 1; z < y - SquareY; ++z) {
+				if (my_board[SquareY + z][SquareX + z] != null) {
 					return false; 
 				}
 			}
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 		}
 	
-		else if (y > this.SquareY && x < this.SquareX) {
-			for (int z = 1; z < y - this.SquareY; ++z) {
-				if (my_board[this.SquareY + z][this.SquareX - z] != null) {
+		else if (y > SquareY && x < SquareX) {
+			for (int z = 1; z < y - SquareY; ++z) {
+				if (my_board[SquareY + z][SquareX - z] != null) {
 					return false; 
 				}
 			}
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 		}
 		
-		else if (y < this.SquareY && x > this.SquareX) {
-			for (int z = 1; z < x - this.SquareX; ++z) {
-				if (my_board[this.SquareY - z][this.SquareX + z] != null) {
+		else if (y < SquareY && x > SquareX) {
+			for (int z = 1; z < x - SquareX; ++z) {
+				if (my_board[SquareY - z][SquareX + z] != null) {
 					return false; 
 				}
 			}
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 		}
 		
 		else {
-			for (int z = 1; z < this.SquareX - x; ++z) {
-				if (my_board[this.SquareY - z][this.SquareX - z] != null) {
+			for (int z = 1; z < SquareX - x; ++z) {
+				if (my_board[SquareY - z][SquareX - z] != null) {
 					return false;
 				}
 			}
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 		}
 		
 	}
@@ -373,103 +373,103 @@ class Bishop extends Piece {
 
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z;
-    if (this.get_color()) {
-       new_white_protected(this.SquareX - 1, this.SquareY - 1, this, white_protected); 
-       new_white_protected(this.SquareX - 1, this.SquareY + 1, this, white_protected);
-       new_white_protected(this.SquareX + 1, this.SquareY - 1, this, white_protected); 
-       new_white_protected(this.SquareX + 1, this.SquareY + 1, this, white_protected); 
+    if (get_color()) {
+       new_white_protected(SquareX - 1, SquareY - 1, this, white_protected); 
+       new_white_protected(SquareX - 1, SquareY + 1, this, white_protected);
+       new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
+       new_white_protected(SquareX + 1, SquareY + 1, this, white_protected); 
           z = 1;
-          while (check_null(my_board, this.SquareX - z, this.SquareY - z)) {
-            new_white_protected(this.SquareX - z - 1, this.SquareY - z - 1, this, white_protected);
+          while (check_null(my_board, SquareX - z, SquareY - z)) {
+            new_white_protected(SquareX - z - 1, SquareY - z - 1, this, white_protected);
             z++;
           }
           z = 1;
-          while (check_null(my_board, this.SquareX - z, this.SquareY + z)) {
-            new_white_protected(this.SquareX - z - 1, this.SquareY + z + 1, this, white_protected);
+          while (check_null(my_board, SquareX - z, SquareY + z)) {
+            new_white_protected(SquareX - z - 1, SquareY + z + 1, this, white_protected);
             z++;
           }
           z = 1;
-          while (check_null(my_board, this.SquareX + z, this.SquareY - z)) {
-            new_white_protected(this.SquareX + z + 1, this.SquareY - z - 1, this, white_protected);
+          while (check_null(my_board, SquareX + z, SquareY - z)) {
+            new_white_protected(SquareX + z + 1, SquareY - z - 1, this, white_protected);
             z++;
           }
           z = 1;
-          while (check_null(my_board, this.SquareX + z, this.SquareY + z)) {
-            new_white_protected(this.SquareX + z + 1, this.SquareY + z + 1, this, white_protected);
+          while (check_null(my_board, SquareX + z, SquareY + z)) {
+            new_white_protected(SquareX + z + 1, SquareY + z + 1, this, white_protected);
             z++;
           }
     }
     else {
-      new_black_protected(this.SquareX - 1, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY + 1, this, black_protected);
-      new_black_protected(this.SquareX + 1, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY + 1, this, black_protected);
+      new_black_protected(SquareX - 1, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY + 1, this, black_protected);
+      new_black_protected(SquareX + 1, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY + 1, this, black_protected);
         z = 1;
-        while (check_null(my_board, this.SquareX - z, this.SquareY - z)) {
-          new_black_protected(this.SquareX - z - 1, this.SquareY - z - 1, this, black_protected);
+        while (check_null(my_board, SquareX - z, SquareY - z)) {
+          new_black_protected(SquareX - z - 1, SquareY - z - 1, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX - z, this.SquareY + z)) {
-          new_black_protected(this.SquareX - z - 1, this.SquareY + z + 1, this, black_protected);
+        while (check_null(my_board, SquareX - z, SquareY + z)) {
+          new_black_protected(SquareX - z - 1, SquareY + z + 1, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX + z, this.SquareY - z)) {
-          new_black_protected(this.SquareX + z + 1, this.SquareY - z - 1, this, black_protected);
+        while (check_null(my_board, SquareX + z, SquareY - z)) {
+          new_black_protected(SquareX + z + 1, SquareY - z - 1, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX + z, this.SquareY + z)) {
-          new_black_protected(this.SquareX + z + 1, this.SquareY + z + 1, this, black_protected);
+        while (check_null(my_board, SquareX + z, SquareY + z)) {
+          new_black_protected(SquareX + z + 1, SquareY + z + 1, this, black_protected);
           z++;
         }
     }
   }
   
   boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
-      if (king_x < this.SquareX && king_y < this.SquareY) {
-        for (int k = 1; k < this.SquareY - king_y; ++k) {
+      if (king_x < SquareX && king_y < SquareY) {
+        for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != this.get_color()
-                  && my_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX - k, this.SquareY - k)) {
+              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color()
+                  && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY - k)) {
                     return true; 
                   }
             }
           }
         }
       }
-      if (king_x < this.SquareX && king_y > this.SquareY) {
-        for (int k = 1; k < this.SquareX - king_x; ++k) {
+      if (king_x < SquareX && king_y > SquareY) {
+        for (int k = 1; k < SquareX - king_x; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != this.get_color() 
-                  && my_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX - k, this.SquareY + k)) {
+              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color() 
+                  && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY + k)) {
                     return true; 
                   }
             }
           }
         }
       }
-      if (king_x > this.SquareX && king_y < this.SquareY) {
-        for (int k = 1; k < this.SquareY - king_y; ++k) {
+      if (king_x > SquareX && king_y < SquareY) {
+        for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != this.get_color() 
-                  && my_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX + k, this.SquareY - k)) {
+              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color() 
+                  && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY - k)) {
                     return true; 
                   }
             }
           }
         }
       }
-      if (king_x > this.SquareX && king_y > this.SquareY) {
-        for (int k = 1; k < king_y - this.SquareY; ++k) {
+      if (king_x > SquareX && king_y > SquareY) {
+        for (int k = 1; k < king_y - SquareY; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != this.get_color()
-                  && my_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX + k, this.SquareY + k)) {
+              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color()
+                  && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY + k)) {
                     return true; 
                   }
             }
@@ -494,40 +494,40 @@ class Rook extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-      if (my_board[y][x] != null && my_board[y][x].get_color() == this.get_color()) {
+      if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
         return false; 
       } 
-	    if (x == this.SquareX && y > this.SquareY) {
-		    for (int z = this.SquareY + 1; z < y; z++) {
+	    if (x == SquareX && y > SquareY) {
+		    for (int z = SquareY + 1; z < y; z++) {
 			    if (my_board[z][x] != null) { 
 				    return false; 
 			    }
 		    }
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 	    }
-	    else if (x == this.SquareX && y < this.SquareY) {
-		    for (int z = this.SquareY - 1; z > y; z--) {
+	    else if (x == SquareX && y < SquareY) {
+		    for (int z = SquareY - 1; z > y; z--) {
 			    if (my_board[z][x] != null) {
 				    return false;
 			    }
 		    }
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
 	    }
-      else if (y == this.SquareY && x > this.SquareX) {
-        for (int z = this.SquareX + 1; z < x; z++) {
+      else if (y == SquareY && x > SquareX) {
+        for (int z = SquareX + 1; z < x; z++) {
           if (my_board[y][z] != null) {
             return false; 
           }
         }
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
         }
-      else if (y == this.SquareY) {
-        for (int z = this.SquareX - 1; z > x; z--) {
+      else if (y == SquareY) {
+        for (int z = SquareX - 1; z > x; z--) {
           if (my_board[y][z] != null) {
             return false;
           }
         }
-			return this.verify_not_check(my_board, y, x);
+			return verify_not_check(my_board, y, x);
       }
     }
     return false; 
@@ -535,103 +535,103 @@ class Rook extends Piece {
 
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z; 
-    if (this.get_color()) {
-      new_white_protected(this.SquareX, this.SquareY + 1, this, white_protected); 
-      new_white_protected(this.SquareX, this.SquareY - 1, this, white_protected); 
-      new_white_protected(this.SquareX + 1, this.SquareY, this, white_protected); 
-      new_white_protected(this.SquareX - 1, this.SquareY, this, white_protected);
+    if (get_color()) {
+      new_white_protected(SquareX, SquareY + 1, this, white_protected); 
+      new_white_protected(SquareX, SquareY - 1, this, white_protected); 
+      new_white_protected(SquareX + 1, SquareY, this, white_protected); 
+      new_white_protected(SquareX - 1, SquareY, this, white_protected);
         z = 1;
-        while (check_null(my_board, this.SquareX + z, this.SquareY)) {
-          new_white_protected(this.SquareX + z + 1, this.SquareY, this, white_protected); 
+        while (check_null(my_board, SquareX + z, SquareY)) {
+          new_white_protected(SquareX + z + 1, SquareY, this, white_protected); 
           z++;
         }
         z = 1; 
-        while (check_null(my_board, this.SquareX - z, this.SquareY)) {
-          new_white_protected(this.SquareX - z - 1, this.SquareY, this, white_protected);
+        while (check_null(my_board, SquareX - z, SquareY)) {
+          new_white_protected(SquareX - z - 1, SquareY, this, white_protected);
           z++;
         }
         z = 1; 
-        while (check_null(my_board, this.SquareX, this.SquareY + z)) {
-          new_white_protected(this.SquareX, this.SquareY + z + 1, this, white_protected);
+        while (check_null(my_board, SquareX, SquareY + z)) {
+          new_white_protected(SquareX, SquareY + z + 1, this, white_protected);
           z++;
         }
         z = 1; 
-        while (check_null(my_board, this.SquareX, this.SquareY - z)) {
-          new_white_protected(this.SquareX, this.SquareY - z - 1, this, white_protected);
+        while (check_null(my_board, SquareX, SquareY - z)) {
+          new_white_protected(SquareX, SquareY - z - 1, this, white_protected);
           z++;
         }
     }
     else {
-      new_black_protected(this.SquareX, this.SquareY + 1, this, black_protected); 
-      new_black_protected(this.SquareX, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY, this, black_protected);
+      new_black_protected(SquareX, SquareY + 1, this, black_protected); 
+      new_black_protected(SquareX, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY, this, black_protected);
         z = 1;
-        while (check_null(my_board, this.SquareX + z, this.SquareY)) {
-          new_black_protected(this.SquareX + z + 1, this.SquareY, this, black_protected);
+        while (check_null(my_board, SquareX + z, SquareY)) {
+          new_black_protected(SquareX + z + 1, SquareY, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX - z, this.SquareY)) {
-          new_black_protected(this.SquareX - z -1, this.SquareY, this, black_protected);
+        while (check_null(my_board, SquareX - z, SquareY)) {
+          new_black_protected(SquareX - z -1, SquareY, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX, this.SquareY + z)) {
-          new_black_protected(this.SquareX, this.SquareY + z + 1, this, black_protected);
+        while (check_null(my_board, SquareX, SquareY + z)) {
+          new_black_protected(SquareX, SquareY + z + 1, this, black_protected);
           z++;
         }
         z = 1;
-        while (check_null(my_board, this.SquareX, this.SquareY - z)) {
-          new_black_protected(this.SquareX, this.SquareY - z - 1, this, black_protected);
+        while (check_null(my_board, SquareX, SquareY - z)) {
+          new_black_protected(SquareX, SquareY - z - 1, this, black_protected);
           z++;
         }
     }
   }
   
   boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
-    if (king_x == this.SquareX && king_y < this.SquareY) {
-        for (int k = 1; k < this.SquareY - king_y; ++k) {
+    if (king_x == SquareX && king_y < SquareY) {
+        for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != this.get_color()
-                  && piece_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY - k)) {
+              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+                  && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX, SquareY - k)) {
                     return true; 
                   }
             }
           }
         }
       }
-      else if (king_x == this.SquareX) {
-        for (int k = 1; k < king_y - this.SquareY; ++k) {
+      else if (king_x == SquareX) {
+        for (int k = 1; k < king_y - SquareY; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != this.get_color()
-                  && piece_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY + k)) {
+              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+                  && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX, SquareY + k)) {
                     return true; 
                   }
             }
           }
         }
       }
-      if (king_x < this.SquareX && king_y == this.SquareY) {
-        for (int k = 1; k < this.SquareX - king_x; ++k) {
+      if (king_x < SquareX && king_y == SquareY) {
+        for (int k = 1; k < SquareX - king_x; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != this.get_color()
-                  && piece_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX - k, this.SquareY)) {
+              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+                  && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY)) {
                     return true; 
                   }
             }
           }
         }
       }
-      else if (king_y == this.SquareY) {
-        for (int k = 1; k < king_x - this.SquareX; ++k) {
+      else if (king_y == SquareY) {
+        for (int k = 1; k < king_x - SquareX; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != this.get_color()
-                  && piece_board[a][b].is_legal(my_board, for_white, for_black, this.SquareX + k, this.SquareY)) {
+              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+                  && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY)) {
                     return true; 
                   }
             }
@@ -655,8 +655,8 @@ class Queen extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-    Bishop local_bishop = new Bishop(this.SquareX * 100, this.SquareY * 100, this.get_color()); 
-    Rook local_rook = new Rook(this.SquareX * 100, this.SquareY * 100, this.get_color()); 
+    Bishop local_bishop = new Bishop(SquareX * 100, SquareY * 100, get_color()); 
+    Rook local_rook = new Rook(SquareX * 100, SquareY * 100, get_color()); 
     if (local_bishop.is_legal(my_board, for_white, for_black, x, y)) {
 		return true; 
     }
@@ -667,17 +667,17 @@ class Queen extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    Bishop my_bish = new Bishop(this.SquareX * 100, this.SquareY * 100, this.get_color());
+    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, get_color());
     my_bish.material_value = 9; 
-    Rook my_rook = new Rook(this.SquareX * 100, this.SquareY * 100, this.get_color());
+    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, get_color());
     my_rook.material_value = 9; 
     my_bish.assign_protected_squares(my_board, white_protected, black_protected); 
     my_rook.assign_protected_squares(my_board, white_protected, black_protected); 
   }
   
   boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
-    Bishop my_bish = new Bishop(this.SquareX * 100, this.SquareY * 100, this.get_color()); 
-    Rook my_rook = new Rook(this.SquareX * 100, this.SquareY * 100, this.get_color()); 
+    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, get_color()); 
+    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, get_color()); 
     if (my_bish.blockable(my_board, for_white, for_black, king_x, king_y)) {
       return true; 
     }
@@ -701,63 +701,63 @@ class King extends Piece {
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
 	//cannot capture pieces of the same color
-	if (my_board[y][x] != null && my_board[y][x].get_color() == this.get_color()) {
+	if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
 		return false; 
 	}
-  if (this.get_color() && for_black[y][x] != null) {
+  if (get_color() && for_black[y][x] != null) {
     return false; 
   }
-  else if (this.in_check(for_white, for_black) && this.get_color()) {
-    my_board[this.SquareY][this.SquareX] = null; 
+  else if (in_check(for_white, for_black) && get_color()) {
+    my_board[SquareY][SquareX] = null; 
 	refresh_protected(my_board, for_white, for_black); 
 	if (for_black[y][x] != null) {
-		my_board[this.SquareY][this.SquareX] = this;
+		my_board[SquareY][SquareX] = this;
 		refresh_protected(my_board, for_white, for_black);   
 		return false; 
 	}
-	my_board[this.SquareY][this.SquareX] = this; 
+	my_board[SquareY][SquareX] = this; 
 	refresh_protected(my_board, for_white, for_black); 
   }
-  if (!this.get_color() && for_white[y][x] != null) {
+  if (!get_color() && for_white[y][x] != null) {
     return false; 
   }
-  else if (this.in_check(for_white, for_black) && !this.get_color()) {
-    my_board[this.SquareY][this.SquareX] = null; 
+  else if (in_check(for_white, for_black) && !get_color()) {
+    my_board[SquareY][SquareX] = null; 
 	refresh_protected(my_board, for_white, for_black); 
 	if (for_white[y][x] != null) {
-		my_board[this.SquareY][this.SquareX] = this;
+		my_board[SquareY][SquareX] = this;
 		refresh_protected(my_board, for_white, for_black);  
 		return false; 
 	}
-	my_board[this.SquareY][this.SquareX] = this; 
+	my_board[SquareY][SquareX] = this; 
 	refresh_protected(my_board, for_white, for_black); 
   }
 	//castling kingside and queenside, fix for protected squares 
-	if (y == this.SquareY && !this.has_moved) {
+	if (y == SquareY && !has_moved) {
 		if (x == 6 && (my_board[y][7].get_letter() == "r" || my_board[y][7].get_letter() == "R") 
-			&& my_board[y][5] == null && my_board[y][6] == null && !my_board[y][7].has_moved && !this.in_check(for_white, for_black)) {
-      if (this.get_color() && for_black[y][5] == null && for_black[y][6] == null) {
+			&& my_board[y][5] == null && my_board[y][6] == null && !my_board[y][7].has_moved && !in_check(for_white, for_black)) {
+      if (get_color() && for_black[y][5] == null && for_black[y][6] == null) {
         my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].get_color());
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
 		return true;
       }
-      else if (!this.get_color() && for_white[y][5] == null && for_white[y][6] == null) {
+      else if (!get_color() && for_white[y][5] == null && for_white[y][6] == null) {
         my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].get_color());
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
         return true;
       }
 		}
-		else if (x == this.SquareX - 2 && (my_board[y][x - 2].get_letter() == "r" || my_board[y][x - 2].get_letter() == "R") 
-			&& my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][x-2].has_moved && !this.in_check(for_white, for_black)) {
-      if (this.get_color() && for_black[y][2] == null && for_black[y][3] == null) {
+		else if (x == SquareX - 2 && (my_board[y][x - 2].get_letter() == "r" || my_board[y][x - 2].get_letter() == "R") 
+			&& my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][x-2].has_moved && !in_check(for_white, for_black)) {
+      if (get_color() && for_black[y][2] == null && for_black[y][3] == null) {
         my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].get_color()); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
 		return true; 
       }
-      if (!this.get_color() && for_white[y][2] == null && for_white[y][3] == null) {
+      if (!get_color() && for_white[y][2] == null && for_white[y][3] == null) {
         my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].get_color()); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
@@ -766,8 +766,8 @@ class King extends Piece {
 		}
 	}
 	//else can move to any square within 1. 
-	if (x == this.SquareX + 1 || x == this.SquareX || x == this.SquareX - 1) {
-		if (y == this.SquareY + 1 || y == this.SquareY || y == this.SquareY - 1) {
+	if (x == SquareX + 1 || x == SquareX || x == SquareX - 1) {
+		if (y == SquareY + 1 || y == SquareY || y == SquareY - 1) {
 			return true; 
 		}
 	}
@@ -776,36 +776,36 @@ class King extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    if (this.get_color()) {
-       new_white_protected(this.SquareX, this.SquareY - 1, this, white_protected); 
-       new_white_protected(this.SquareX, this.SquareY + 1, this, white_protected); 
-       new_white_protected(this.SquareX - 1, this.SquareY, this, white_protected); 
-       new_white_protected(this.SquareX + 1, this.SquareY, this, white_protected); 
-       new_white_protected(this.SquareX - 1, this.SquareY - 1, this, white_protected); 
-       new_white_protected(this.SquareX - 1, this.SquareY + 1, this, white_protected); 
-       new_white_protected(this.SquareX + 1, this.SquareY - 1, this, white_protected); 
-       new_white_protected(this.SquareX + 1, this.SquareY + 1, this, white_protected); 
+    if (get_color()) {
+       new_white_protected(SquareX, SquareY - 1, this, white_protected); 
+       new_white_protected(SquareX, SquareY + 1, this, white_protected); 
+       new_white_protected(SquareX - 1, SquareY, this, white_protected); 
+       new_white_protected(SquareX + 1, SquareY, this, white_protected); 
+       new_white_protected(SquareX - 1, SquareY - 1, this, white_protected); 
+       new_white_protected(SquareX - 1, SquareY + 1, this, white_protected); 
+       new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
+       new_white_protected(SquareX + 1, SquareY + 1, this, white_protected); 
     }
     else {
-      new_black_protected(this.SquareX, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX, this.SquareY + 1, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX - 1, this.SquareY + 1, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY - 1, this, black_protected); 
-      new_black_protected(this.SquareX + 1, this.SquareY + 1, this, black_protected);
+      new_black_protected(SquareX, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX, SquareY + 1, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX - 1, SquareY + 1, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY - 1, this, black_protected); 
+      new_black_protected(SquareX + 1, SquareY + 1, this, black_protected);
     }
   }
   
   boolean in_check(ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
-    if (this.get_color()) {
-      if (for_black[this.SquareY][this.SquareX] != null) {
+    if (get_color()) {
+      if (for_black[SquareY][SquareX] != null) {
          return true;
       }
     }
     else {
-      if (for_white[this.SquareY][this.SquareX] != null) {
+      if (for_white[SquareY][SquareX] != null) {
         return true; 
       }
     }
@@ -813,12 +813,12 @@ class King extends Piece {
   }
   
   boolean checkmate(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
-     if (this.in_check(for_white, for_black) && this.num_legal_moves(my_board, for_white, for_black) == 0) 
+     if (in_check(for_white, for_black) && num_legal_moves(my_board, for_white, for_black) == 0) 
          { 
-           if (this.get_color()) {
+           if (get_color()) {
                
              //STORE SOME OBJECTS 
-             ProtectedSquare black_square = for_black[this.SquareY][this.SquareX];
+             ProtectedSquare black_square = for_black[SquareY][SquareX];
              ProtectedSquare white_defender = for_white[black_square.primary.defending_piece.SquareY][black_square.primary.defending_piece.SquareX]; 
 			 
 			     //IF THERE ARE MULTIPLE PIECES ATTACKING THE KING
@@ -856,11 +856,11 @@ class King extends Piece {
            }
            
            //if black king and attacking piece cannot be captured, 
-           if (!this.get_color()) 
+           if (!get_color()) 
            {
              
              //STORE SOME OBJECTS 
-             ProtectedSquare white_square = for_white[this.SquareY][this.SquareX]; 
+             ProtectedSquare white_square = for_white[SquareY][SquareX]; 
              ProtectedSquare black_defender = for_black[white_square.primary.defending_piece.SquareY][white_square.primary.defending_piece.SquareX];
 			 
 			 //IF THERE ARE MULTIPLE PIECES ATTACKING THE KING
@@ -902,28 +902,28 @@ class King extends Piece {
   
   int num_legal_moves(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
     int legal_moves = 8; 
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY - 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY - 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY - 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY - 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY - 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY - 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY + 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY + 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY + 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY + 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY + 1)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY + 1)) {
       legal_moves--; 
     }
-    if (!this.is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY)) {
+    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY)) {
       legal_moves--; 
     }
     return legal_moves; 
@@ -936,8 +936,8 @@ class SquareDefender {
 	SquareDefender next; 
 	
 	SquareDefender (Piece my_piece) {
-		this.defending_piece = my_piece; 
-		this.next = null; 
+		defending_piece = my_piece; 
+		next = null; 
 	}
 }
 
@@ -948,17 +948,17 @@ class ProtectedSquare {
   SquareDefender primary; 
   
   ProtectedSquare (int x, int y, Piece my_piece) {
-    this.SquareX = x; 
-    this.SquareY = y; 
-    this.primary = new SquareDefender(my_piece);
+    SquareX = x; 
+    SquareY = y; 
+    primary = new SquareDefender(my_piece);
   }
   
   void add_defender(Piece new_defender) {
-	if (this.primary == null) {
-		this.primary = new SquareDefender(new_defender); 
+	if (primary == null) {
+		primary = new SquareDefender(new_defender); 
 	}
 	else {
-		SquareDefender stepper = this.primary; 
+		SquareDefender stepper = primary; 
 		while (stepper.next != null) {
 			stepper = stepper.next; 
 		}
@@ -969,7 +969,7 @@ class ProtectedSquare {
   //RETURNS THE NUMBER OF DEFENDERS FOR ONE SIDE ON THIS SQUARE
   int get_defender_count() {
 	  int count = 0; 
-	  SquareDefender stepper = this.primary;
+	  SquareDefender stepper = primary;
 	  while (stepper != null) {
 		  count++; 
 		stepper = stepper.next; 
@@ -979,10 +979,10 @@ class ProtectedSquare {
   
   //RETURNS THE PIECE AT THE SPECIFIED INDEX OF THE LIST
   Piece get_defender_at_index(int index_no) {
-	if (this.primary == null) {
+	if (primary == null) {
 		return null;
 	}
-	SquareDefender stepper = this.primary; 	
+	SquareDefender stepper = primary; 	
 	while (index_no > 0) {
 		stepper = stepper.next; 
 		index_no--; 
@@ -993,9 +993,9 @@ class ProtectedSquare {
   //SORTS THE LIST
   void insertion_sort() {
 	//IF PRIMARY IS NOT NULL
-	if (this.primary != null) {
+	if (primary != null) {
 		//STEPPER GETS PRIMARY
-		SquareDefender stepper = this.primary;
+		SquareDefender stepper = primary;
 		//WHILE STEPPER.NEXT IS NOT NULL
 		while (stepper.next != null) {
 			//IF THE NEXT PIECE HAS LOWER MATERIAL VALUE THAN THE CURRENT
@@ -1054,77 +1054,77 @@ class MoveRecord {
   MoveRecord prev; 
   
   MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean capture, boolean is_check) {
-    this.stored_position = duplicate_board(new_pos); 
-    this.to_move = my_piece.get_color();
-    this.move_num = move_no;
-    this.notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.get_letter().toUpperCase(); 
+    stored_position = duplicate_board(new_pos); 
+    to_move = my_piece.get_color();
+    move_num = move_no;
+    notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.get_letter().toUpperCase(); 
     switch (prev_x) {
       case 0: 
-        this.previous_x = "a";
+        previous_x = "a";
         break;
       case 1:
-        this.previous_x = "b";
+        previous_x = "b";
         break;
       case 2: 
-        this.previous_x = "c";
+        previous_x = "c";
         break;
       case 3: 
-        this.previous_x = "d";
+        previous_x = "d";
         break;
       case 4: 
-        this.previous_x = "e";
+        previous_x = "e";
         break;
       case 5: 
-        this.previous_x = "f";
+        previous_x = "f";
         break;
       case 6: 
-        this.previous_x = "g";
+        previous_x = "g";
         break;
       case 7: 
-        this.previous_x = "h";
+        previous_x = "h";
         break;
       default: 
-        this.previous_x = "?"; 
+        previous_x = "?"; 
     }
-    this.previous_y = 8 - prev_y; 
-    this.notation_row = 8 - my_piece.SquareY; 
+    previous_y = 8 - prev_y; 
+    notation_row = 8 - my_piece.SquareY; 
     switch (my_piece.SquareX) {
       case 0: 
-        this.notation_col = "a";
+        notation_col = "a";
         break;
       case 1: 
-        this.notation_col = "b";
+        notation_col = "b";
         break;
       case 2:
-        this.notation_col = "c";
+        notation_col = "c";
         break;
       case 3: 
-        this.notation_col = "d";
+        notation_col = "d";
         break;
       case 4: 
-        this.notation_col = "e";
+        notation_col = "e";
         break;
       case 5: 
-        this.notation_col = "f";
+        notation_col = "f";
         break;
       case 6: 
-        this.notation_col = "g";
+        notation_col = "g";
         break;
       case 7: 
-        this.notation_col = "h";
+        notation_col = "h";
         break;
       default: 
-        this.notation_col = "?"; 
+        notation_col = "?"; 
     }
-    this.next = null;
-    this.prev = null;
-    this.captures = (capture) ? " x " : " - ";
-    this.check = is_check;
-    this.full_move = generate_move(); 
+    next = null;
+    prev = null;
+    captures = (capture) ? " x " : " - ";
+    check = is_check;
+    full_move = generate_move();
   }
   
   String generate_move() {
-    if (this.notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("g")) {
+    if (notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("g")) {
            if (check) {
              return (color_won != 0) ? str(move_num) + ". " + "O-O" + "#" : str(move_num) + ". " + "O-O" + "+";
            }
@@ -1141,11 +1141,8 @@ class MoveRecord {
            } 
        }
     else {
-      if (color_won != 0 && this == main_move_list.tail) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
-      }
-      else if (check) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + "+";
+      if (check) {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + ((color_won != 0) ? "#" : "+");
       }
       else {
         return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece;
@@ -1165,29 +1162,29 @@ class MoveList {
   MoveRecord tail; 
   
   MoveList() {
-    this.head = null; 
-    this.tail = null; 
+    head = null; 
+    tail = null; 
   }
   
   //Adds a move to a move list
   void add_move(MoveRecord my_move) {
-    if (this.head == null) {
-      this.head = my_move; 
-      this.tail = my_move; 
+    if (head == null) {
+      head = my_move; 
+      tail = my_move; 
     }
     else {
-      this.tail.next = my_move; 
-      my_move.prev = this.tail;
-      this.tail = my_move; 
+      tail.next = my_move; 
+      my_move.prev = tail;
+      tail = my_move; 
     }
   }
   
   //Get a move at Specified Index
   MoveRecord get_move_at_index(int index_no) {
-  if (this.head == null) {
+  if (head == null) {
     return null;
   }
-  MoveRecord stepper = this.head;   
+  MoveRecord stepper = head;   
   while (index_no > 0 && stepper != null) {
     stepper = stepper.next; 
     index_no--; 

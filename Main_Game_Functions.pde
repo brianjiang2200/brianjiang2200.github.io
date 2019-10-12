@@ -1,22 +1,12 @@
 //Author: Brian Jiang
 //Title: Blindfold Tactics Trainer
-//Version 1.135
+//Version 1.136
 //Last Update: 2019-05-03
 
 //Images
-PImage boardimg; 
-PImage whitepawnimg; 
-PImage whiteknightimg; 
-PImage whitebishopimg; 
-PImage whitekingimg; 
-PImage whitequeenimg; 
-PImage whiterookimg;
-PImage blackpawnimg; 
-PImage blackknightimg; 
-PImage blackbishopimg; 
-PImage blackqueenimg; 
-PImage blackkingimg; 
-PImage blackrookimg;
+PImage boardimg;
+PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
+PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg; 
 
 void setup() {
   size(1400, 900);
