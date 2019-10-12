@@ -24,10 +24,10 @@ Piece [] [] duplicate_board(Piece curr_board[][]) {
 				if (curr_board[i][k].get_material_value() == 1) {
 					copy[i][k] = new Pawn(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
 				}
-				else if (curr_board[i][k].get_letter() == "n" || curr_board[i][k].get_letter() == "N") {
+				else if (curr_board[i][k].letter == "n" || curr_board[i][k].letter == "N") {
 					copy[i][k] = new Knight(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
 				}
-				else if (curr_board[i][k].get_letter() == "b" || curr_board[i][k].get_letter() == "B") {
+				else if (curr_board[i][k].letter == "b" || curr_board[i][k].letter == "B") {
 					copy[i][k] = new Bishop(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
 				}
 				else if (curr_board[i][k].get_material_value() == 5) {
@@ -37,11 +37,11 @@ Piece [] [] duplicate_board(Piece curr_board[][]) {
 					copy[i][k] = new Queen(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
 				}
 				else if (curr_board[i][k].get_material_value() == 50) {
-					if (curr_board[i][k].get_letter() == "k") {
+					if (curr_board[i][k].letter == "k") {
 						copy_white_king = new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, true);
 						copy[i][k] = copy_white_king; 
 					}
-					if (curr_board[i][k].get_letter() == "K") {
+					if (curr_board[i][k].letter == "K") {
 						copy_black_king = new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, false);
 						copy[i][k] = copy_black_king; 
 					}
