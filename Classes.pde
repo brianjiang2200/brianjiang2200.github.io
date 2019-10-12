@@ -88,12 +88,7 @@ class Piece {
   
   //RETURN LETTER
   String get_letter() {
-    if (this.iswhite) {
-      return this.white_letter;
-    } 
-    else {
-      return this.black_letter;
-    }
+    return (iswhite) ? white_letter : black_letter; 
   }
   
   //DISPLAY PIECE
@@ -1038,7 +1033,7 @@ class ProtectedSquare {
 
 
 class MoveRecord {
-  //Position stored at this point
+  //move stored at this point
   Piece[][] stored_position;
   //Move Number 
   int move_num;
@@ -1131,7 +1126,7 @@ class MoveRecord {
     textSize(27); 
     fill(255);
     if (this.notation_piece.equals("K") && this.previous_x.equals("e") && this.notation_col.equals("g")) {
-           if (white_king.in_check(white_protected_squares, black_protected_squares) || black_king.in_check(white_protected_squares, black_protected_squares)) {
+           if (check) {
              if (color_won != 0) {
                text(this.move_num + ". " + "O-O" + "#", x_pos, y_pos); 
              }
@@ -1144,7 +1139,7 @@ class MoveRecord {
            }
        }
        else if (this.notation_piece.equals("K") && this.previous_x.equals("e") && this.notation_col.equals("c")) {
-            if (white_king.in_check(white_protected_squares, black_protected_squares) || black_king.in_check(white_protected_squares, black_protected_squares)) {
+            if (check) {
              if (color_won != 0) {
                text(main_move_list.tail.move_num + ". " + "O-O-O" + "#", x_pos, y_pos); 
              }
