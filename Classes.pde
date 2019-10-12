@@ -1049,7 +1049,8 @@ class MoveRecord {
   String notation_col; 
   int notation_row;
   String promotion_piece = "";
-  String equals_sign = ""; 
+  String equals_sign = "";
+  String full_move; 
   MoveRecord next;
   MoveRecord prev; 
   
@@ -1119,62 +1120,55 @@ class MoveRecord {
     this.next = null;
     this.prev = null;
     this.piece_captured = capture;
-    this.check = is_check; 
+    this.check = is_check;
+    this.full_move = generate_move(); 
+  }
+  
+  String generate_move() {
+    if (this.notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("g")) {
+           if (check) {
+             return (color_won != 0) ? str(move_num) + ". " + "O-O" + "#" : str(move_num) + ". " + "O-O" + "+";
+           }
+           else {
+             return str(move_num) + ". " + "O-O"; 
+           }
+       }
+       else if (notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("c")) {
+            if (check) {
+             return (color_won != 0) ? str(move_num) + ". " + "O-O-O" + "#" : str(move_num) + ". " + "O-O-O" + "+";
+           }
+           else {
+             return str(move_num) + ". " + "O-O-O";
+           } 
+       }
+    else if (piece_captured) {
+      if (color_won != 0 && this == main_move_list.tail) {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
+      }
+      else if (check) {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece + "+";
+      }
+      else {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " x " + notation_col + notation_row + equals_sign + promotion_piece;
+      }
+    }
+    else {
+      if (color_won != 0 && this == main_move_list.tail) {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece + "#"; 
+      }
+      else if (check) {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece + "+";
+      }
+      else {
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + " - " + notation_col + notation_row + equals_sign + promotion_piece;
+      }
+    }
   }
   
   void print_move(int x_pos, int y_pos) {
     textSize(27); 
     fill(255);
-    if (this.notation_piece.equals("K") && this.previous_x.equals("e") && this.notation_col.equals("g")) {
-           if (check) {
-             if (color_won != 0) {
-               text(this.move_num + ". " + "O-O" + "#", x_pos, y_pos); 
-             }
-             else {
-               text(this.move_num + ". " + "O-O" + "+", x_pos, y_pos); 
-             }
-           }
-           else {
-             text(this.move_num + ". " + "O-O", x_pos, y_pos);
-           }
-       }
-       else if (this.notation_piece.equals("K") && this.previous_x.equals("e") && this.notation_col.equals("c")) {
-            if (check) {
-             if (color_won != 0) {
-               text(main_move_list.tail.move_num + ". " + "O-O-O" + "#", x_pos, y_pos); 
-             }
-             else {
-               text(this.move_num + ". " + "O-O-O" + "+", x_pos, y_pos); 
-             }
-           }
-           else {
-             text(this.move_num + ". " + "O-O-O", x_pos, y_pos);
-           } 
-       }
-    else if (this.piece_captured) {
-      if (color_won != 0 && this == main_move_list.tail) {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " x " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece + "#", x_pos, y_pos);
-      }
-      else if (this.check) {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " x " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece + "+", x_pos, y_pos);
-      }
-      else {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " x " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece, x_pos, y_pos);
-      }
-    }
-    else {
-      if (color_won != 0 && this == main_move_list.tail) {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " - " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece + "#", x_pos, y_pos);
-      }
-      else if (this.check) {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " - " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece + "+", x_pos, y_pos);
-      }
-      else {
-        text(this.move_num + ". " + this.notation_piece + this.previous_x + this.previous_y + " - " + this.notation_col + this.notation_row + this.equals_sign + this.promotion_piece, x_pos, y_pos);
-      }
-    }
-  }
-  
+    text(full_move, x_pos, y_pos); 
 }
 
 class MoveList {
