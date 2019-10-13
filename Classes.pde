@@ -93,12 +93,7 @@ class Pawn extends Piece {
   }
   
   void assign_visual(boolean highlight) {
-    if (highlight) {
       visual = (iswhite) ? HIwhitepawnimg : HIblackpawnimg; 
-    }
-    else {
-      visual = (iswhite) ? whitepawnimg : blackpawnimg; 
-    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -246,12 +241,7 @@ class Knight extends Piece {
   }
   
     void assign_visual(boolean highlight) {
-    if (highlight) {
-      visual = (iswhite) ? HIwhiteknightimg : HIblackknightimg; 
-    }
-    else {
       visual = (iswhite) ? whiteknightimg : blackknightimg; 
-    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -308,12 +298,7 @@ class Bishop extends Piece {
   }
   
   void assign_visual(boolean highlight) {
-    if (highlight) {
-      visual = (iswhite) ? HIwhitebishopimg : HIblackbishopimg; 
-    }
-    else {
       visual = (iswhite) ? whitebishopimg : blackbishopimg; 
-    }
   }
   
   
@@ -487,12 +472,7 @@ class Rook extends Piece {
   }
   
    void assign_visual(boolean highlight) {
-    if (highlight) {
       visual = (iswhite) ? HIwhiterookimg : HIblackrookimg; 
-    }
-    else {
-      visual = (iswhite) ? whiterookimg : blackrookimg; 
-    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -656,12 +636,7 @@ class Queen extends Piece {
   }
   
     void assign_visual(boolean highlight) {
-    if (highlight) {
       visual = (iswhite) ? HIwhitequeenimg : HIblackqueenimg; 
-    }
-    else {
-      visual = (iswhite) ? whitequeenimg : blackqueenimg; 
-    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -708,12 +683,7 @@ class King extends Piece {
   }
   
    void assign_visual(boolean highlight) {
-    if (highlight) {
       visual = (iswhite) ? HIwhitekingimg : HIblackkingimg; 
-    }
-    else {
-      visual = (iswhite) ? whitekingimg : blackkingimg; 
-    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
