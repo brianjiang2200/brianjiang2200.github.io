@@ -3,7 +3,7 @@ void draw() {
   //display board
   image(boardimg, 0, 0, 800, 800);
   //display highlighted squares
-  fill(107,207,227); 
+  fill(90,174,191); 
   if (game_active) {
     if (last_moved != null) {
       rect(last_moved.SquareX * 100, last_moved.SquareY * 100, piecedim, piecedim);
