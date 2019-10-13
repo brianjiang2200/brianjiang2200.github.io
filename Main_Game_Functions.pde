@@ -6,9 +6,9 @@
 //Images
 PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
-PImage HIwhitepawnimg, HIwhiteknightimg, HIwhitebishopimg, HIwhitekingimg, HIwhitequeenimg, HIwhiterookimg; 
+//PImage HIwhitepawnimg, HIwhiteknightimg, HIwhitebishopimg, HIwhitekingimg, HIwhitequeenimg, HIwhiterookimg; 
 PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
-PImage HIblackpawnimg, HIblackknightimg, HIblackbishopimg, HIblackkingimg, HIblackqueenimg, HIblackrookimg; 
+//PImage HIblackpawnimg, HIblackknightimg, HIblackbishopimg, HIblackkingimg, HIblackqueenimg, HIblackrookimg; 
 
 void setup() {
   size(1400, 900);
@@ -21,24 +21,27 @@ void setup() {
 	  whitekingimg = loadImage("Images/white_king.png"); 
 	  whitequeenimg = loadImage("Images/white_queen.png"); 
 	  whiterookimg = loadImage("Images/white_rook.png");
+/*
     HIwhitepawnimg = loadImage("Images/highlighted_white_pawn.PNG");
     HIwhiteknightimg = loadImage("Images/highlighted_white_knight.png"); 
     HIwhitebishopimg = loadImage("Images/highlighted_white_bishop.PNG"); 
     HIwhitekingimg = loadImage("Images/highlighted_white_king.PNG"); 
     HIwhitequeenimg = loadImage("Images/highlighted_white_queen.PNG");
     HIwhiterookimg = loadImage("Images/highlighted_white_rook.PNG");
+    */
 	  blackpawnimg = loadImage("Images/black_pawn.png"); 
 	  blackknightimg = loadImage("Images/black_knight.png"); 
 	  blackbishopimg = loadImage("Images/black_bishop.png"); 
 	  blackqueenimg = loadImage("Images/black_queen.png"); 
 	  blackkingimg = loadImage("Images/black_king.png"); 
 	  blackrookimg = loadImage("Images/black_rook.png");
+    /*
     HIblackpawnimg = loadImage("Images/highlighted_black_pawn.PNG");
     HIblackknightimg = loadImage("Images/highlighted_black_knight.PNG"); 
     HIblackbishopimg = loadImage("Images/highlighted_black_bishop.PNG"); 
     HIblackkingimg = loadImage("Images/highlighted_black_king.PNG"); 
     HIblackqueenimg = loadImage("Images/highlighted_black_queen.PNG");
-    HIblackrookimg = loadImage("Images/highlighted_black_rook.PNG");
+    HIblackrookimg = loadImage("Images/highlighted_black_rook.PNG");*/
   }
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
@@ -315,6 +318,7 @@ void mouseReleased() {
       if (last_moved != null) {
         if (last_moved.en_passant) {
           last_moved.en_passant = false;
+        }
       }
         last_moved = my_piece;
       

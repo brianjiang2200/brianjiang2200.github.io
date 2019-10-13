@@ -472,7 +472,7 @@ class Rook extends Piece {
   }
   
    void assign_visual(boolean highlight) {
-      visual = (iswhite) ? HIwhiterookimg : HIblackrookimg; 
+      visual = (iswhite) ? whiterookimg : blackrookimg; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -636,7 +636,7 @@ class Queen extends Piece {
   }
   
     void assign_visual(boolean highlight) {
-      visual = (iswhite) ? HIwhitequeenimg : HIblackqueenimg; 
+      visual = (iswhite) ? whitequeenimg : blackqueenimg; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -683,7 +683,7 @@ class King extends Piece {
   }
   
    void assign_visual(boolean highlight) {
-      visual = (iswhite) ? HIwhitekingimg : HIblackkingimg; 
+      visual = (iswhite) ? whitekingimg : blackkingimg; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
