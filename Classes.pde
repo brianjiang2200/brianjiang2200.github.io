@@ -93,7 +93,7 @@ class Pawn extends Piece {
   }
   
   void assign_visual(boolean highlight) {
-      visual = (iswhite) ? HIwhitepawnimg : HIblackpawnimg; 
+      visual = (iswhite) ? whitepawnimg : blackpawnimg; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
