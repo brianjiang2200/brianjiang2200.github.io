@@ -303,9 +303,19 @@ class Bishop extends Piece {
   Bishop(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 3; 
-    visual = (white) ? whitebishopimg : blackbishopimg; 
+    assign_visual(false);  
     letter = (white) ? "b" : "B"; 
   }
+  
+  void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhitebishopimg : HIblackbishopimg; 
+    }
+    else {
+      visual = (iswhite) ? whitebishopimg : blackbishopimg; 
+    }
+  }
+  
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
