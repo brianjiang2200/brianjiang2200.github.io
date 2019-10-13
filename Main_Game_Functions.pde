@@ -312,10 +312,12 @@ void mouseReleased() {
       white_to_move = !white_to_move;
       
        //last moved piece
-      if (last_moved != null && last_moved.en_passant) {
-        last_moved.en_passant = false;
+      if (last_moved != null) {
+        if (last_moved.en_passant) {
+          last_moved.en_passant = false;
+        }
+        last_moved.assign_visual(false); 
       }
-        //last_moved.assign_visual(false);
         last_moved = my_piece;
         //Highlight current piece
         my_piece.assign_visual(true); 
