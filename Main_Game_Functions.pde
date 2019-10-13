@@ -315,7 +315,10 @@ void mouseReleased() {
       if (last_moved != null && last_moved.en_passant) {
         last_moved.en_passant = false;
       }
-        last_moved = my_piece; 
+        last_moved.assign_visual(false);
+        last_moved = my_piece;
+        //Highlight current piece
+        my_piece.assign_visual(true); 
       
       //promotion
       if (my_piece.letter == "p" && my_piece.SquareY == 0) {
