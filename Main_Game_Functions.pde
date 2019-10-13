@@ -6,7 +6,9 @@
 //Images
 PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
-PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg; 
+PImage HIwhitepawnimg, HIwhiteknightimg, HIwhitebishopimg, HIwhitekingimg, HIwhitequeenimg, HIwhiterookimg; 
+PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
+PImage HIblackpawnimg, HIblackknightimg, HIblackbishopimg, HIblackkingimg, HIblackqueenimg, HIblackrookimg; 
 
 void setup() {
   size(1400, 900);
@@ -18,13 +20,25 @@ void setup() {
 	  whitebishopimg = loadImage("Images/white_bishop.png"); 
 	  whitekingimg = loadImage("Images/white_king.png"); 
 	  whitequeenimg = loadImage("Images/white_queen.png"); 
-	  whiterookimg = loadImage("Images/white_rook.png"); 
+	  whiterookimg = loadImage("Images/white_rook.png");
+    HIwhitepawnimg = loadImage("Images/highlighted_white_pawn.png");
+    HIwhiteknightimg = loadImage("Images/highlighted_white_knight.png"); 
+    HIwhitebishopimg = loadImage("Images/highlighted_white_bishop.png"); 
+    HIwhitekingimg = loadImage("Images/highlighted_white_king.png"); 
+    HIwhitequeenimg = loadImage("Images/highlighted_white_queen.png");
+    HIwhiterookimg = loadImage("Images/highlighted_white_rook.png");
 	  blackpawnimg = loadImage("Images/black_pawn.png"); 
 	  blackknightimg = loadImage("Images/black_knight.png"); 
 	  blackbishopimg = loadImage("Images/black_bishop.png"); 
 	  blackqueenimg = loadImage("Images/black_queen.png"); 
 	  blackkingimg = loadImage("Images/black_king.png"); 
 	  blackrookimg = loadImage("Images/black_rook.png");
+    HIblackpawnimg = loadImage("Images/highlighted_black_pawn.png");
+    HIblackknightimg = loadImage("Images/highlighted_black_knight.png"); 
+    HIblackbishopimg = loadImage("Images/highlighted_black_bishop.png"); 
+    HIblackkingimg = loadImage("Images/highlighted_black_king.png"); 
+    HIblackqueenimg = loadImage("Images/highlighted_black_queen.png");
+    HIblackrookimg = loadImage("Images/highlighted_black_rook.png");
   }
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
@@ -85,19 +99,19 @@ int move_list_y = 570;
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
     if (mouseX >= 940 && mouseX <= 1010 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.x_coord, my_piece.y_coord, my_piece.get_color());
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
       promotion_actions(); 
     }
     else if (mouseX >= 1020 && mouseX <= 1090 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.x_coord, my_piece.y_coord, my_piece.get_color());
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
       promotion_actions(); 
     }
     else if (mouseX >= 1100 && mouseX <= 1170 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.x_coord, my_piece.y_coord, my_piece.get_color());
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
       promotion_actions(); 
     }
     else if (mouseX >= 1180 && mouseX <= 1250 && mouseY >= 200 && mouseY <= 270) {
-		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.x_coord, my_piece.y_coord, my_piece.get_color());
+		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
       promotion_actions(); 
     }
 	}
@@ -141,8 +155,8 @@ void keyPressed() {
     if (keyCode == RIGHT) {
       if (current_record != main_move_list.tail) {
           current_record = current_record.next;
-          displayed = current_record.stored_position;
           if (current_record != main_move_list.tail) {
+            displayed = current_record.stored_position;
             game_active = false; 
           }
           else {
@@ -202,7 +216,7 @@ void mouseDragged() {
 	     if (mouseX > 0 && mouseY > 0 && mouseX < 800 && mouseY < 800 && game_active) {
           int tmpy = floor(mouseY/100); 
           int tmpx = floor(mouseX/100); 
-          if (!piece_selected && piece_board[tmpy][tmpx] != null && piece_board[tmpy][tmpx].get_color() == white_to_move) {
+          if (!piece_selected && piece_board[tmpy][tmpx] != null && piece_board[tmpy][tmpx].iswhite == white_to_move) {
             my_piece = piece_board[tmpy][tmpx];
             piece_selected = true; 
           }
@@ -249,7 +263,7 @@ void mouseReleased() {
       piece_board[my_piece.SquareY][my_piece.SquareX] = null;
 	  
       //special case of removing a piece captured by en passant
-      if (my_piece.get_material_value() == 1 && last_moved != null && last_moved.en_passant) {
+      if (my_piece.material_value == 1 && last_moved != null && last_moved.en_passant) {
          if (newX == last_moved.SquareX && my_piece.SquareY == last_moved.SquareY && newY != last_moved.SquareY) {
            piece_board[last_moved.SquareY][last_moved.SquareX] = null;
          }
@@ -315,13 +329,13 @@ void mouseReleased() {
       if (!my_piece.has_moved) {
         my_piece.has_moved = true; 
         //activating en passant
-        if (my_piece.get_material_value() == 1) {
-          if (newX > 0 && piece_board[newY][newX - 1] != null && piece_board[newY][newX - 1].get_material_value() == 1 &&
-          piece_board[newY][newX - 1].get_color() != my_piece.get_color()) {
+        if (my_piece.material_value == 1) {
+          if (newX > 0 && piece_board[newY][newX - 1] != null && piece_board[newY][newX - 1].material_value== 1 &&
+          piece_board[newY][newX - 1].iswhite != my_piece.iswhite) {
             my_piece.en_passant = true;
           }
-          else if (newX < 7 && piece_board[newY][newX + 1] != null && piece_board[newY][newX + 1].get_material_value() == 1 &&
-          piece_board[newY][newX + 1].get_color() != my_piece.get_color()) {
+          else if (newX < 7 && piece_board[newY][newX + 1] != null && piece_board[newY][newX + 1].material_value == 1 &&
+          piece_board[newY][newX + 1].iswhite != my_piece.iswhite) {
             my_piece.en_passant = true; 
           }
         }
@@ -486,8 +500,8 @@ int count_white_material(Piece my_board[][]) {
 	int white_material = 0; 
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
-			if (my_board[i][k] != null && my_board[i][k].get_color() == true) {
-        white_material += my_board[i][k].get_material_value();  
+			if (my_board[i][k] != null && my_board[i][k].iswhite == true) {
+        white_material += my_board[i][k].material_value;  
 			}
 		}
 	}
@@ -498,8 +512,8 @@ int count_black_material(Piece my_board[][]) {
 	int black_material = 0; 
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
-			if (my_board[i][k] != null && my_board[i][k].get_color() == false) {
-				 black_material += my_board[i][k].get_material_value(); 
+			if (my_board[i][k] != null && my_board[i][k].iswhite == false) {
+				 black_material += my_board[i][k].material_value; 
 			}
 		}
 	}
@@ -599,7 +613,7 @@ void draw_menu() {
   else if (underpromotion_on) {
     textSize(30); 
     text("Select Promotion Piece",945,150);
-    if (my_piece.get_color()) {
+    if (my_piece.iswhite) {
       image(whiteknightimg,940,200,70,70); 
       image(whitebishopimg,1020,200,70,70);
       image(whiterookimg,1100,200,70,70); 

@@ -21,22 +21,22 @@ Piece [] [] duplicate_board(Piece curr_board[][]) {
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
 			if (curr_board[i][k] != null) {
-				if (curr_board[i][k].get_material_value() == 1) {
-					copy[i][k] = new Pawn(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
+				if (curr_board[i][k].material_value == 1) {
+					copy[i][k] = new Pawn(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].letter == "n" || curr_board[i][k].letter == "N") {
-					copy[i][k] = new Knight(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
+					copy[i][k] = new Knight(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].letter == "b" || curr_board[i][k].letter == "B") {
-					copy[i][k] = new Bishop(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
+					copy[i][k] = new Bishop(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
 				}
-				else if (curr_board[i][k].get_material_value() == 5) {
-					copy[i][k] = new Rook(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
+				else if (curr_board[i][k].material_value == 5) {
+					copy[i][k] = new Rook(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
 				}
-				else if (curr_board[i][k].get_material_value() == 9) {
-					copy[i][k] = new Queen(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].get_color());
+				else if (curr_board[i][k].material_value == 9) {
+					copy[i][k] = new Queen(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
 				}
-				else if (curr_board[i][k].get_material_value() == 50) {
+				else if (curr_board[i][k].material_value == 50) {
 					if (curr_board[i][k].letter == "k") {
 						copy_white_king = new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, true);
 						copy[i][k] = copy_white_king; 
@@ -95,10 +95,10 @@ void duplicate_protected_squares(Piece curr_board[][], ProtectedSquare for_white
 //Check Stalemate 
 boolean check_stalemate(King my_king, Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
   if (my_king.num_legal_moves(my_board, for_white, for_black) == 0 && !my_king.in_check(for_white, for_black) && 
-    !my_king.checkmate(my_board, for_white, for_black) && my_king.get_color() == white_to_move) {
+    !my_king.checkmate(my_board, for_white, for_black) && my_king.iswhite == white_to_move) {
         for (int i = 0; i < 8; ++i) {
           for (int k = 0; k < 8; ++k) {
-            if (my_board[i][k] != null && my_board[i][k].get_color() == my_king.get_color()) {
+            if (my_board[i][k] != null && my_board[i][k].iswhite == my_king.iswhite) {
               for (int a = -2; a <= 2; ++a) {
                 for (int b = -2; b <= 2; ++b) {
                   if (my_board[i][k].is_legal(my_board, for_white, for_black, my_board[i][k].SquareX + a, my_board[i][k].SquareY + b)) {
@@ -117,7 +117,7 @@ boolean check_stalemate(King my_king, Piece my_board[][], ProtectedSquare for_wh
 boolean piece_on_board(Piece my_board[][]) {
   for (int i = 0; i < 8; ++i) {
     for (int k = 0; k < 8; ++k) {
-      if (my_board[i][k] != null && my_board[i][k].get_material_value() == 3) {
+      if (my_board[i][k] != null && my_board[i][k].material_value == 3) {
         return true; 
       }
     }

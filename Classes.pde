@@ -18,7 +18,9 @@ class Piece {
   //CAN BE CAPTURED EN PASSANT
   boolean en_passant;
   //IMAGE FOR PIECE
-  PImage visual; 
+  PImage visual;
+  //HIGHLIGHTED IMAGE FOR PIECE
+  PImage HI_visual; 
   //LETTER FOR NOTATION
   String letter; 
 
@@ -29,26 +31,6 @@ class Piece {
   SquareX = xpos/100; 
   SquareY = ypos/100; 
   iswhite = white;  
-  }
-  
-  //RETURN MATERIAL VALUE
-  int get_material_value() {
-    return this.material_value; 
-  }
-  
-  //RETURN X COORDINATE
-  int get_x_pos() {
-  return this.x_coord;
-  }
-  
-  //RETURN Y COORDINATE
-  int get_y_pos() {
-  return this.y_coord; 
-  }
-  
-  //RETURN COLOUR
-  boolean get_color() {
-  return this.iswhite; 
   }
   
   //MOVE IS LEGAL
@@ -73,10 +55,10 @@ class Piece {
     local_board[new_y][new_x] = this; 
     local_board[this.SquareY][this.SquareX] = null;
 	  duplicate_protected_squares(local_board, whites_squares, blacks_squares);
-    if (this.get_color() && copy_white_king.in_check(whites_squares, blacks_squares)) {
+    if (this.iswhite && copy_white_king.in_check(whites_squares, blacks_squares)) {
         return false; 
     }
-	  else if (!this.get_color() && copy_black_king.in_check(whites_squares, blacks_squares)) {
+	  else if (!this.iswhite && copy_black_king.in_check(whites_squares, blacks_squares)) {
 		  return false; 
 	  }
     return true;
@@ -101,13 +83,13 @@ class Pawn extends Piece {
   Pawn(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white);
     material_value = 1;
-    visual = (white) ? whitepawnimg : blackpawnimg; 
+    visual = (white) ? whitepawnimg : blackpawnimg;
     letter = (white) ? "p" : "P"; 
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
    
-    if (get_color()) {
+    if (iswhite) {
 	
       //FORWARD MOVEMENT FOR WHITE PAWNS
       if (x == SquareX && my_board[SquareY - 1][x] == null) { 
@@ -121,11 +103,11 @@ class Pawn extends Piece {
 	  
       if (y == SquareY - 1) {
         //CAPTURING TO THE LEFT
-        if (x == SquareX - 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].get_color() == false) {
+        if (x == SquareX - 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
           return verify_not_check(my_board, y, x); 
         }
         //CAPTURING TO THE RIGHT
-        else if (x == SquareX + 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].get_color() == false) {
+        else if (x == SquareX + 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
            return verify_not_check(my_board, y, x);
         }
         //EN PASSANT TO THE LEFT
@@ -163,7 +145,7 @@ class Pawn extends Piece {
        }
       }
       
-    else if (!get_color()) {
+    else if (!iswhite) {
       //forward movement for black pawns
       if (x == SquareX && my_board[SquareY + 1][x] == null) {
          if (y == SquareY + 1) {
@@ -175,11 +157,11 @@ class Pawn extends Piece {
        }
       if (y == SquareY + 1) {
         //capturing to the left
-        if (x == SquareX - 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].get_color() == true) {
+        if (x == SquareX - 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
         //capturing to the right
-        else if (x == SquareX + 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].get_color() == true) {
+        else if (x == SquareX + 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
         //en passant to the left
@@ -219,7 +201,7 @@ class Pawn extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
      if (SquareY != 0 && SquareY != 7) {
-      if (get_color()) {
+      if (iswhite) {
         if (SquareX > 0) {
           new_white_protected(SquareX - 1, SquareY - 1, this, white_protected);
         }
@@ -251,7 +233,7 @@ class Knight extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-		if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
+		if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
 			return false; 
 		} 
 		if (x == SquareX + 2 || x == SquareX - 2) {
@@ -269,7 +251,7 @@ class Knight extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    if (get_color()) {
+    if (iswhite) {
       new_white_protected(SquareX - 2, SquareY - 1, this, white_protected); 
       new_white_protected(SquareX - 2, SquareY + 1, this, white_protected); 
       new_white_protected(SquareX - 1, SquareY - 2, this, white_protected); 
@@ -306,7 +288,7 @@ class Bishop extends Piece {
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
 	
 	//this already checks if a piece lands on the same square as itself. 
-	if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
+	if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
 		return false; 
 	}
 	if (abs(y - SquareY) == abs(x - SquareX)) {
@@ -354,7 +336,7 @@ class Bishop extends Piece {
 
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z;
-    if (get_color()) {
+    if (iswhite) {
        new_white_protected(SquareX - 1, SquareY - 1, this, white_protected); 
        new_white_protected(SquareX - 1, SquareY + 1, this, white_protected);
        new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
@@ -413,7 +395,7 @@ class Bishop extends Piece {
         for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color()
+              if (my_board[a][b] != null && my_board[a][b].iswhite != iswhite
                   && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY - k)) {
                     return true; 
                   }
@@ -425,7 +407,7 @@ class Bishop extends Piece {
         for (int k = 1; k < SquareX - king_x; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color() 
+              if (my_board[a][b] != null && my_board[a][b].iswhite != iswhite 
                   && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY + k)) {
                     return true; 
                   }
@@ -437,7 +419,7 @@ class Bishop extends Piece {
         for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color() 
+              if (my_board[a][b] != null && my_board[a][b].iswhite != iswhite 
                   && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY - k)) {
                     return true; 
                   }
@@ -449,7 +431,7 @@ class Bishop extends Piece {
         for (int k = 1; k < king_y - SquareY; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (my_board[a][b] != null && my_board[a][b].get_color() != get_color()
+              if (my_board[a][b] != null && my_board[a][b].iswhite != iswhite
                   && my_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY + k)) {
                     return true; 
                   }
@@ -473,7 +455,7 @@ class Rook extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-      if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
+      if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
         return false; 
       } 
 	    if (x == SquareX && y > SquareY) {
@@ -514,7 +496,7 @@ class Rook extends Piece {
 
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z; 
-    if (get_color()) {
+    if (iswhite) {
       new_white_protected(SquareX, SquareY + 1, this, white_protected); 
       new_white_protected(SquareX, SquareY - 1, this, white_protected); 
       new_white_protected(SquareX + 1, SquareY, this, white_protected); 
@@ -573,7 +555,7 @@ class Rook extends Piece {
         for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+              if (piece_board[a][b] != null && piece_board[a][b].iswhite != iswhite
                   && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX, SquareY - k)) {
                     return true; 
                   }
@@ -585,7 +567,7 @@ class Rook extends Piece {
         for (int k = 1; k < king_y - SquareY; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+              if (piece_board[a][b] != null && piece_board[a][b].iswhite != iswhite
                   && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX, SquareY + k)) {
                     return true; 
                   }
@@ -597,7 +579,7 @@ class Rook extends Piece {
         for (int k = 1; k < SquareX - king_x; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+              if (piece_board[a][b] != null && piece_board[a][b].iswhite != iswhite
                   && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX - k, SquareY)) {
                     return true; 
                   }
@@ -609,7 +591,7 @@ class Rook extends Piece {
         for (int k = 1; k < king_x - SquareX; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
-              if (piece_board[a][b] != null && piece_board[a][b].get_color() != get_color()
+              if (piece_board[a][b] != null && piece_board[a][b].iswhite != iswhite
                   && piece_board[a][b].is_legal(my_board, for_white, for_black, SquareX + k, SquareY)) {
                     return true; 
                   }
@@ -632,8 +614,8 @@ class Queen extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-    Bishop local_bishop = new Bishop(SquareX * 100, SquareY * 100, get_color()); 
-    Rook local_rook = new Rook(SquareX * 100, SquareY * 100, get_color()); 
+    Bishop local_bishop = new Bishop(SquareX * 100, SquareY * 100, iswhite); 
+    Rook local_rook = new Rook(SquareX * 100, SquareY * 100, iswhite); 
     if (local_bishop.is_legal(my_board, for_white, for_black, x, y)) {
 		return true; 
     }
@@ -644,17 +626,17 @@ class Queen extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, get_color());
+    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, iswhite);
     my_bish.material_value = 9; 
-    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, get_color());
+    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, iswhite);
     my_rook.material_value = 9; 
     my_bish.assign_protected_squares(my_board, white_protected, black_protected); 
     my_rook.assign_protected_squares(my_board, white_protected, black_protected); 
   }
   
   boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
-    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, get_color()); 
-    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, get_color()); 
+    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, iswhite); 
+    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, iswhite); 
     if (my_bish.blockable(my_board, for_white, for_black, king_x, king_y)) {
       return true; 
     }
@@ -676,13 +658,13 @@ class King extends Piece {
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
 	//cannot capture pieces of the same color
-	if (my_board[y][x] != null && my_board[y][x].get_color() == get_color()) {
+	if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
 		return false; 
 	}
-  if (get_color() && for_black[y][x] != null) {
+  if (iswhite && for_black[y][x] != null) {
     return false; 
   }
-  else if (in_check(for_white, for_black) && get_color()) {
+  else if (in_check(for_white, for_black) && iswhite) {
     my_board[SquareY][SquareX] = null; 
 	refresh_protected(my_board, for_white, for_black); 
 	if (for_black[y][x] != null) {
@@ -693,10 +675,10 @@ class King extends Piece {
 	my_board[SquareY][SquareX] = this; 
 	refresh_protected(my_board, for_white, for_black); 
   }
-  if (!get_color() && for_white[y][x] != null) {
+  if (!iswhite && for_white[y][x] != null) {
     return false; 
   }
-  else if (in_check(for_white, for_black) && !get_color()) {
+  else if (in_check(for_white, for_black) && !iswhite) {
     my_board[SquareY][SquareX] = null; 
 	refresh_protected(my_board, for_white, for_black); 
 	if (for_white[y][x] != null) {
@@ -711,14 +693,14 @@ class King extends Piece {
 	if (y == SquareY && !has_moved) {
 		if (x == 6 && (my_board[y][7].letter == "r" || my_board[y][7].letter == "R") 
 			&& my_board[y][5] == null && my_board[y][6] == null && !my_board[y][7].has_moved && !in_check(for_white, for_black)) {
-      if (get_color() && for_black[y][5] == null && for_black[y][6] == null) {
-        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].get_color());
+      if (iswhite && for_black[y][5] == null && for_black[y][6] == null) {
+        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].iswhite);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
 		return true;
       }
-      else if (!get_color() && for_white[y][5] == null && for_white[y][6] == null) {
-        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].get_color());
+      else if (!iswhite && for_white[y][5] == null && for_white[y][6] == null) {
+        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].iswhite);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
         return true;
@@ -726,14 +708,14 @@ class King extends Piece {
 		}
 		else if (x == SquareX - 2 && (my_board[y][x - 2].letter == "r" || my_board[y][x - 2].letter == "R") 
 			&& my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][x-2].has_moved && !in_check(for_white, for_black)) {
-      if (get_color() && for_black[y][2] == null && for_black[y][3] == null) {
-        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].get_color()); 
+      if (iswhite && for_black[y][2] == null && for_black[y][3] == null) {
+        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].iswhite); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
 		return true; 
       }
-      if (!get_color() && for_white[y][2] == null && for_white[y][3] == null) {
-        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].get_color()); 
+      if (!iswhite && for_white[y][2] == null && for_white[y][3] == null) {
+        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].iswhite); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
         return true; 
@@ -751,7 +733,7 @@ class King extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    if (get_color()) {
+    if (iswhite) {
        new_white_protected(SquareX, SquareY - 1, this, white_protected); 
        new_white_protected(SquareX, SquareY + 1, this, white_protected); 
        new_white_protected(SquareX - 1, SquareY, this, white_protected); 
@@ -774,7 +756,7 @@ class King extends Piece {
   }
   
   boolean in_check(ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
-    if (get_color()) {
+    if (iswhite) {
       if (for_black[SquareY][SquareX] != null) {
          return true;
       }
@@ -790,7 +772,7 @@ class King extends Piece {
   boolean checkmate(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
      if (in_check(for_white, for_black) && num_legal_moves(my_board, for_white, for_black) == 0) 
          { 
-           if (get_color()) {
+           if (iswhite) {
                
              //STORE SOME OBJECTS 
              ProtectedSquare black_square = for_black[SquareY][SquareX];
@@ -809,7 +791,7 @@ class King extends Piece {
                }
              }
              //ELSE IF THE WEAKEST ATTACKER OF THE CHECKING PIECE IS THE KING
-             else if (white_defender.primary.defending_piece.get_material_value() == 50) {
+             else if (white_defender.primary.defending_piece.material_value == 50) {
                //ENSURE THE BLACK PIECE IS DEFENDED
                if (for_black[black_square.primary.defending_piece.SquareY][black_square.primary.defending_piece.SquareX] != null) {
                  return true;
@@ -831,7 +813,7 @@ class King extends Piece {
            }
            
            //if black king and attacking piece cannot be captured, 
-           if (!get_color()) 
+           if (!iswhite) 
            {
              
              //STORE SOME OBJECTS 
@@ -851,7 +833,7 @@ class King extends Piece {
                }
              }
              //ELSE IF THE WEAKEST ATTACKER OF THE CHECKING PIECE IS THE KING
-             else if (black_defender.primary.defending_piece.get_material_value() == 50) {
+             else if (black_defender.primary.defending_piece.material_value == 50) {
                //ENSURE THE WHITE PIECE IS DEFENDED
                if (for_white[white_square.primary.defending_piece.SquareY][white_square.primary.defending_piece.SquareX] != null) {
                  return true; 
@@ -974,7 +956,7 @@ class ProtectedSquare {
 		//WHILE STEPPER.NEXT IS NOT NULL
 		while (stepper.next != null) {
 			//IF THE NEXT PIECE HAS LOWER MATERIAL VALUE THAN THE CURRENT
-			if (stepper.next.defending_piece.get_material_value() < stepper.defending_piece.get_material_value()) {
+			if (stepper.next.defending_piece.material_value < stepper.defending_piece.material_value) {
 				//STORE THE NEXT PIECE
 				SquareDefender my_node = stepper.next;
 				//LET THE NEXT PIECE TO THE CURRENT ONE BE THE ONE AFTER
@@ -982,13 +964,13 @@ class ProtectedSquare {
 				//SECONDARY STEPPER IS INITIALIZED TO PRIMARY
 				SquareDefender new_stepper = this.primary;
 				//IF NEW NODE REPLACES PRIMARY
-				if (my_node.defending_piece.get_material_value() < primary.defending_piece.get_material_value()) {
+				if (my_node.defending_piece.material_value < primary.defending_piece.material_value) {
 					my_node.next = primary; 
 					primary = my_node; 
 				}
 				else {
 					//WHILE MY NODE'S PIECE IS OF GREATER VALUE THAN THE NEXT,
-					while (my_node.defending_piece.get_material_value() > new_stepper.next.defending_piece.get_material_value()) {
+					while (my_node.defending_piece.material_value > new_stepper.next.defending_piece.material_value) {
 						//SECONDARY STEPPER GETS THAT PIECE
 						new_stepper = new_stepper.next; 
 					}
@@ -1008,8 +990,10 @@ class ProtectedSquare {
 
 
 class MoveRecord {
-  //move stored at this point
+  //Position stored at this point
   Piece[][] stored_position;
+  //Piece just moved
+  Piece last_moved; 
   //Move Number 
   int move_num;
   //Side to Move
@@ -1028,10 +1012,11 @@ class MoveRecord {
   MoveRecord prev; 
   
   MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean capture, boolean is_check) {
+    last_moved = my_piece; 
     stored_position = duplicate_board(new_pos); 
-    to_move = my_piece.get_color();
+    to_move = my_piece.iswhite;
     move_num = move_no;
-    notation_piece = (my_piece.get_material_value() == 1) ? "" : my_piece.letter.toUpperCase(); 
+    notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase(); 
     switch (prev_x) {
       case 0: 
         previous_x = "a";
@@ -1060,8 +1045,6 @@ class MoveRecord {
       default: 
         previous_x = "?"; 
     }
-    previous_y = 8 - prev_y; 
-    notation_row = 8 - my_piece.SquareY; 
     switch (my_piece.SquareX) {
       case 0: 
         notation_col = "a";
@@ -1090,6 +1073,8 @@ class MoveRecord {
       default: 
         notation_col = "?"; 
     }
+    previous_y = 8 - prev_y; 
+    notation_row = 8 - my_piece.SquareY; 
     next = null;
     prev = null;
     captures = (capture) ? " x " : " - ";
