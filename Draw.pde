@@ -5,7 +5,9 @@ void draw() {
   //display highlighted squares
   fill(107,207,227); 
   if (game_active) {
-    rect(last_moved.SquareX * 100, last_moved.SquareY * 100, piecedim, piecedim); 
+    if (last_moved != null) {
+      rect(last_moved.SquareX * 100, last_moved.SquareY * 100, piecedim, piecedim);
+    }
   }
   else {
     rect(current_record.last_moved.SquareX * 100, current_record.last_moved.SquareY * 100, piecedim, piecedim); 
