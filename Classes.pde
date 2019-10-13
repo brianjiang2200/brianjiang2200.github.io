@@ -1023,7 +1023,6 @@ class MoveRecord {
   int notation_row;
   String promotion_piece = "";
   String captures = ""; 
-  String equals_sign = "";
   String full_move; 
   MoveRecord next;
   MoveRecord prev; 
@@ -1117,10 +1116,10 @@ class MoveRecord {
        }
     else {
       if (check) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece + ((color_won != 0) ? "#" : "+");
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + promotion_piece + ((color_won != 0) ? "#" : "+");
       }
       else {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + equals_sign + promotion_piece;
+        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + promotion_piece;
       }
     }
   }

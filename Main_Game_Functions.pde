@@ -162,9 +162,6 @@ void promotion_actions() {
     game_active = true; 
     refresh_protected(piece_board, white_protected_squares, black_protected_squares);
     eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
-    main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
-    main_move_list.tail.equals_sign = "=";
-    main_move_list.tail.stored_position = duplicate_board(piece_board);  
     if (white_king.checkmate(piece_board, white_protected_squares, black_protected_squares)) {
       game_active = false; 
       game_over = true; 
@@ -194,6 +191,9 @@ void promotion_actions() {
        game_over = true; 
        game_drawn = true; 
       }
+  main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
+  main_move_list.tail.full_move = main_move_list.tail.generate_move(); 
+  main_move_list.tail.stored_position = duplicate_board(piece_board);  
 }
 
 void mouseDragged() { 
