@@ -11,13 +11,6 @@ boolean check_null(Piece my_board[][], int x, int y) {
 //DUPLICATE A BOARD POSITION 
 Piece [] [] duplicate_board(Piece curr_board[][]) {
 	Piece [] [] copy = new Piece[8][8]; 
-  /*for (int i = 0; i < 8; ++i) {
-    arrayCopy(curr_board[i],copy[i]);
-    for (int k = 0; k < 8; ++k) {
-      copy_white_king = (curr_board[i][k].get_letter() == "k") ? new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, true) : copy_white_king;
-      copy_black_king = (curr_board[i][k].get_letter() == "K") ? new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, false) : copy_black_king; 
-    }
-  }*/
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
 			if (curr_board[i][k] != null) {

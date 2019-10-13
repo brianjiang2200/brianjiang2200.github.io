@@ -75,6 +75,11 @@ class Piece {
      //overridden by subclasses
   }
   
+  //ASSIGNS VISUAL TO PIECE
+  void assign_visual(boolean highlight) {
+    //overridden by subclasses
+  }
+  
 }
  
 
@@ -83,8 +88,17 @@ class Pawn extends Piece {
   Pawn(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white);
     material_value = 1;
-    visual = (white) ? whitepawnimg : blackpawnimg;
+    assign_visual(false); 
     letter = (white) ? "p" : "P"; 
+  }
+  
+  void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhitepawnimg : HIblackpawnimg; 
+    }
+    else {
+      visual = (iswhite) ? whitepawnimg : blackpawnimg; 
+    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -227,8 +241,17 @@ class Knight extends Piece {
   Knight(int xpos, int ypos, boolean white) {
      super(xpos, ypos, white); 
      material_value = 3;
-     visual = (white) ? whiteknightimg : blackknightimg; 
+     assign_visual(false);  
      letter = (white) ? "n" : "N"; 
+  }
+  
+    void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhiteknightimg : HIblackknightimg; 
+    }
+    else {
+      visual = (iswhite) ? whiteknightimg : blackknightimg; 
+    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -449,8 +472,17 @@ class Rook extends Piece {
   Rook(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 5; 
-    visual = (white) ? whiterookimg : blackrookimg; 
+    assign_visual(false);  
     letter = (white) ? "r" : "R"; 
+  }
+  
+   void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhiterookimg : HIblackrookimg; 
+    }
+    else {
+      visual = (iswhite) ? whiterookimg : blackrookimg; 
+    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -609,8 +641,17 @@ class Queen extends Piece {
   Queen(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 9;
-    visual = (white) ? whitequeenimg : blackqueenimg; 
+    assign_visual(false);  
     letter = (white) ? "q" : "Q";
+  }
+  
+    void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhitequeenimg : HIblackqueenimg; 
+    }
+    else {
+      visual = (iswhite) ? whitequeenimg : blackqueenimg; 
+    }
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
@@ -652,9 +693,19 @@ class King extends Piece {
   King(int xpos, int ypos, boolean white) {
     super(xpos, ypos, white); 
     material_value = 50;
-    visual = (white) ? whitekingimg : blackkingimg; 
+    assign_visual(false); 
     letter = (white) ? "k" : "K"; 
   }
+  
+   void assign_visual(boolean highlight) {
+    if (highlight) {
+      visual = (iswhite) ? HIwhitekingimg : HIblackkingimg; 
+    }
+    else {
+      visual = (iswhite) ? whitekingimg : blackkingimg; 
+    }
+  }
+  
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
     if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
 	//cannot capture pieces of the same color
@@ -1012,8 +1063,9 @@ class MoveRecord {
   MoveRecord prev; 
   
   MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean capture, boolean is_check) {
-    last_moved = my_piece; 
-    stored_position = duplicate_board(new_pos); 
+    stored_position = duplicate_board(new_pos);
+    last_moved = stored_position[my_piece.SquareY][my_piece.SquareX]; 
+    HIGHLIGHT_SQUARES(); 
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase(); 
@@ -1114,6 +1166,10 @@ class MoveRecord {
      fill(255);
      text(full_move, x_pos, y_pos); 
   } //<>//
+  
+  void HIGHLIGHT_SQUARES() {
+    last_moved.assign_visual(true); 
+  }
 }
 
 class MoveList {
