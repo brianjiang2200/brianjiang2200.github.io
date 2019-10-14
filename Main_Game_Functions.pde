@@ -4,7 +4,7 @@
 //Last Update: 2019-05-03
 
 //Imports
-
+import java.awt.MouseInfo; 
 
 //Images
 PImage boardimg;
@@ -213,6 +213,10 @@ void mouseDragged() {
             }
           }
           else if (piece_selected) {
+            if (MouseInfo.getPointerInfo().getLocation().x < 0) {mouseX = -50;} 
+            else if (MouseInfo.getPointerInfo().getLocation().x > 1400) {mouseX = 1350;} 
+            if (MouseInfo.getPointerInfo().getLocation().y < 0) {mouseY = -50;}
+            else if (MouseInfo.getPointerInfo().getLocation().x > 1400) {mouseX = 1350;} 
             my_piece.x_coord = mouseX - 50; 
             my_piece.y_coord = mouseY - 50; 
           }
