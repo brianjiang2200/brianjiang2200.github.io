@@ -10,6 +10,10 @@ PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
 PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
 
+//Translation 
+IntDict TranslationXeng;
+String[] TranslationXnum;
+
 void setup() {
   size(1400, 900);
   frameRate(60);
@@ -36,6 +40,17 @@ void setup() {
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
+  TranslationXeng = new IntDict(); 
+  TranslationXeng.set("a", 0);
+  TranslationXeng.set("b", 1);
+  TranslationXeng.set("c", 2); 
+  TranslationXeng.set("d", 3); 
+  TranslationXeng.set("e", 4); 
+  TranslationXeng.set("f", 5); 
+  TranslationXeng.set("g", 6); 
+  TranslationXeng.set("h", 7);
+  
+  TranslationXnum = TranslationXeng.keyArray();
 } 
 
 //GAME PROPERTIES
