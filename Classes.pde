@@ -1049,8 +1049,8 @@ class MoveRecord {
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase();
-    previous_x = TranslationXnum[prev_x];
-    notation_col = TranslationXnum[my_piece.SquareX]; 
+    previous_x = TranslateXCoord(prev_x);
+    notation_col = TranslateXCoord(my_piece.SquareX);
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;
@@ -1095,6 +1095,10 @@ class MoveRecord {
   
   void HIGHLIGHT_SQUARES() {
     last_moved.assign_visual(true); 
+  }
+  
+  String TranslateXCoord (int coord){
+    return TranslationXnum[coord];
   }
 }
 
