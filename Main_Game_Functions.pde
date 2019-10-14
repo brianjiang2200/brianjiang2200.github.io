@@ -51,6 +51,7 @@ void setup() {
   TranslateXeng.set("g", 6); 
   TranslateXeng.set("h", 7);
   
+  TranslateXnum = new String[8];
   TranslateXnum = TranslateXeng.keyArray();
   for (int k = 0; k < TranslateXnum.length; ++k) {
     println(TranslateXnum[k]);
