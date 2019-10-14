@@ -10,13 +10,12 @@ PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
 PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
 
-//Translation 
-IntDict TranslationXeng;
-String[] TranslationXnum;
+GLOBAL GlobalProperties; 
 
 void setup() {
   size(1400, 900);
   frameRate(60);
+  GlobalProperties = new GLOBAL(); 
   try {
 	  boardimg = loadImage("/Images/Board.png");
 	  whitepawnimg = loadImage("Images/white_pawn.png"); 
@@ -34,20 +33,6 @@ void setup() {
   }
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
-  }
-  TranslationXeng = new IntDict(); 
-  TranslationXeng.set("a", 0);
-  TranslationXeng.set("b", 1);
-  TranslationXeng.set("c", 2); 
-  TranslationXeng.set("d", 3); 
-  TranslationXeng.set("e", 4); 
-  TranslationXeng.set("f", 5); 
-  TranslationXeng.set("g", 6); 
-  TranslationXeng.set("h", 7);
-  
-  TranslationXnum = new String[8];
-  for (int k = 0; k < 8; ++k) {
-    TranslationXnum[k] = (TranslationXeng.keyArray())[k];
   }
   load_opening_positions(); 
   generate_piece_positions(get_position("Starting_Position"));

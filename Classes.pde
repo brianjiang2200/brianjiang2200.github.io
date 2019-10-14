@@ -1098,7 +1098,7 @@ class MoveRecord {
   }
   
   String TranslateXCoord (int coord){
-    return TranslationXnum[coord];
+    return GlobalProperties.TranslationXnum[coord];
   }
 }
 
