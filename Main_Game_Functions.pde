@@ -35,11 +35,6 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
-  load_opening_positions(); 
-  generate_piece_positions(get_position("Starting_Position"));
-  displayed = piece_board; 
-  refresh_protected(piece_board, white_protected_squares, black_protected_squares);
-  eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
   TranslationXeng = new IntDict(); 
   TranslationXeng.set("a", 0);
   TranslationXeng.set("b", 1);
@@ -52,8 +47,13 @@ void setup() {
   
   TranslationXnum = new String[8];
   for (int k = 0; k < 8; ++k) {
-    TranslationXnum[k] = TranslationXeng.keyArray()[k];
+    TranslationXnum[k] = (TranslationXeng.keyArray())[k];
   }
+  load_opening_positions(); 
+  generate_piece_positions(get_position("Starting_Position"));
+  displayed = piece_board; 
+  refresh_protected(piece_board, white_protected_squares, black_protected_squares);
+  eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
 } 
 
 //GAME PROPERTIES
