@@ -50,8 +50,10 @@ void setup() {
   TranslationXeng.set("g", 6); 
   TranslationXeng.set("h", 7);
   
-  TranslationXnum = TranslationXeng.keyArray();
-  println(TranslationXnum[2]);
+  TranslationXnum = new String[8];
+  for (int k = 0; k < 8; ++k) {
+    TranslationXnum[k] = TranslationXeng.keyArray()[k];
+  }
 } 
 
 //GAME PROPERTIES
