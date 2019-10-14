@@ -49,6 +49,10 @@ void setup() {
   TranslateXeng.set("f", 5); 
   TranslateXeng.set("g", 6); 
   TranslateXeng.set("h", 7);
+  
+  for (int k = 0; k < 8; ++k) {
+    println(TranslateXeng.keyArray()[k]);
+  }
 } 
 
 //GAME PROPERTIES
