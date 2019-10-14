@@ -10,6 +10,10 @@ PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
 PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
 
+//Translation of X Coordinates
+IntDict TranslateXeng;
+String[] TranslateXnum; 
+
 void setup() {
   size(1400, 900);
   frameRate(60);
@@ -37,6 +41,7 @@ void setup() {
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
   
+  TranslateXeng = new IntDict(); 
   TranslateXeng.set("a", 0);
   TranslateXeng.set("b", 1); 
   TranslateXeng.set("c", 2); 
@@ -46,6 +51,7 @@ void setup() {
   TranslateXeng.set("g", 6); 
   TranslateXeng.set("h", 7);
   
+  TranslateXnum = new String[8];
   TranslateXnum = TranslateXeng.keyArray(); 
 } 
 
@@ -96,10 +102,6 @@ MoveRecord current_record;
 int white_move_list_x = 920;
 int black_move_list_x = 1120; 
 int move_list_y = 570;
-
-//Translation of X Coordinates
-IntDict TranslateXeng = new IntDict();
-String[] TranslateXnum = new String[8]; 
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
