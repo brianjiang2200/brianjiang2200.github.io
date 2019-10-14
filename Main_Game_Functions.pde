@@ -51,6 +51,7 @@ void setup() {
   TranslationXeng.set("h", 7);
   
   TranslationXnum = TranslationXeng.keyArray();
+  println(TranslationXnum[2]);
 } 
 
 //GAME PROPERTIES
