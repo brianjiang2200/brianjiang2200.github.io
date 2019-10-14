@@ -35,7 +35,18 @@ void setup() {
   generate_piece_positions(get_position("Starting_Position"));
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
-  eval = get_eval(piece_board, white_protected_squares, black_protected_squares); 
+  eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
+  
+  TranslateXeng.set("a", 0);
+  TranslateXeng.set("b", 1); 
+  TranslateXeng.set("c", 2); 
+  TranslateXeng.set("d", 3); 
+  TranslateXeng.set("e", 4);
+  TranslateXeng.set("f", 5); 
+  TranslateXeng.set("g", 6); 
+  TranslateXeng.set("h", 7);
+  
+  TranslateXnum = TranslateXeng.keyArray(); 
 } 
 
 //GAME PROPERTIES
@@ -55,8 +66,10 @@ boolean underpromotion_on = false;
 //IMPORTANT PIECES
 Piece my_piece;
 King white_king;
+//Dummy king for checking checks
 King copy_white_king; 
 King black_king;
+//Dummy king for checking checks
 King copy_black_king; 
 Piece last_moved; 
 
@@ -83,6 +96,10 @@ MoveRecord current_record;
 int white_move_list_x = 920;
 int black_move_list_x = 1120; 
 int move_list_y = 570;
+
+//Translation of X Coordinates
+IntDict TranslateXeng = new IntDict();
+String[] TranslateXnum = new String[8]; 
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {

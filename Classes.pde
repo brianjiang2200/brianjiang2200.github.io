@@ -1049,62 +1049,8 @@ class MoveRecord {
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase(); 
-    switch (prev_x) {
-      case 0: 
-        previous_x = "a";
-        break;
-      case 1:
-        previous_x = "b";
-        break;
-      case 2: 
-        previous_x = "c";
-        break;
-      case 3: 
-        previous_x = "d";
-        break;
-      case 4: 
-        previous_x = "e";
-        break;
-      case 5: 
-        previous_x = "f";
-        break;
-      case 6: 
-        previous_x = "g";
-        break;
-      case 7: 
-        previous_x = "h";
-        break;
-      default: 
-        previous_x = "?"; 
-    }
-    switch (my_piece.SquareX) {
-      case 0: 
-        notation_col = "a";
-        break;
-      case 1: 
-        notation_col = "b";
-        break;
-      case 2:
-        notation_col = "c";
-        break;
-      case 3: 
-        notation_col = "d";
-        break;
-      case 4: 
-        notation_col = "e";
-        break;
-      case 5: 
-        notation_col = "f";
-        break;
-      case 6: 
-        notation_col = "g";
-        break;
-      case 7: 
-        notation_col = "h";
-        break;
-      default: 
-        notation_col = "?"; 
-    }
+    previous_x = TranslateXnum[prev_x]; 
+    notation_col = TranslateXnum[prev_x]; 
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;
