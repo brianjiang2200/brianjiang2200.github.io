@@ -3,6 +3,9 @@
 //Version 1.136
 //Last Update: 2019-05-03
 
+//Imports
+import java.awt.MouseInfo; 
+
 //Images
 PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
@@ -210,8 +213,8 @@ void mouseDragged() {
             }
           }
           else if (piece_selected) {
-            my_piece.x_coord = constrain(mouseX - 50, 0, 800); 
-            my_piece.y_coord = constrain(mouseY - 50, 0, 800);
+            my_piece.x_coord = constrain(MouseInfo.getPointerInfo().getLocation().x, 50, 850);   
+            my_piece.y_coord = constrain(MouseInfo.getPointerInfo().getLocation().y, 50, 850);
           }
         }
 }
