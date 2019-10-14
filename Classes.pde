@@ -1049,8 +1049,8 @@ class MoveRecord {
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase(); 
-    previous_x = TranslateXnum[prev_x]; 
-    notation_col = TranslateXnum[my_piece.SquareX]; 
+    previous_x = TranslateXeng.keyArray()[prev_x]; 
+    notation_col = TranslateXeng.keyArray()[my_piece.SquareX]; 
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;

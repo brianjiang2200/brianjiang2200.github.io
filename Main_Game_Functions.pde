@@ -12,7 +12,6 @@ PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg
 
 //Translation of X Coordinates
 IntDict TranslateXeng;
-String[] TranslateXnum; 
 
 void setup() {
   size(1400, 900);
@@ -50,12 +49,6 @@ void setup() {
   TranslateXeng.set("f", 5); 
   TranslateXeng.set("g", 6); 
   TranslateXeng.set("h", 7);
-  
-  TranslateXnum = new String[8];
-  TranslateXnum = TranslateXeng.keyArray();
-  for (int k = 0; k < TranslateXnum.length; ++k) {
-    println(TranslateXnum[k]);
-  }
 } 
 
 //GAME PROPERTIES
