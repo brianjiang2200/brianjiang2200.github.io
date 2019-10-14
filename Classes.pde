@@ -1048,9 +1048,14 @@ class MoveRecord {
     HIGHLIGHT_SQUARES(); 
     to_move = my_piece.iswhite;
     move_num = move_no;
-    notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase(); 
-    previous_x = TranslationXnum[prev_x];
-    notation_col = TranslationXnum[my_piece.SquareX]; 
+    notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase();
+    try {
+      previous_x = TranslationXnum[prev_x];
+      notation_col = TranslationXnum[my_piece.SquareX]; 
+    }
+    catch (Exception e) {
+      println("Error"); 
+    }
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;
