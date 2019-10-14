@@ -551,7 +551,8 @@ void draw_menu() {
   textSize(30);
   text("QUIT",1265,55);
   textSize(30); 
-  fill(0); 
+  fill(0);
+  stroke(0); 
   rect(0,800,1400,100);
   fill(255); 
   text("Running Evaluation: " + eval, 30, 860); 
