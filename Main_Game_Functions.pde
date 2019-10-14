@@ -213,6 +213,7 @@ void mouseDragged() {
             }
           }
           else if (piece_selected) {
+            println(MouseInfo.getPointerInfo().getLocation().x); 
             if (MouseInfo.getPointerInfo().getLocation().x < 0) {mouseX = -50;} 
             else if (MouseInfo.getPointerInfo().getLocation().x > 1400) {mouseX = 1350;} 
             if (MouseInfo.getPointerInfo().getLocation().y < 0) {mouseY = -50;}
