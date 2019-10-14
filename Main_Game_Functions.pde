@@ -200,7 +200,7 @@ void mouseDragged() {
 	//determine location in which mouse was clicked and compare it to the board value. 
 		//highlight the correct square
 	     if (game_active) {
-          int tmpy, tmpx; 
+          int tmpy, tmpx;
           if (!piece_selected && mouseX <= 800 && mouseX >= 0 && mouseY <= 800 && mouseY >= 0) {
             tmpy = floor(mouseY/100); 
             tmpx = floor(mouseX/100);
@@ -210,8 +210,8 @@ void mouseDragged() {
             }
           }
           else if (piece_selected) {
-            my_piece.x_coord = mouseX - 50; 
-            my_piece.y_coord = mouseY - 50;
+            my_piece.x_coord = constrain(mouseX - 50, 0, 800); 
+            my_piece.y_coord = constrain(mouseY - 50, 0, 800);
           }
         }
 }
