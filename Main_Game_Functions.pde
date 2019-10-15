@@ -15,8 +15,6 @@ GLOBAL GlobalProperties;
 void setup() {
   size(1400, 900);
   frameRate(60);
-  GlobalProperties = new GLOBAL(); 
-  println(GlobalProperties.TranslationXnum[2]);
   try {
 	  boardimg = loadImage("/Images/Board.png");
 	  whitepawnimg = loadImage("Images/white_pawn.png"); 
@@ -43,6 +41,8 @@ void setup() {
 } 
 
 //GAME PROPERTIES
+GlobalProperties = new GLOBAL(); 
+println(GlobalProperties.TranslationXnum[2]);
 int piecedim = 100;
 int move_number = 1; 
 float eval = 0; 
