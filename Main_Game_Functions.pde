@@ -39,7 +39,6 @@ void setup() {
 } 
 
 //GAME PROPERTIES
-GLOBAL GlobalProperties = new GLOBAL(); 
 int piecedim = 100;
 int move_number = 1; 
 float eval = 0; 

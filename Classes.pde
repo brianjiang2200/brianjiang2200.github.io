@@ -1049,8 +1049,62 @@ class MoveRecord {
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase();
-    previous_x = TranslateXCoord(prev_x);
-    notation_col = TranslateXCoord(my_piece.SquareX);
+    switch (prev_x) {
+      case 0: 
+        this.previous_x = "a";
+        break;
+      case 1:
+        this.previous_x = "b";
+        break;
+      case 2: 
+        this.previous_x = "c";
+        break;
+      case 3: 
+        this.previous_x = "d";
+        break;
+      case 4: 
+        this.previous_x = "e";
+        break;
+      case 5: 
+        this.previous_x = "f";
+        break;
+      case 6: 
+        this.previous_x = "g";
+        break;
+      case 7: 
+        this.previous_x = "h";
+        break;
+      default: 
+        this.previous_x = "?"; 
+    }
+    switch (my_piece.SquareX) {
+      case 0: 
+        this.notation_col = "a";
+        break;
+      case 1:
+        this.notation_col = "b";
+        break;
+      case 2: 
+        this.notation_col = "c";
+        break;
+      case 3: 
+        this.notation_col = "d";
+        break;
+      case 4: 
+        this.notation_col = "e";
+        break;
+      case 5: 
+        this.notation_col = "f";
+        break;
+      case 6: 
+        this.notation_col = "g";
+        break;
+      case 7: 
+        this.notation_col = "h";
+        break;
+      default: 
+        this.notation_col = "?"; 
+    }
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;
@@ -1097,9 +1151,6 @@ class MoveRecord {
     last_moved.assign_visual(true); 
   }
   
-  String TranslateXCoord (int coord) {
-    return GlobalProperties.TranslationXnum[coord];
-  }
 }
 
 class MoveList {
