@@ -3,13 +3,6 @@
 //Version 1.136
 //Last Update: 2019-05-03
 
-//Imports
-
-//Images
-PImage boardimg;
-PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
-PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
-
 void setup() {
   size(1400, 900);
   frameRate(60);
@@ -38,53 +31,6 @@ void setup() {
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
 } 
 
-//GAME PROPERTIES
-int piecedim = 100;
-int move_number = 1; 
-float eval = 0; 
-boolean white_to_move = true; 
-boolean piece_selected = false;
-boolean game_active = true;
-//controls whether pieces can be moved. 
-boolean game_over = false;
-//true if game is actually over.
-int color_won = 0; 
-//used to determine which side won. Checkmate() does not have to be called each frame. -1 for black win and 1 for white win, 0 otherwise.  
-boolean game_drawn = false; 
-boolean underpromotion_on = false;
-//IMPORTANT PIECES
-Piece my_piece;
-King white_king;
-//Dummy king for checking checks
-King copy_white_king; 
-King black_king;
-//Dummy king for checking checks
-King copy_black_king; 
-Piece last_moved; 
-
-//STRING ARRAY CONTAINING ALL OPENING POSITIONS 
-String[] read_positions_repo; 
-
-//MAIN BOARD SQUARES PROTECTED BY WHITE
-ProtectedSquare [] [] white_protected_squares = new ProtectedSquare[8][8]; 
-
-//MAIN BOARD SQUARES PROTECTED BY BLACK
-ProtectedSquare [] [] black_protected_squares = new ProtectedSquare[8][8]; 
-
-//MAIN BOARD
-Piece [] [] piece_board = new Piece[8][8];
-
-//DISPLAYED BOARD
-Piece [] [] displayed = new Piece[8][8]; 
-
-//MAIN MOVE LIST 
-MoveList main_move_list = new MoveList();
-MoveRecord current_record; 
-
-//DISPLAY PROPERTIES 
-int white_move_list_x = 920;
-int black_move_list_x = 1120; 
-int move_list_y = 570;
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
@@ -527,108 +473,6 @@ void refresh_protected(Piece my_board[][], ProtectedSquare for_white[][], Protec
       if (my_board[i][k] != null) {
         my_board[i][k].assign_protected_squares(my_board, for_white, for_black); 
       }
-    }
-  }
-}
-
-void draw_menu() {
-  stroke(255);
-  strokeWeight(1);
-  fill(25, 25, 25);
-  rect(800,0,600,800);
-  fill(43, 43, 43);
-  rect(1230,20,150,50);
-  rect(900,100,400,500);
-  //Previous Move Button
-  rect(900,600,200,70);
-  //Next Move Button
-  rect(1100,600,200,70);
-  rect(800,720,300,80);
-  rect(1100,720,300,80);
-  textSize(50);
-  fill(255);
-  //Button Text
-  text("<", 985, 650); 
-  text(">", 1185, 650);
-  textSize(30);
-  text("QUIT",1265,55);
-  textSize(30); 
-  fill(0);
-  stroke(0); 
-  rect(0,800,1400,100);
-  fill(255); 
-  text("Running Evaluation: " + eval, 30, 860); 
-  
-  try { 
-     if (main_move_list.tail != null && !underpromotion_on) {
-         if (main_move_list.tail.move_num < 9) {
-           for (MoveRecord my_record = main_move_list.head; (my_record != null && my_record.move_num - main_move_list.tail.move_num < 8); my_record = my_record.next) {
-             if (my_record.to_move) {
-               my_record.print_move(white_move_list_x, move_list_y - 420 + (my_record.move_num - 1) * 60); 
-             }
-             else {
-               my_record.print_move(black_move_list_x, move_list_y - 420 + (my_record.move_num - 1) * 60); 
-             }
-           }
-         }
-         else {
-           for (MoveRecord my_record = main_move_list.tail; (my_record != null && main_move_list.tail.move_num - my_record.move_num < 8); my_record = my_record.prev) {
-             if (my_record.to_move) {
-               my_record.print_move(white_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * 60);
-             }
-             else {
-               my_record.print_move(black_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * 60); 
-             }
-           }
-         }
-     }
-  }
-  catch (Exception e) {
-     println("Error on printing Move List"); 
-  }
-  
-  textSize(30); 
-  if (game_active) {
-    if (white_to_move) {
-      text("White to move", 1010, 865);
-    }
-    else {
-      text("Black to move", 1010, 865);
-    } 
-  }
-  if (!game_active) {
-    if (color_won > 0) {
-      textSize(40); 
-      text("0 - 1", 1060, 865);
-    }
-    else if (color_won < 0) {
-      textSize(40); 
-      text("1 - 0", 1060, 865);
-    }
-  else if (underpromotion_on) {
-    textSize(30); 
-    text("Select Promotion Piece",945,150);
-    if (my_piece.iswhite) {
-      image(whiteknightimg,940,200,70,70); 
-      image(whitebishopimg,1020,200,70,70);
-      image(whiterookimg,1100,200,70,70); 
-      image(whitequeenimg,1180,200,70,70);
-    }
-    else {
-      image(blackknightimg,940,200,70,70); 
-      image(blackbishopimg,1020,200,70,70); 
-      image(blackrookimg,1100,200,70,70); 
-      image(blackqueenimg,1180,200,70,70); 
-    }
-  }
-    else if (game_drawn) {
-      textSize(40); 
-      text("1/2 - 1/2", 1035, 865);
-    }
-    else {
-      textSize(27);
-      text("Position after", 870, 865); 
-      current_record.print_move(1035, 865);   
     }
   }
 }
