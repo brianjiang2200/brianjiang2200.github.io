@@ -10,8 +10,6 @@ PImage boardimg;
 PImage whitepawnimg, whiteknightimg, whitebishopimg, whitekingimg, whitequeenimg, whiterookimg;
 PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg, blackrookimg;
 
-GLOBAL GlobalProperties; 
-
 void setup() {
   size(1400, 900);
   frameRate(60);
@@ -41,8 +39,7 @@ void setup() {
 } 
 
 //GAME PROPERTIES
-GlobalProperties = new GLOBAL(); 
-println(GlobalProperties.TranslationXnum[2]);
+GLOBAL GlobalProperties = new GLOBAL(); 
 int piecedim = 100;
 int move_number = 1; 
 float eval = 0; 
