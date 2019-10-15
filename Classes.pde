@@ -1097,7 +1097,7 @@ class MoveRecord {
     last_moved.assign_visual(true); 
   }
   
-  String TranslateXCoord (int coord){
+  String TranslateXCoord (int coord) {
     return GlobalProperties.TranslationXnum[coord];
   }
 }

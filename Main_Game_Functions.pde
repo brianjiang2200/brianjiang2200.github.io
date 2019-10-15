@@ -16,6 +16,7 @@ void setup() {
   size(1400, 900);
   frameRate(60);
   GlobalProperties = new GLOBAL(); 
+  println(GlobalProperties.TranslationXnum[2]);
   try {
 	  boardimg = loadImage("/Images/Board.png");
 	  whitepawnimg = loadImage("Images/white_pawn.png"); 
