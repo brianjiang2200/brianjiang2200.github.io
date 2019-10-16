@@ -69,3 +69,16 @@ boolean piece_on_board(Piece my_board[][]) {
   }
   return false; 
 }
+
+//Count Material
+int CountMaterial(Piece my_board[][], boolean color) {
+	int Material = 0; 
+	for (int i = 0; i < 8; ++i) {
+		for (int k = 0; k < 8; ++k) {
+			if (my_board[i][k] != null && my_board[i][k].iswhite == color) {
+        			Material += my_board[i][k].material_value;  
+			}
+		}
+	}
+	return Material; 
+}
