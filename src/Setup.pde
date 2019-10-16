@@ -130,13 +130,13 @@ void promotion_actions() {
       game_drawn = true;
       game_over = true; 
     }
-    else if (CountMaterial(piece_board) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board) == 50) {
+    else if (CountMaterial(piece_board, true) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, false) == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
       
-    else if (CountMaterial(piece_board) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board) == 50) {
+    else if (CountMaterial(piece_board, false) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, true) == 50) {
        game_active = false; 
        game_over = true; 
        game_drawn = true; 
@@ -194,7 +194,7 @@ void mouseReleased() {
     if (my_piece.is_legal(piece_board, white_protected_squares, black_protected_squares, newX, newY)) {
       
       //for captures in notation
-      material_count = (white_to_move) ? CountMaterial(piece_board, false) : countMaterial(piece_board, true); 
+      material_count = (white_to_move) ? CountMaterial(piece_board, false) : CountMaterial(piece_board, true); 
       
       my_piece.x_coord = newX * 100; 
       my_piece.y_coord = newY * 100; 
@@ -285,32 +285,32 @@ void mouseReleased() {
 	    eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
       
       //CASES WHEN GAME ENDS IN DRAW AUTOMATICALLY
-      //case when only two kings left on board
-      if (CountMaterial(piece_board, true) == 50 && CountMaterial(piece_board, false) == 50) {
+      int tmpWhiteMaterial = CountMaterial(piece_board, true); 
+      int tmpBlackMaterial = CountMaterial(piece_board, false); 
+      //CASE WHEN ONLY TWO KINGS LEFT ON BOARD
+      if (tmpWhiteMaterial == 50 && tmpBlackMaterial == 50) {
         game_active = false;
         game_over = true;
         game_drawn = true; 
       }
-      
-      else if (CountMaterial(piece_board, true) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, false) == 50) {
+      //CASE WHEN K AND PIECE VS K
+      else if (tmpWhiteMaterial == 53 && piece_on_board(piece_board) && tmpBlackMaterial == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
-      
-      else if (CountMaterial(piece_board, false) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, true) == 50) {
+      //CASE WHEN K VS K AND PIECE
+      else if (tmpBlackMaterial == 53 && piece_on_board(piece_board) && tmpWhiteMaterial == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
-      
       //CHECK IF WHITE IS STALEMATED
       else if (check_stalemate(white_king, piece_board, white_protected_squares, black_protected_squares)) {
         game_active = false;
         game_over = true; 
         game_drawn = true; 
       }
-      
       //CHECK IF BLACK IS STALEMATED
       else if (check_stalemate(black_king, piece_board, white_protected_squares, black_protected_squares)) {
         game_active = false;
@@ -318,19 +318,16 @@ void mouseReleased() {
         game_drawn = true; 
       }
     }
-    
+    //ELSE FROM .is_legal() condition
     else {
       my_piece.x_coord = my_piece.SquareX * 100; 
       my_piece.y_coord = my_piece.SquareY * 100; 
     }
   }
-  
   piece_selected = false; 
 }
 
-
 //GET ALL OPENING POSITIONS 
-
 void load_opening_positions() {
   try {
 	  read_positions_repo = loadStrings("src/Positions_Repository.txt");
