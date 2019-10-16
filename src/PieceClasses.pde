@@ -109,13 +109,9 @@ class Pawn extends Piece {
       }
     
       if (y == SquareY - 1) {
-        //CAPTURING TO THE LEFT
-        if (x == SquareX - 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
+        //CAPTURING TO THE LEFT OR RIGHT
+        if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
           return verify_not_check(my_board, y, x); 
-        }
-        //CAPTURING TO THE RIGHT
-        else if (x == SquareX + 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
-           return verify_not_check(my_board, y, x);
         }
         //EN PASSANT TO THE LEFT AND RIGHT
         else if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
@@ -136,7 +132,7 @@ class Pawn extends Piece {
        }
       }
       
-    else if (!iswhite) {
+    else {
       //FORWARD MOVEMENT FOR BLACK PAWNS
       if (x == SquareX && my_board[SquareY + 1][x] == null) {
          if (y == SquareY + 1) {
@@ -147,12 +143,8 @@ class Pawn extends Piece {
          }
        }
       if (y == SquareY + 1) {
-        //CAPTURING TO THE LEFT
-        if (x == SquareX - 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
-          return verify_not_check(my_board, y, x); 
-        }
-        //CAPTURING TO THE RIGHT
-        else if (x == SquareX + 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
+        //CAPTURING TO THE LEFT OR RIGHT
+        if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
         //EN PASSANT TO THE LEFT AND RIGHT
@@ -381,7 +373,7 @@ class Bishop extends Piece {
           }
         }
       }
-      if (king_x < SquareX && king_y > SquareY) {
+      else if (king_x < SquareX && king_y > SquareY) {
         for (int k = 1; k < SquareX - king_x; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
@@ -393,7 +385,7 @@ class Bishop extends Piece {
           }
         }
       }
-      if (king_x > SquareX && king_y < SquareY) {
+      else if (king_x > SquareX && king_y < SquareY) {
         for (int k = 1; k < SquareY - king_y; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
@@ -405,7 +397,7 @@ class Bishop extends Piece {
           }
         }
       }
-      if (king_x > SquareX && king_y > SquareY) {
+      else if (king_x > SquareX && king_y > SquareY) {
         for (int k = 1; k < king_y - SquareY; ++k) {
           for (int a = 0; a < 8; ++a) {
             for (int b = 0; b < 8; ++b) {
