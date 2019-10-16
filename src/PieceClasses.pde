@@ -284,7 +284,6 @@ class Bishop extends Piece {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
     else if (y > SquareY && x < SquareX) {
       for (int z = 1; z < y - SquareY; ++z) {
@@ -292,7 +291,6 @@ class Bishop extends Piece {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
     else if (y < SquareY && x > SquareX) {
       for (int z = 1; z < x - SquareX; ++z) {
@@ -300,7 +298,6 @@ class Bishop extends Piece {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
     else {
       for (int z = 1; z < SquareX - x; ++z) {
@@ -308,8 +305,8 @@ class Bishop extends Piece {
           return false;
         }
       }
-      return verify_not_check(my_board, y, x);
     }
+    return verify_not_check(my_board, y, x);
   }
     }
     return false; 
@@ -738,14 +735,14 @@ class King extends Piece {
        NewProtected(SquareX + 1, SquareY + 1, this, white_protected); 
     }
     else {
-      new_black_protected(SquareX, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX, SquareY + 1, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY + 1, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY + 1, this, black_protected);
+      NewProtected(SquareX, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX, SquareY + 1, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY, this, black_protected); 
+      newProtected(SquareX - 1, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY + 1, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY + 1, this, black_protected);
     }
   }
   
