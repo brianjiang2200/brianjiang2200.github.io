@@ -19,8 +19,6 @@ class Piece {
   boolean en_passant;
   //IMAGE FOR PIECE
   PImage visual;
-  //HIGHLIGHTED IMAGE FOR PIECE
-  PImage HI_visual; 
   //LETTER FOR NOTATION
   String letter; 
 
@@ -119,8 +117,8 @@ class Pawn extends Piece {
         else if (x == SquareX + 1 && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
            return verify_not_check(my_board, y, x);
         }
-        //EN PASSANT TO THE LEFT
-        else if (x == SquareX - 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
+        //EN PASSANT TO THE LEFT AND RIGHT
+        else if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
           Piece[][] local_board = duplicate_board(my_board);
           ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
           ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
@@ -135,27 +133,11 @@ class Pawn extends Piece {
           }
           return true; 
         }
-        //EN PASSANT TO THE RIGHT
-        else if (x == SquareX + 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
-          Piece[][] local_board = duplicate_board(my_board);
-          ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
-          ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-          local_board[SquareY][SquareX].SquareY = y;
-          local_board[SquareY][SquareX].SquareX = x; 
-          local_board[y][x] = this; 
-          local_board[SquareY][SquareX] = null; 
-          local_board[y + 1][x] = null;
-          duplicate_protected_squares(local_board, whites_squares, blacks_squares);
-          if (copy_white_king.in_check(whites_squares, blacks_squares)) {
-            return false; 
-          }
-          return true; 
-        }
        }
       }
       
     else if (!iswhite) {
-      //forward movement for black pawns
+      //FORWARD MOVEMENT FOR BLACK PAWNS
       if (x == SquareX && my_board[SquareY + 1][x] == null) {
          if (y == SquareY + 1) {
             return verify_not_check(my_board, y, x);
@@ -165,16 +147,16 @@ class Pawn extends Piece {
          }
        }
       if (y == SquareY + 1) {
-        //capturing to the left
+        //CAPTURING TO THE LEFT
         if (x == SquareX - 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
-        //capturing to the right
+        //CAPTURING TO THE RIGHT
         else if (x == SquareX + 1 && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
-        //en passant to the left
-        else if (x == SquareX - 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
+        //EN PASSANT TO THE LEFT AND RIGHT
+        else if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
            Piece[][] local_board = duplicate_board(my_board);
            ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
            ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
@@ -187,21 +169,6 @@ class Pawn extends Piece {
              return false; 
            }
            return true;
-        }
-        //en passant to the right
-        else if (x == SquareX + 1 && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
-           Piece[][] local_board = duplicate_board(my_board);
-           ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
-           ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
-          local_board[SquareY][SquareX].SquareY = y;
-          local_board[SquareY][SquareX].SquareX = x; 
-          local_board[y][x] = this; 
-          local_board[SquareY][SquareX] = null;
-          duplicate_protected_squares(local_board, whites_squares, blacks_squares);
-          if (copy_black_king.in_check(whites_squares, blacks_squares)) {
-            return false; 
-          }
-          return true; 
         }
       }
     }
@@ -317,36 +284,29 @@ class Bishop extends Piece {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
-  
     else if (y > SquareY && x < SquareX) {
       for (int z = 1; z < y - SquareY; ++z) {
         if (my_board[SquareY + z][SquareX - z] != null) {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
-    
     else if (y < SquareY && x > SquareX) {
       for (int z = 1; z < x - SquareX; ++z) {
         if (my_board[SquareY - z][SquareX + z] != null) {
           return false; 
         }
       }
-      return verify_not_check(my_board, y, x);
     }
-    
     else {
       for (int z = 1; z < SquareX - x; ++z) {
         if (my_board[SquareY - z][SquareX - z] != null) {
           return false;
         }
       }
-      return verify_not_check(my_board, y, x);
     }
-    
+    return verify_not_check(my_board, y, x);
   }
     }
     return false; 
