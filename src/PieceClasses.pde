@@ -224,13 +224,13 @@ class Knight extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-      for (int k = 0; k < KnightSquares.length(); ++k) {
-          New Protected(SquareX + KnightSquares[k][0], SquareY + KnightSquares[k][1], this, white_protected); 
+      for (int k = 0; k < KnightSquares.length; ++k) {
+          NewProtected(SquareX + KnightSquares[k][0], SquareY + KnightSquares[k][1], this, white_protected); 
         }
     }
     else {
-      for (int k = 0; k < KnightSquares.length(); ++k) {
-          New Protected(SquareX + KnightSquares[k][0], SquareY + KnightSquares[k][1], this, black_protected); 
+      for (int k = 0; k < KnightSquares.length; ++k) {
+          NewProtected(SquareX + KnightSquares[k][0], SquareY + KnightSquares[k][1], this, black_protected); 
         }
     }
   }
@@ -707,13 +707,13 @@ class King extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-        for (int k = 0; k < KingSquares.length(); ++k) {
-          New Protected(SquareX + KingSquares[k][0], SquareY + KingSquares[k][1], this, white_protected); 
+        for (int k = 0; k < KingSquares.length; ++k) {
+          NewProtected(SquareX + KingSquares[k][0], SquareY + KingSquares[k][1], this, white_protected); 
         }
     }
     else {
-      for (int k = 0; k < KingSquares.length(); ++k) {
-          New Protected(SquareX + KingSquares[k][0], SquareY + KingSquares[k][0], this, black_protected); 
+      for (int k = 0; k < KingSquares.length; ++k) {
+          NewProtected(SquareX + KingSquares[k][0], SquareY + KingSquares[k][0], this, black_protected); 
         }
     }
   }
