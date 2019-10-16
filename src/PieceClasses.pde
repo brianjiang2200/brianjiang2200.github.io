@@ -739,7 +739,7 @@ class King extends Piece {
       NewProtected(SquareX, SquareY + 1, this, black_protected); 
       NewProtected(SquareX - 1, SquareY, this, black_protected); 
       NewProtected(SquareX + 1, SquareY, this, black_protected); 
-      newProtected(SquareX - 1, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY - 1, this, black_protected); 
       NewProtected(SquareX - 1, SquareY + 1, this, black_protected); 
       NewProtected(SquareX + 1, SquareY - 1, this, black_protected); 
       NewProtected(SquareX + 1, SquareY + 1, this, black_protected);
