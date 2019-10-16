@@ -7,7 +7,7 @@ void setup() {
   size(1400, 900);
   frameRate(60);
   try {
-	  boardimg = loadImage("/Images/Board.png");
+	  boardimg = loadImage("Images/Board.png");
 	  whitepawnimg = loadImage("Images/white_pawn.png"); 
 	  whiteknightimg = loadImage("Images/white_knight.png"); 
 	  whitebishopimg = loadImage("Images/white_bishop.png"); 
