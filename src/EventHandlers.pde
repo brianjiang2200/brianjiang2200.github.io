@@ -20,22 +20,8 @@ boolean check_stalemate(King my_king, Piece my_board[][], ProtectedSquare for_wh
   return false; 
 }
 
-//Assign a ProtectedSquare for white 
-void new_white_protected (int x, int y, Piece my_piece, ProtectedSquare my_squares[][]) {
-  if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-    if (my_squares[y][x] == null) {
-        my_squares[y][x] = new ProtectedSquare(x, y, my_piece); 
-    }
-  else {
-    my_squares[y][x].add_defender(my_piece);
-    //This line no longer needed without engine implementation
-    //my_squares[y][x].insertion_sort(); 
-  }
-  }
-}
-
-//Assign a ProtectedSquare for black
-void new_black_protected (int x, int y, Piece my_piece, ProtectedSquare my_squares[][]) {
+//Assign a ProtectedSquare onto a ProtectedSquare array
+void NewProtected (int x, int y, Piece my_piece, ProtectedSquare my_squares[][]) {
   if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
     if (my_squares[y][x] == null) {
         my_squares[y][x] = new ProtectedSquare(x, y, my_piece); 
