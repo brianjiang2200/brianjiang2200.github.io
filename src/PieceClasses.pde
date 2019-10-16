@@ -284,6 +284,7 @@ class Bishop extends Piece {
           return false; 
         }
       }
+      return verify_not_check(my_board, y, x);
     }
     else if (y > SquareY && x < SquareX) {
       for (int z = 1; z < y - SquareY; ++z) {
@@ -291,6 +292,7 @@ class Bishop extends Piece {
           return false; 
         }
       }
+      return verify_not_check(my_board, y, x);
     }
     else if (y < SquareY && x > SquareX) {
       for (int z = 1; z < x - SquareX; ++z) {
@@ -298,6 +300,7 @@ class Bishop extends Piece {
           return false; 
         }
       }
+      return verify_not_check(my_board, y, x);
     }
     else {
       for (int z = 1; z < SquareX - x; ++z) {
@@ -305,8 +308,8 @@ class Bishop extends Piece {
           return false;
         }
       }
+      return verify_not_check(my_board, y, x);
     }
-    return verify_not_check(my_board, y, x);
   }
     }
     return false; 
