@@ -76,3 +76,12 @@ MoveRecord current_record;
 int white_move_list_x = 920; 
 int black_move_list_x = 1120; 
 int move_list_y = 570; 
+
+//ARRAYS FOR SQUARES PROTECTED BY PIECES
+
+//Knight 
+int[][] KnightSquares = {{-2,-1},{-1,-2},{1,-2},{2,-1},{2,1},{1,2},{-1,2},{-2,1}}; 
+
+//King 
+int[][] KingSquares = {{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0}}; 
+
