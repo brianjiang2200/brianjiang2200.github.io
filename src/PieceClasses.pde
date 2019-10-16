@@ -212,18 +212,18 @@ class Pawn extends Piece {
      if (SquareY != 0 && SquareY != 7) {
       if (iswhite) {
         if (SquareX > 0) {
-          new_white_protected(SquareX - 1, SquareY - 1, this, white_protected);
+          NewProtected(SquareX - 1, SquareY - 1, this, white_protected);
         }
         if (SquareX < 7) {
-          new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
+          NewProtected(SquareX + 1, SquareY - 1, this, white_protected); 
         }
       }
       else {
         if (SquareX > 0) {
-          new_black_protected(SquareX - 1, SquareY + 1, this, black_protected); 
+          NewProtected(SquareX - 1, SquareY + 1, this, black_protected); 
         }
         if (SquareX < 7) {
-          new_black_protected(SquareX + 1, SquareY + 1, this, black_protected); 
+          NewProtected(SquareX + 1, SquareY + 1, this, black_protected); 
         }
       }
     }
@@ -265,24 +265,24 @@ class Knight extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-      new_white_protected(SquareX - 2, SquareY - 1, this, white_protected); 
-      new_white_protected(SquareX - 2, SquareY + 1, this, white_protected); 
-      new_white_protected(SquareX - 1, SquareY - 2, this, white_protected); 
-      new_white_protected(SquareX - 1, SquareY + 2, this, white_protected); 
-      new_white_protected(SquareX + 1, SquareY - 2, this, white_protected); 
-      new_white_protected(SquareX + 1, SquareY + 2, this, white_protected); 
-      new_white_protected(SquareX + 2, SquareY - 1, this, white_protected); 
-      new_white_protected(SquareX + 2, SquareY + 1, this, white_protected); 
+      NewProtected(SquareX - 2, SquareY - 1, this, white_protected); 
+      NewProtected(SquareX - 2, SquareY + 1, this, white_protected); 
+      NewProtected(SquareX - 1, SquareY - 2, this, white_protected); 
+      NewProtected(SquareX - 1, SquareY + 2, this, white_protected); 
+      NewProtected(SquareX + 1, SquareY - 2, this, white_protected); 
+      NewProtected(SquareX + 1, SquareY + 2, this, white_protected); 
+      NewProtected(SquareX + 2, SquareY - 1, this, white_protected); 
+      NewProtected(SquareX + 2, SquareY + 1, this, white_protected); 
     }
     else {
-      new_black_protected(SquareX - 2, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX - 2, SquareY + 1, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY - 2, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY + 2, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY - 2, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY + 2, this, black_protected); 
-      new_black_protected(SquareX + 2, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX + 2, SquareY + 1, this, black_protected);
+      NewProtected(SquareX - 2, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX - 2, SquareY + 1, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY - 2, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY + 2, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY - 2, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY + 2, this, black_protected); 
+      NewProtected(SquareX + 2, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX + 2, SquareY + 1, this, black_protected);
     }
   }
 
@@ -355,54 +355,54 @@ class Bishop extends Piece {
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z;
     if (iswhite) {
-       new_white_protected(SquareX - 1, SquareY - 1, this, white_protected); 
-       new_white_protected(SquareX - 1, SquareY + 1, this, white_protected);
-       new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
-       new_white_protected(SquareX + 1, SquareY + 1, this, white_protected); 
+       NewProtected(SquareX - 1, SquareY - 1, this, white_protected); 
+       NewProtected(SquareX - 1, SquareY + 1, this, white_protected);
+       NewProtected(SquareX + 1, SquareY - 1, this, white_protected); 
+       NewProtected(SquareX + 1, SquareY + 1, this, white_protected); 
           z = 1;
           while (check_null(my_board, SquareX - z, SquareY - z)) {
-            new_white_protected(SquareX - z - 1, SquareY - z - 1, this, white_protected);
+            NewProtected(SquareX - z - 1, SquareY - z - 1, this, white_protected);
             z++;
           }
           z = 1;
           while (check_null(my_board, SquareX - z, SquareY + z)) {
-            new_white_protected(SquareX - z - 1, SquareY + z + 1, this, white_protected);
+            NewProtected(SquareX - z - 1, SquareY + z + 1, this, white_protected);
             z++;
           }
           z = 1;
           while (check_null(my_board, SquareX + z, SquareY - z)) {
-            new_white_protected(SquareX + z + 1, SquareY - z - 1, this, white_protected);
+            NewProtected(SquareX + z + 1, SquareY - z - 1, this, white_protected);
             z++;
           }
           z = 1;
           while (check_null(my_board, SquareX + z, SquareY + z)) {
-            new_white_protected(SquareX + z + 1, SquareY + z + 1, this, white_protected);
+            NewProtected(SquareX + z + 1, SquareY + z + 1, this, white_protected);
             z++;
           }
     }
     else {
-      new_black_protected(SquareX - 1, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY + 1, this, black_protected);
-      new_black_protected(SquareX + 1, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY + 1, this, black_protected);
+      NewProtected(SquareX - 1, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY + 1, this, black_protected);
+      NewProtected(SquareX + 1, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY + 1, this, black_protected);
         z = 1;
         while (check_null(my_board, SquareX - z, SquareY - z)) {
-          new_black_protected(SquareX - z - 1, SquareY - z - 1, this, black_protected);
+          NewProtected(SquareX - z - 1, SquareY - z - 1, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX - z, SquareY + z)) {
-          new_black_protected(SquareX - z - 1, SquareY + z + 1, this, black_protected);
+          NewProtected(SquareX - z - 1, SquareY + z + 1, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX + z, SquareY - z)) {
-          new_black_protected(SquareX + z + 1, SquareY - z - 1, this, black_protected);
+          NewProtected(SquareX + z + 1, SquareY - z - 1, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX + z, SquareY + z)) {
-          new_black_protected(SquareX + z + 1, SquareY + z + 1, this, black_protected);
+          NewProtected(SquareX + z + 1, SquareY + z + 1, this, black_protected);
           z++;
         }
     }
@@ -519,54 +519,54 @@ class Rook extends Piece {
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     int z; 
     if (iswhite) {
-      new_white_protected(SquareX, SquareY + 1, this, white_protected); 
-      new_white_protected(SquareX, SquareY - 1, this, white_protected); 
-      new_white_protected(SquareX + 1, SquareY, this, white_protected); 
-      new_white_protected(SquareX - 1, SquareY, this, white_protected);
+      NewProtected(SquareX, SquareY + 1, this, white_protected); 
+      NewProtected(SquareX, SquareY - 1, this, white_protected); 
+      NewProtected(SquareX + 1, SquareY, this, white_protected); 
+      NewProtected(SquareX - 1, SquareY, this, white_protected);
         z = 1;
         while (check_null(my_board, SquareX + z, SquareY)) {
-          new_white_protected(SquareX + z + 1, SquareY, this, white_protected); 
+          NewProtected(SquareX + z + 1, SquareY, this, white_protected); 
           z++;
         }
         z = 1; 
         while (check_null(my_board, SquareX - z, SquareY)) {
-          new_white_protected(SquareX - z - 1, SquareY, this, white_protected);
+          NewProtected(SquareX - z - 1, SquareY, this, white_protected);
           z++;
         }
         z = 1; 
         while (check_null(my_board, SquareX, SquareY + z)) {
-          new_white_protected(SquareX, SquareY + z + 1, this, white_protected);
+          NewProtected(SquareX, SquareY + z + 1, this, white_protected);
           z++;
         }
         z = 1; 
         while (check_null(my_board, SquareX, SquareY - z)) {
-          new_white_protected(SquareX, SquareY - z - 1, this, white_protected);
+          NewProtected(SquareX, SquareY - z - 1, this, white_protected);
           z++;
         }
     }
     else {
-      new_black_protected(SquareX, SquareY + 1, this, black_protected); 
-      new_black_protected(SquareX, SquareY - 1, this, black_protected); 
-      new_black_protected(SquareX + 1, SquareY, this, black_protected); 
-      new_black_protected(SquareX - 1, SquareY, this, black_protected);
+      NewProtected(SquareX, SquareY + 1, this, black_protected); 
+      NewProtected(SquareX, SquareY - 1, this, black_protected); 
+      NewProtected(SquareX + 1, SquareY, this, black_protected); 
+      NewProtected(SquareX - 1, SquareY, this, black_protected);
         z = 1;
         while (check_null(my_board, SquareX + z, SquareY)) {
-          new_black_protected(SquareX + z + 1, SquareY, this, black_protected);
+          NewProtected(SquareX + z + 1, SquareY, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX - z, SquareY)) {
-          new_black_protected(SquareX - z -1, SquareY, this, black_protected);
+          NewProtected(SquareX - z -1, SquareY, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX, SquareY + z)) {
-          new_black_protected(SquareX, SquareY + z + 1, this, black_protected);
+          NewProtected(SquareX, SquareY + z + 1, this, black_protected);
           z++;
         }
         z = 1;
         while (check_null(my_board, SquareX, SquareY - z)) {
-          new_black_protected(SquareX, SquareY - z - 1, this, black_protected);
+          NewProtected(SquareX, SquareY - z - 1, this, black_protected);
           z++;
         }
     }
@@ -765,14 +765,14 @@ class King extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-       new_white_protected(SquareX, SquareY - 1, this, white_protected); 
-       new_white_protected(SquareX, SquareY + 1, this, white_protected); 
-       new_white_protected(SquareX - 1, SquareY, this, white_protected); 
-       new_white_protected(SquareX + 1, SquareY, this, white_protected); 
-       new_white_protected(SquareX - 1, SquareY - 1, this, white_protected); 
-       new_white_protected(SquareX - 1, SquareY + 1, this, white_protected); 
-       new_white_protected(SquareX + 1, SquareY - 1, this, white_protected); 
-       new_white_protected(SquareX + 1, SquareY + 1, this, white_protected); 
+       NewProtected(SquareX, SquareY - 1, this, white_protected); 
+       NewProtected(SquareX, SquareY + 1, this, white_protected); 
+       NewProtected(SquareX - 1, SquareY, this, white_protected); 
+       NewProtected(SquareX + 1, SquareY, this, white_protected); 
+       NewProtected(SquareX - 1, SquareY - 1, this, white_protected); 
+       NewProtected(SquareX - 1, SquareY + 1, this, white_protected); 
+       NewProtected(SquareX + 1, SquareY - 1, this, white_protected); 
+       NewProtected(SquareX + 1, SquareY + 1, this, white_protected); 
     }
     else {
       new_black_protected(SquareX, SquareY - 1, this, black_protected); 
