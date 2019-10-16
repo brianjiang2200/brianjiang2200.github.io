@@ -33,3 +33,19 @@ void NewProtected (int x, int y, Piece my_piece, ProtectedSquare my_squares[][])
   }
   }
 }
+
+void refresh_protected(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
+  for (int i = 0; i < 8; ++i) {
+    for (int k = 0; k < 8; ++k) {
+      for_white[i][k] = null; 
+      for_black[i][k] = null; 
+    }
+  }
+  for (int i = 0; i < 8; ++i) {
+    for (int k = 0; k < 8; ++k) {
+      if (my_board[i][k] != null) {
+        my_board[i][k].assign_protected_squares(my_board, for_white, for_black); 
+      }
+    }
+  }
+}
