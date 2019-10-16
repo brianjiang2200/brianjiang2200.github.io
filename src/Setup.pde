@@ -130,13 +130,13 @@ void promotion_actions() {
       game_drawn = true;
       game_over = true; 
     }
-    else if (count_white_material(piece_board) == 53 && piece_on_board(piece_board) && count_black_material(piece_board) == 50) {
+    else if (CountMaterial(piece_board) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board) == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
       
-    else if (count_black_material(piece_board) == 53 && piece_on_board(piece_board) && count_white_material(piece_board) == 50) {
+    else if (CountMaterial(piece_board) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board) == 50) {
        game_active = false; 
        game_over = true; 
        game_drawn = true; 
@@ -194,7 +194,7 @@ void mouseReleased() {
     if (my_piece.is_legal(piece_board, white_protected_squares, black_protected_squares, newX, newY)) {
       
       //for captures in notation
-      material_count = (white_to_move) ? count_black_material(piece_board) : count_white_material(piece_board); 
+      material_count = (white_to_move) ? CountMaterial(piece_board, false) : countMaterial(piece_board, true); 
       
       my_piece.x_coord = newX * 100; 
       my_piece.y_coord = newY * 100; 
@@ -214,10 +214,10 @@ void mouseReleased() {
       my_piece.SquareY = newY;
       refresh_protected(piece_board, white_protected_squares, black_protected_squares);
       
-      if (white_to_move && material_count - count_black_material(piece_board) != 0) {
+      if (white_to_move && material_count - CountMaterial(piece_board, false) != 0) {
         piece_captured = true; 
       }
-      else if (!white_to_move && material_count - count_white_material(piece_board) != 0) {
+      else if (!white_to_move && material_count - CountMaterial(piece_board, true) != 0) {
         piece_captured = true; 
       }
 	  
@@ -286,19 +286,19 @@ void mouseReleased() {
       
       //CASES WHEN GAME ENDS IN DRAW AUTOMATICALLY
       //case when only two kings left on board
-      if (count_white_material(piece_board) == 50 && count_black_material(piece_board) == 50) {
+      if (CountMaterial(piece_board, true) == 50 && CountMaterial(piece_board, false) == 50) {
         game_active = false;
         game_over = true;
         game_drawn = true; 
       }
       
-      else if (count_white_material(piece_board) == 53 && piece_on_board(piece_board) && count_black_material(piece_board) == 50) {
+      else if (CountMaterial(piece_board, true) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, false) == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
       
-      else if (count_black_material(piece_board) == 53 && piece_on_board(piece_board) && count_white_material(piece_board) == 50) {
+      else if (CountMaterial(piece_board, false) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, true) == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
@@ -435,31 +435,6 @@ void generate_piece_positions (String my_strings[]) {
 		}
 	}
 }
-
-int count_white_material(Piece my_board[][]) {
-	int white_material = 0; 
-	for (int i = 0; i < 8; ++i) {
-		for (int k = 0; k < 8; ++k) {
-			if (my_board[i][k] != null && my_board[i][k].iswhite == true) {
-        white_material += my_board[i][k].material_value;  
-			}
-		}
-	}
-	return white_material; 
-}
-
-int count_black_material(Piece my_board[][]) {
-	int black_material = 0; 
-	for (int i = 0; i < 8; ++i) {
-		for (int k = 0; k < 8; ++k) {
-			if (my_board[i][k] != null && my_board[i][k].iswhite == false) {
-				 black_material += my_board[i][k].material_value; 
-			}
-		}
-	}
-	return black_material; 
-}
-
 
 void refresh_protected(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
   for (int i = 0; i < 8; ++i) {
