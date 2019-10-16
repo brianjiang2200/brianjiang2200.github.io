@@ -7,19 +7,19 @@ void setup() {
   size(1400, 900);
   frameRate(60);
   try {
-	  boardimg = loadImage("Images/Board.png");
-	  whitepawnimg = loadImage("Images/white_pawn.png"); 
-	  whiteknightimg = loadImage("Images/white_knight.png"); 
-	  whitebishopimg = loadImage("Images/white_bishop.png"); 
-	  whitekingimg = loadImage("Images/white_king.png"); 
-	  whitequeenimg = loadImage("Images/white_queen.png"); 
-	  whiterookimg = loadImage("Images/white_rook.png");
-	  blackpawnimg = loadImage("Images/black_pawn.png"); 
-	  blackknightimg = loadImage("Images/black_knight.png"); 
-	  blackbishopimg = loadImage("Images/black_bishop.png"); 
-	  blackqueenimg = loadImage("Images/black_queen.png"); 
-	  blackkingimg = loadImage("Images/black_king.png"); 
-	  blackrookimg = loadImage("Images/black_rook.png");
+	  boardimg = loadImage("src/Images/Board.png");
+	  whitepawnimg = loadImage("src/Images/white_pawn.png"); 
+	  whiteknightimg = loadImage("src/Images/white_knight.png"); 
+	  whitebishopimg = loadImage("src/Images/white_bishop.png"); 
+	  whitekingimg = loadImage("src/Images/white_king.png"); 
+	  whitequeenimg = loadImage("src/Images/white_queen.png"); 
+	  whiterookimg = loadImage("src/Images/white_rook.png");
+	  blackpawnimg = loadImage("src/Images/black_pawn.png"); 
+	  blackknightimg = loadImage("src/Images/black_knight.png"); 
+	  blackbishopimg = loadImage("src/Images/black_bishop.png"); 
+	  blackqueenimg = loadImage("src/Images/black_queen.png"); 
+	  blackkingimg = loadImage("src/Images/black_king.png"); 
+	  blackrookimg = loadImage("src/Images/black_rook.png");
   }
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
@@ -333,7 +333,7 @@ void mouseReleased() {
 
 void load_opening_positions() {
   try {
-	  read_positions_repo = loadStrings("Positions_Repository.txt");
+	  read_positions_repo = loadStrings("src/Positions_Repository.txt");
   } 
   catch (Exception e) {
 	  println("There was an error loading the Positions_Repository File.");
