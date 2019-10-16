@@ -224,24 +224,14 @@ class Knight extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-      NewProtected(SquareX - 2, SquareY - 1, this, white_protected); 
-      NewProtected(SquareX - 2, SquareY + 1, this, white_protected); 
-      NewProtected(SquareX - 1, SquareY - 2, this, white_protected); 
-      NewProtected(SquareX - 1, SquareY + 2, this, white_protected); 
-      NewProtected(SquareX + 1, SquareY - 2, this, white_protected); 
-      NewProtected(SquareX + 1, SquareY + 2, this, white_protected); 
-      NewProtected(SquareX + 2, SquareY - 1, this, white_protected); 
-      NewProtected(SquareX + 2, SquareY + 1, this, white_protected); 
+      for (int k = 0; k < KnightSquares.length(); ++k) {
+          New Protected(SquareX + KnightSquares[k], SquareY + KnightSquares[k], this, white_protected); 
+        }
     }
     else {
-      NewProtected(SquareX - 2, SquareY - 1, this, black_protected); 
-      NewProtected(SquareX - 2, SquareY + 1, this, black_protected); 
-      NewProtected(SquareX - 1, SquareY - 2, this, black_protected); 
-      NewProtected(SquareX - 1, SquareY + 2, this, black_protected); 
-      NewProtected(SquareX + 1, SquareY - 2, this, black_protected); 
-      NewProtected(SquareX + 1, SquareY + 2, this, black_protected); 
-      NewProtected(SquareX + 2, SquareY - 1, this, black_protected); 
-      NewProtected(SquareX + 2, SquareY + 1, this, black_protected);
+      for (int k = 0; k < KnightSquares.length(); ++k) {
+          New Protected(SquareX + KnightSquares[k], SquareY + KnightSquares[k], this, black_protected); 
+        }
     }
   }
 
@@ -717,24 +707,14 @@ class King extends Piece {
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
     if (iswhite) {
-       NewProtected(SquareX, SquareY - 1, this, white_protected); 
-       NewProtected(SquareX, SquareY + 1, this, white_protected); 
-       NewProtected(SquareX - 1, SquareY, this, white_protected); 
-       NewProtected(SquareX + 1, SquareY, this, white_protected); 
-       NewProtected(SquareX - 1, SquareY - 1, this, white_protected); 
-       NewProtected(SquareX - 1, SquareY + 1, this, white_protected); 
-       NewProtected(SquareX + 1, SquareY - 1, this, white_protected); 
-       NewProtected(SquareX + 1, SquareY + 1, this, white_protected); 
+        for (int k = 0; k < KingSquares.length(); ++k) {
+          New Protected(SquareX + KingSquares[k], SquareY + KingSquares[k], this, white_protected); 
+        }
     }
     else {
-      NewProtected(SquareX, SquareY - 1, this, black_protected); 
-      NewProtected(SquareX, SquareY + 1, this, black_protected); 
-      NewProtected(SquareX - 1, SquareY, this, black_protected); 
-      NewProtected(SquareX + 1, SquareY, this, black_protected); 
-      NewProtected(SquareX - 1, SquareY - 1, this, black_protected); 
-      NewProtected(SquareX - 1, SquareY + 1, this, black_protected); 
-      NewProtected(SquareX + 1, SquareY - 1, this, black_protected); 
-      NewProtected(SquareX + 1, SquareY + 1, this, black_protected);
+      for (int k = 0; k < KingSquares.length(); ++k) {
+          New Protected(SquareX + KingSquares[k], SquareY + KingSquares[k], this, black_protected); 
+        }
     }
   }
   
@@ -842,29 +822,10 @@ class King extends Piece {
   
   int num_legal_moves(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
     int legal_moves = 8; 
-    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY - 1)) {
+    for (int k = 0; k < KingSquares.length; ++k) {
+      if (!is_legal(my_board, for_white, for_black, this.SquareX + KingSquares[k], this.SquareY + KingSquares[k])) {
       legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY - 1)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY - 1)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX + 1, this.SquareY + 1)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX, this.SquareY + 1)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY + 1)) {
-      legal_moves--; 
-    }
-    if (!is_legal(my_board, for_white, for_black, this.SquareX - 1, this.SquareY)) {
-      legal_moves--; 
+      }
     }
     return legal_moves; 
   }
