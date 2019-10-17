@@ -86,7 +86,7 @@ int[][] KingSquares = {{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0}};
 
 //X COORDINATE CONVERSIONS
 //Integer Dictionary for Letters to Numbers
-IntDict XtoNum;
+IntDict XtoNum = new IntDict();
 
 //Array for Numbers to Letters
 String[] XtoLet;
