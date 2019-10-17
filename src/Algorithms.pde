@@ -1,6 +1,11 @@
+//CHECK IF X AND Y ARE IN [0,7]
+boolean inRange(int x, int y) {
+	return (min(x,y,0) == 0 && max(x,y,7) == 7); 
+}
+
 //CHECK IF A SQUARE IS EMPTY
 boolean check_null(Piece my_board[][], int x, int y) {
-  if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+  if (inRange(x,y)) {
     if (my_board[y][x] == null) {
       return true;
     }
