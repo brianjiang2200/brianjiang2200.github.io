@@ -11,12 +11,13 @@ class MoveRecord {
   int previous_y; 
   int notation_col; 
   int notation_row;
+  boolean capture;
   String promotion_piece = ""; 
   String full_move; 
   MoveRecord next;
   MoveRecord prev; 
   
-  MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean capture, boolean is_check) {
+  MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean captureOccur, boolean is_check) {
     stored_position = duplicate_board(new_pos);
     last_moved = stored_position[my_piece.SquareY][my_piece.SquareX]; 
     HIGHLIGHT_SQUARES(); 
@@ -24,15 +25,16 @@ class MoveRecord {
     previous_x = prev_x;
     notation_col = last_moved.SquareX;
     previous_y = 8 - prev_y; 
-    notation_row = 8 - last_moved.SquareY; 
+    notation_row = 8 - last_moved.SquareY;
+    capture = captureOccur; 
     next = null;
     prev = null;
-    full_move = generate_move(is_check, capture);
+    full_move = generate_move(is_check);
   }
   
-  String generate_move(boolean check, boolean capture) {
+  String generate_move(boolean check) {
     String pieceUpper = (last_moved.material_value == 1) ? "" : last_moved.letter.toUpperCase();
-    boolean captures = (capture) ? "x" : "-"; 
+    captures = (capture) ? "x" : "-"; 
     if (pieceUpper.equals("K") && previous_x == 4 && notation_col == 6) {
            if (check) {
              return (color_won != 0) ? str(move_num) + ". " + "O-O" + "#" : str(move_num) + ". " + "O-O" + "+";
