@@ -24,6 +24,7 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
+  xtranslationtables();
   load_opening_positions(); 
   generate_piece_positions(get_position("Starting_Position"));
   displayed = piece_board; 
