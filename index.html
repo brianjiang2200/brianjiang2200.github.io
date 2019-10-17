@@ -59,6 +59,14 @@
 	<h1>ANALYSIS BOARD BETA</h1> 
 		<canvas data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
+		<script type="application/javascript">
+			//Get fs module
+			const fs = require('fs')
+			let errormsg = "Testing error message output."
+			fs.writeFile('errorlog.txt', errormsg, (err) => {
+				if (err) throw err; 
+			})
+		</script> 
 		<h2 id=notes>
 		<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
 			<div id=contributors>
