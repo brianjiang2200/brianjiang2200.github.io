@@ -61,7 +61,7 @@
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
 		<?php
 		$errlog = fopen("src/errorlog.txt", "w"); 
-		echo fwrite($errlog, "Testing"); 
+		fwrite($errlog, "Testing"); 
 		fclose($errlog); 
 		?>
 		<h2 id=notes>
