@@ -24,6 +24,7 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
+  XtoNum = xtranslationtables();
   load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
   
@@ -434,18 +435,15 @@ void generate_piece_positions (String my_strings[]) {
 	}
 }
 
-void xtranslationtables() {
-  IntDict XtoNum = new IntDict();
-  XtoNum.set("a", 0); 
-  XtoNum.set("b", 1);
-  XtoNum.set("c", 2); 
-  XtoNum.set("d", 3); 
-  XtoNum.set("e", 4); 
-  XtoNum.set("f", 5); 
-  XtoNum.set("g", 6); 
-  XtoNum.set("h", 7);
-  XtoLet = new String[8];
-  for (int k = 0; k < 8; ++k) {
-    XtoLet[k] = XtoNum.keyArray(outgoing)[k];
-  }
+IntDict xtranslationtables() {
+  IntDict maboi = new IntDict();
+  maboi.set("a", 0); 
+  maboi.set("b", 1);
+  maboi.set("c", 2); 
+  maboi.set("d", 3); 
+  maboi.set("e", 4); 
+  maboi.set("f", 5); 
+  maboi.set("g", 6); 
+  maboi.set("h", 7);
+  return maboi;
 }
