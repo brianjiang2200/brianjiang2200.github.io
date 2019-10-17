@@ -4,7 +4,7 @@
 //Last Update: 2019-05-03
 
 void setup() {
-  size(1400, 900);
+ size(1400, 900);
   frameRate(60);
   try {
 	  boardimg = loadImage("src/Images/Board.png");
@@ -24,18 +24,10 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
-  XtoNum = new IntDict(); 
-  XtoNum.set("a", 0); 
-  XtoNum.set("b", 1);
-  XtoNum.set("c", 2); 
-  XtoNum.set("d", 3); 
-  XtoNum.set("e", 4); 
-  XtoNum.set("f", 5); 
-  XtoNum.set("g", 6); 
-  XtoNum.set("h", 7); 
-  XtoLet = XtoNum.keyArray();
-  load_opening_positions(); 
+  xtranslationtables();
+  load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
+  
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
@@ -441,4 +433,18 @@ void generate_piece_positions (String my_strings[]) {
 			}
 		}
 	}
+}
+
+void xtranslationtables() {
+  XtoNum = new IntDict(); 
+  XtoNum.set("a", 0); 
+  XtoNum.set("b", 1);
+  XtoNum.set("c", 2); 
+  XtoNum.set("d", 3); 
+  XtoNum.set("e", 4); 
+  XtoNum.set("f", 5); 
+  XtoNum.set("g", 6); 
+  XtoNum.set("h", 7);
+  println(XtoNum.size());
+  XtoLet = XtoNum.keyArray();
 }
