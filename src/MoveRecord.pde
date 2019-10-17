@@ -27,8 +27,7 @@ class MoveRecord {
     to_move = my_piece.iswhite;
     move_num = move_no;
     notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase();
-    previous_x = XtoLet[prev_x]; 
-    /*switch (prev_x) {
+    switch (prev_x) {
       case 0: 
         this.previous_x = "a";
         break;
@@ -55,8 +54,8 @@ class MoveRecord {
         break;
       default: 
         this.previous_x = "?"; 
-    }*/
-    /*switch (my_piece.SquareX) {
+    }
+    switch (my_piece.SquareX) {
       case 0: 
         this.notation_col = "a";
         break;
@@ -83,8 +82,7 @@ class MoveRecord {
         break;
       default: 
         this.notation_col = "?"; 
-    }*/
-    notation_col = XtoLet[my_piece.SquareX];
+    }
     previous_y = 8 - prev_y; 
     notation_row = 8 - my_piece.SquareY; 
     next = null;
