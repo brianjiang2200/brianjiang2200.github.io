@@ -3,6 +3,8 @@
 //Version 1.136
 //Last Update: 2019-05-03
 
+IntDict XtoNum;
+
 void setup() {
   size(1400, 900);
   frameRate(60);
