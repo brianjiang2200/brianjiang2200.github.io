@@ -24,13 +24,6 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
-  try {
-    inventory = new IntDict(); 
-  }
-  catch (Exception e) {
-    println("Error"); 
-  }
-  inventory.set("a", 2);
   load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
   
@@ -439,17 +432,4 @@ void generate_piece_positions (String my_strings[]) {
 			}
 		}
 	}
-}
-
-IntDict xtranslationtables() {
-  IntDict maboi = new IntDict();
-  maboi.set("a", 0); 
-  maboi.set("b", 1);
-  maboi.set("c", 2); 
-  maboi.set("d", 3); 
-  maboi.set("e", 4); 
-  maboi.set("f", 5); 
-  maboi.set("g", 6); 
-  maboi.set("h", 7);
-  return maboi;
 }
