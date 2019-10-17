@@ -436,6 +436,7 @@ void generate_piece_positions (String my_strings[]) {
 }
 
 void xtranslationtables() {
+  XtoNum = new IntDict();
   XtoNum.set("a", 0); 
   XtoNum.set("b", 1);
   XtoNum.set("c", 2); 
@@ -445,5 +446,8 @@ void xtranslationtables() {
   XtoNum.set("g", 6); 
   XtoNum.set("h", 7);
   println(XtoNum.size());
-  XtoLet = XtoNum.keyArray();
+  XtoLet = new String[8];
+  for (int k = 0; k < 8; ++k) {
+    XtoLet[k] = XtoNum.keyArray()[k];
+  }
 }
