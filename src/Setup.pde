@@ -436,7 +436,12 @@ void generate_piece_positions (String my_strings[]) {
 }
 
 void xtranslationtables() {
-  XtoNum = new IntDict();
+  try {
+    XtoNum = new IntDict();
+  }
+  catch (Exception e) {
+    println(XtoNum cannot initialize); 
+  }
   XtoNum.set("a", 0); 
   XtoNum.set("b", 1);
   XtoNum.set("c", 2); 
