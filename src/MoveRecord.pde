@@ -5,17 +5,13 @@ class MoveRecord {
   Piece last_moved; 
   //Move Number 
   int move_num;
-  //Side to Move
-  boolean to_move;
   //Notation elements
-  boolean check; 
   String notation_piece;
-  String previous_x;
+  int previous_x;
   int previous_y; 
-  String notation_col; 
+  int notation_col; 
   int notation_row;
-  String promotion_piece = "";
-  String captures = ""; 
+  String promotion_piece = ""; 
   String full_move; 
   MoveRecord next;
   MoveRecord prev; 
@@ -24,22 +20,20 @@ class MoveRecord {
     stored_position = duplicate_board(new_pos);
     last_moved = stored_position[my_piece.SquareY][my_piece.SquareX]; 
     HIGHLIGHT_SQUARES(); 
-    to_move = my_piece.iswhite;
     move_num = move_no;
-    notation_piece = (my_piece.material_value == 1) ? "" : my_piece.letter.toUpperCase();
-    previous_x = XtoLet[prev_x];
-    notation_col = XtoLet[my_piece.SquareX];
+    previous_x = prev_x;
+    notation_col = last_moved.SquareX;
     previous_y = 8 - prev_y; 
-    notation_row = 8 - my_piece.SquareY; 
+    notation_row = 8 - last_moved.SquareY; 
     next = null;
     prev = null;
-    captures = (capture) ? " x " : " - ";
-    check = is_check;
-    full_move = generate_move();
+    full_move = generate_move(is_check, capture);
   }
   
-  String generate_move() {
-    if (notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("g")) {
+  String generate_move(boolean check, boolean capture) {
+    String pieceUpper = (last_moved.material_value == 1) ? "" : last_moved.letter.toUpperCase();
+    boolean captures = (capture) ? "x" : "-"; 
+    if (pieceUpper.equals("K") && previous_x == 4 && notation_col == 6) {
            if (check) {
              return (color_won != 0) ? str(move_num) + ". " + "O-O" + "#" : str(move_num) + ". " + "O-O" + "+";
            }
@@ -47,7 +41,7 @@ class MoveRecord {
              return str(move_num) + ". " + "O-O"; 
            }
        }
-       else if (notation_piece.equals("K") && previous_x.equals("e") && notation_col.equals("c")) {
+       else if (pieceUpper.equals("K") && previous_x == 4 && notation_col == 2) {
             if (check) {
              return (color_won != 0) ? str(move_num) + ". " + "O-O-O" + "#" : str(move_num) + ". " + "O-O-O" + "+";
            }
@@ -57,10 +51,10 @@ class MoveRecord {
        }
     else {
       if (check) {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + promotion_piece + ((color_won != 0) ? "#" : "+");
+        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures + XtoLet[notation_col] + notation_row + promotion_piece + ((color_won != 0) ? "#" : "+");
       }
       else {
-        return str(move_num) + ". " + notation_piece + previous_x + previous_y + captures + notation_col + notation_row + promotion_piece;
+        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures + XtoLet[notation_col] + notation_row + promotion_piece;
       }
     }
   }
@@ -69,7 +63,7 @@ class MoveRecord {
      textSize(27); 
      fill(255);
      text(full_move, x_pos, y_pos); 
-  } //<>//
+  }
   
   void HIGHLIGHT_SQUARES() {
     last_moved.assign_visual(true); 
