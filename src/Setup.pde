@@ -24,6 +24,12 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
+   try {
+    XtoNum = new IntDict();
+  }
+  catch (Exception e) {
+    println("XtoNum cannot initialize"); 
+  }
   xtranslationtables();
   load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
@@ -436,12 +442,6 @@ void generate_piece_positions (String my_strings[]) {
 }
 
 void xtranslationtables() {
-  try {
-    XtoNum = new IntDict();
-  }
-  catch (Exception e) {
-    println("XtoNum cannot initialize"); 
-  }
   XtoNum.set("a", 0); 
   XtoNum.set("b", 1);
   XtoNum.set("c", 2); 
