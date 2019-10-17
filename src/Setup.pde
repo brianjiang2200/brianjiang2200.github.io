@@ -369,54 +369,45 @@ void generate_piece_positions (String my_strings[]) {
 	//This function should only be called once a round during board setup. 
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
-			if (!str(my_strings[i].charAt(k)).equals("/")) {
-			//Show each piece
-				if (str(my_strings[i].charAt(k)).equals("p")) {
-					Pawn new_pawn = new Pawn(k * 100, i * 100, true);   
-					piece_board[i][k] = new_pawn; 
+			String myChar = str(my_strings[i].charAt(k));
+			if (!myChar.equals("/")) {
+			//SHOW WHITE PIECES
+				if (myChar.equals("p")) {
+					piece_board[i][k] = new Pawn(k * 100, i * 100, true); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("b")) {
-					Bishop new_bishop = new Bishop(k * 100, i * 100, true);
-          				piece_board[i][k] = new_bishop; 
+				else if (myChar.equals("b")) {
+					piece_board[i][k] = new Bishop(k * 100, i * 100, true);
 				}
-				else if (str(my_strings[i].charAt(k)).equals("n")) {
-					Knight new_knight = new Knight(k * 100, i * 100, true);
-          				piece_board[i][k] = new_knight; 
+				else if (myChar.equals("n")) {
+          				piece_board[i][k] = new Knight(k * 100, i * 100, true);
 				}
-				else if (str(my_strings[i].charAt(k)).equals("r")) {
-					Rook new_rook = new Rook(k * 100, i * 100, true);
-          				piece_board[i][k] = new_rook; 
+				else if (myChar.equals("r")) {
+          				piece_board[i][k] = new Rook(k * 100, i * 100, true);
 				}
-				else if (str(my_strings[i].charAt(k)).equals("q")) {
-					Queen new_queen = new Queen(k * 100, i * 100, true);
-          				piece_board[i][k] = new_queen; 
+				else if (myChar.equals("q")) {
+          				piece_board[i][k] = new Queen(k * 100, i * 100, true); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("k")) {
+				else if (myChar.equals("k")) {
 					white_king = new King(k * 100, i * 100, true);
           				piece_board[i][k] = white_king; 
 				}
-			//Black 
-				else if (str(my_strings[i].charAt(k)).equals("P")) {
-					Pawn new_pawn = new Pawn(k * 100, i * 100, false);
-          				piece_board[i][k] = new_pawn; 
+			//SHOW BLACK PIECES 
+				else if (myChar.equals("P")) {
+          				piece_board[i][k] = new Pawn(k * 100, i * 100, false); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("B")) {
-					Bishop new_bishop = new Bishop(k * 100, i * 100, false);
-          				piece_board[i][k] = new_bishop; 
+				else if (myChar.equals("B")) {
+          				piece_board[i][k] = new Bishop(k * 100, i * 100, false); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("N")) {
-					Knight new_knight = new Knight(k * 100, i * 100, false);
-          				piece_board[i][k] = new_knight; 
+				else if (myChar.equals("N")) {
+          				piece_board[i][k] = new Knight(k * 100, i * 100, false); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("R")) {
-					Rook new_rook = new Rook(k * 100, i * 100, false); 
-          				piece_board[i][k] = new_rook; 
+				else if (myChar.equals("R")) { 
+          				piece_board[i][k] = new Rook(k * 100, i * 100, false);
 				}
-				else if (str(my_strings[i].charAt(k)).equals("Q")) {
-					Queen new_queen = new Queen(k * 100, i * 100, false);
-          				piece_board[i][k] = new_queen; 
+				else if (myChar.equals("Q")) {
+          				piece_board[i][k] = new Queen(k * 100, i * 100, false); 
 				}
-				else if (str(my_strings[i].charAt(k)).equals("K")) {
+				else if (myChar.equals("K")) {
 					black_king = new King(k * 100, i * 100, false);
           				piece_board[i][k] = black_king; 
 				}
