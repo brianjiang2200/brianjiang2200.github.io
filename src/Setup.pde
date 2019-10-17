@@ -111,46 +111,6 @@ void keyPressed() {
   }
 }
 
-//Promotion Actions
-void promotion_actions() {
-    underpromotion_on = false; 
-    game_active = true; 
-    refresh_protected(piece_board, white_protected_squares, black_protected_squares);
-    eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
-    if (white_king.checkmate(piece_board, white_protected_squares, black_protected_squares)) {
-      game_active = false; 
-      game_over = true; 
-      color_won = 1; 
-    }
-    else if (black_king.checkmate(piece_board, white_protected_squares, black_protected_squares)) {
-         game_active = false;
-         game_over = true;
-         color_won = -1; 
-    }
-    else if (white_king.in_check(white_protected_squares, black_protected_squares) || black_king.in_check(white_protected_squares, black_protected_squares)) {
-      main_move_list.tail.check = true; 
-    }
-    else if (check_stalemate(white_king, piece_board, white_protected_squares, black_protected_squares) || check_stalemate(black_king, piece_board, white_protected_squares, black_protected_squares)) {
-      game_active = false;
-      game_drawn = true;
-      game_over = true; 
-    }
-    else if (CountMaterial(piece_board, true) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, false) == 50) {
-        game_active = false; 
-        game_over = true; 
-        game_drawn = true; 
-      }
-      
-    else if (CountMaterial(piece_board, false) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, true) == 50) {
-       game_active = false; 
-       game_over = true; 
-       game_drawn = true; 
-      }
-  main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
-  main_move_list.tail.full_move = main_move_list.tail.generate_move(); 
-  main_move_list.tail.stored_position = duplicate_board(piece_board);  
-}
-
 void mouseDragged() { 
 	//determine location in which mouse was clicked and compare it to the board value. 
 		//highlight the correct square
