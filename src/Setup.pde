@@ -3,8 +3,6 @@
 //Version 1.136
 //Last Update: 2019-05-03
 
-IntDict XtoNum;
-
 void setup() {
   size(1400, 900);
   frameRate(60);
@@ -26,7 +24,16 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
-  xtranslationtables();
+  XtoNum = new IntDict(); 
+  XtoNum.set("a", 0); 
+  XtoNum.set("b", 1);
+  XtoNum.set("c", 2); 
+  XtoNum.set("d", 3); 
+  XtoNum.set("e", 4); 
+  XtoNum.set("f", 5); 
+  XtoNum.set("g", 6); 
+  XtoNum.set("h", 7); 
+  XtoLet = XtoNum.keyArray();
   load_opening_positions(); 
   generate_piece_positions(get_position("Starting_Position"));
   displayed = piece_board; 
@@ -434,17 +441,4 @@ void generate_piece_positions (String my_strings[]) {
 			}
 		}
 	}
-}
-
-void xtranslationtables() {
-  XtoNum = new IntDict(); 
-  XtoNum.set("a", 0); 
-  XtoNum.set("b", 1);
-  XtoNum.set("c", 2); 
-  XtoNum.set("d", 3); 
-  XtoNum.set("e", 4); 
-  XtoNum.set("f", 5); 
-  XtoNum.set("g", 6); 
-  XtoNum.set("h", 7); 
-  XtoLet = XtoNum.keyArray();
 }
