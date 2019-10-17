@@ -85,3 +85,9 @@ int[][] KnightSquares = {{-2,-1},{-1,-2},{1,-2},{2,-1},{2,1},{1,2},{-1,2},{-2,1}
 //King 
 int[][] KingSquares = {{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0}}; 
 
+//X COORDINATE CONVERSIONS
+//Integer Dictionary for Letters to Numbers
+IntDict XtoNum; 
+
+//Array for Numbers to Letters
+String[] XtoLet;
