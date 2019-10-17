@@ -204,7 +204,7 @@ class Knight extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-       if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+       if (inRange(x,y)) {
     if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
       return false; 
     } 
@@ -252,7 +252,7 @@ class Bishop extends Piece {
   
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-    if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+    if (inRange(x,y)) {
   
   //this already checks if a piece lands on the same square as itself. 
   if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
@@ -418,7 +418,7 @@ class Rook extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-    if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+    if (inRange(x,y)) {
       if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
         return false; 
       } 
@@ -629,7 +629,7 @@ class King extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
-    if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+    if (inRange(x,y)) {
   //cannot capture pieces of the same color
   if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
     return false; 
