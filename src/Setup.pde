@@ -440,7 +440,7 @@ void xtranslationtables() {
     XtoNum = new IntDict();
   }
   catch (Exception e) {
-    println(XtoNum cannot initialize); 
+    println("XtoNum cannot initialize"); 
   }
   XtoNum.set("a", 0); 
   XtoNum.set("b", 1);
