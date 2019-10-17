@@ -55,7 +55,7 @@ void draw_menu() {
      if (main_move_list.tail != null && !underpromotion_on) {
          if (main_move_list.tail.move_num < 9) {
            for (MoveRecord my_record = main_move_list.head; (my_record != null && my_record.move_num - main_move_list.tail.move_num < 8); my_record = my_record.next) {
-             if (my_record.to_move) {
+             if (my_record.last_moved.iswhite) {
                my_record.print_move(white_move_list_x, move_list_y - 420 + (my_record.move_num - 1) * 60); 
              }
              else {
@@ -65,7 +65,7 @@ void draw_menu() {
          }
          else {
            for (MoveRecord my_record = main_move_list.tail; (my_record != null && main_move_list.tail.move_num - my_record.move_num < 8); my_record = my_record.prev) {
-             if (my_record.to_move) {
+             if (my_record.last_moved.iswhite) {
                my_record.print_move(white_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * 60);
              }
              else {
