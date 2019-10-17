@@ -52,7 +52,8 @@ void refresh_protected(Piece my_board[][], ProtectedSquare for_white[][], Protec
 
 //Promotion Actions
 void promotion_actions() {
-    underpromotion_on = false; 
+    underpromotion_on = false;
+    boolean checkNow; 
     game_active = true; 
     refresh_protected(piece_board, white_protected_squares, black_protected_squares);
     eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
@@ -67,7 +68,7 @@ void promotion_actions() {
          color_won = -1; 
     }
     else if (white_king.in_check(white_protected_squares, black_protected_squares) || black_king.in_check(white_protected_squares, black_protected_squares)) {
-      main_move_list.tail.check = true; 
+      checkNow = true;  
     }
     else if (check_stalemate(white_king, piece_board, white_protected_squares, black_protected_squares) || check_stalemate(black_king, piece_board, white_protected_squares, black_protected_squares)) {
       game_active = false;
@@ -86,6 +87,6 @@ void promotion_actions() {
        game_drawn = true; 
       }
   main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
-  main_move_list.tail.full_move = main_move_list.tail.generate_move(); 
+  main_move_list.tail.full_move = main_move_list.tail.generate_move(checkNow); 
   main_move_list.tail.stored_position = duplicate_board(piece_board);  
 }
