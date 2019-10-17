@@ -1,4 +1,5 @@
 //IMPORTS
+import java.util.Map;
 
 //IMAGES
 
@@ -82,4 +83,20 @@ int move_list_y = 570;
 int[][] KnightSquares = {{-2,-1},{-1,-2},{1,-2},{2,-1},{2,1},{1,2},{-1,2},{-2,1}}; 
 
 //King 
-int[][] KingSquares = {{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0}}; 
+int[][] KingSquares = {{-1,-1},{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0}};
+
+//Translate X Coordinates 
+String[] XtoLet = {"a","b","c","d","e","f","g","h"}; 
+HashMap<String,Integer> XtoNum = new HashMap<String,Integer>(); 
+XtoNum.put("a", 0); 
+XtoNum.put("b", 1);
+XtoNum.put("c", 2); 
+XtoNum.put("d", 3); 
+XtoNum.put("e", 4); 
+XtoNum.put("f", 5); 
+XtoNum.put("g", 6); 
+XtoNum.put("h", 7); 
+
+
+
+
