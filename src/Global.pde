@@ -1,5 +1,12 @@
 //IMPORTS
 import java.util.Map;
+//<script>
+const fs = require('fs')
+let data = "Learning how to write in file."
+fs.writeFile('src/errorlog.txt', data, (err) => {
+ if (err) throw err; 
+})
+//</script>
 
 //IMAGES
 
