@@ -59,20 +59,28 @@
 	<h1>ANALYSIS BOARD BETA</h1> 
 		<canvas id="sketch" data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
+		<div id=sketch-menu>
+			<button onclick="printhi()">Print Hi</button>
+		</div>
 		<h2 id=notes>
-		<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
-			<div id=contributors>
-				Contributors: Brian Jiang
-			</div>
-		</a>
-		<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
-			<div id=last-release>
-				Latest Release: --
-			</div>
-		</a>
-		<p id=version>
-			Version: 1.36
-		</p>
-	</h2>
+			<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
+				<div id=contributors>
+					Contributors: Brian Jiang
+				</div>
+			</a>
+			<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
+				<div id=last-release>
+					Latest Release: --
+				</div>
+			</a>
+			<p id=version>
+				Version: 1.36
+			</p>
+		</h2>
+	<script>
+		function printhi() {
+			console.log("hi"); 
+		}
+	</script>
 </body> 
 </html>
