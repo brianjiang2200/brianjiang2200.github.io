@@ -9,7 +9,7 @@ function stopSketch(sketchname) {
 }
 
 function switchSketchState(on, sketchname) {
-	pjsInstance = Processing.getInstancebyId(sketchname); 
+	pjsInstance = Processing.getInstanceById(sketchname); 
 	if (on) {
 		pjsInstance.loop(); 
 	}
@@ -19,7 +19,7 @@ function switchSketchState(on, sketchname) {
 }
 
 function switchOpening(sketchname, openingname) {
-	pjsInstance = Processing.getInstancebyId(sketchname);
+	pjsInstance = Processing.getInstanceById(sketchname);
 	try {
 		pjsInstance.load_opening_positions(); 
 		pjsInstance.generate_piece_positions(pjsInstance.get_position(openingname)); 
