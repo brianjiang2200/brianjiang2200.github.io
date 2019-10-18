@@ -12,7 +12,7 @@ void draw() {
       //fill square just left
       fill(light);
       stroke(light);
-      rect(main_move_list.tail.previous_x * 100, main_move_list.tail.previous_y * 100, piecedim, piecedim);
+      rect(main_move_list.tail.previous_x * 100, (8 - main_move_list.tail.previous_y) * 100, piecedim, piecedim);
     }
   }
   else {
@@ -21,7 +21,7 @@ void draw() {
     rect(current_record.notation_col * 100, current_record.notation_row * 100, piecedim, piecedim);
     fill(light);
     stroke(light);
-    rect(current_record.previous_x * 100, current_record.previous_y * 100, piecedim, piecedim);
+    rect(current_record.previous_x * 100, (8 - current_record.previous_y) * 100, piecedim, piecedim);
   }
   //display pieces
   for (int i = 0; i < 8; ++i) {
