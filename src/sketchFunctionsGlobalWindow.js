@@ -1,11 +1,11 @@
 var pjsInstance; 
 
-function startSketch() {
-	switchSketchState(true); 
+function startSketch(sketchname) {
+	switchSketchState(true, sketchname); 
 }
 
-function stopSketch() {
-	switchSketchState(false); 
+function stopSketch(sketchname) {
+	switchSketchState(false, sketchname); 
 }
 
 function switchSketchState(on, sketchname) {
