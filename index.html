@@ -81,7 +81,7 @@
 		</h2>
 											    
 	<script type="application/javascript">
-		var processingInstance; 
+		var pjsInstance; 
 		
 		function startSketch() {
 			switchSketchState(true);
@@ -92,24 +92,24 @@
 		}
 		
 		function switchSketchState(on) {
-			if (!processingInstance) {
-				processingInstance = Processing.getInstanceById('sketch'); 
+			if (!pjsInstance) {
+				pjsInstance = Processing.getInstanceById('sketch'); 
 			}
 			
 			if (on) {
-				processingInstance.loop(); 
+				pjsInstance.loop(); 
 			}
 			else {
-				processingInstance.noLoop(); 
+				pjsInstance.noLoop(); 
 			}
 		}
 					     
 		function myFunc() {
-			if (!processingInstance) {
-				processingInstance = Processing.getInstanceById('sketch'); 
+			if (!pjsInstance) {
+				pjsInstance = Processing.getInstanceById('sketch'); 
 			}
-			processingInstance.load_opening_positions(); 
-			processingInstance.generate_piece_positions(get_position("Nimzo_Indian")); 
+			pjsInstance.load_opening_positions(); 
+			pjsInstance.generate_piece_positions(pjsInstance.get_position("Nimzo_Indian")); 
 		}
 											       
 	</script>
