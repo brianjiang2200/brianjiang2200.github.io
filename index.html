@@ -59,9 +59,11 @@
 	<h1>ANALYSIS BOARD BETA</h1> 
 		<canvas id="sketch" data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
-		<div id=sketch-menu>
-			<button onclick="generate_piece_positions("Nimzo_Indian")">Nimzo Indian?</button>
-		</div>
+	
+		<button onclick="startSketch();">Start</button>
+		<button onclick="stopSketch();"Stop</button>
+		<button onclick="myFunc()"Nimzo Indian"</button>
+						       
 		<h2 id=notes>
 			<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
 				<div id=contributors>
@@ -77,10 +79,39 @@
 				Version: 1.36
 			</p>
 		</h2>
-	<script>
-		function printhi() {
-			console.log("hi"); 
+											    
+	<script type="application/javascript">
+		var processingInstance; 
+		
+		function startSketch() {
+			switchSketchState(true);
 		}
+		
+		function stopSketch() {
+			switchSketchState(false); 
+		}
+		
+		function switchSketchState(on) {
+			if (!processingInstance) {
+				processingInstance = Processing.getInstancebyId('sketch'); 
+			}
+			
+			if (on) {
+				processingInstance.loop(); 
+			}
+			else {
+				processingInstance.noLoop(); 
+			}
+		}
+					     
+		function myFunc() {
+			if (!processingInstance) {
+				processingInstance = Processing.getInstancebyId('sketch'); 
+			}
+			processingInstance.load_opening_positions(); 
+			processingInstance.generate_piece_positions(get_position("Nimzo_Indian")); 
+		}
+											       
 	</script>
 </body> 
 </html>
