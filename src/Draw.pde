@@ -3,15 +3,25 @@ void draw() {
   //display board
   image(boardimg, 0, 0, 800, 800);
   //display highlighted squares
-  fill(70, 141, 156);
-  stroke(70, 141, 156); 
   if (game_active) {
     if (last_moved != null) {
+      //fill square currently occupied
+      fill(dark);
+      stroke(dark);
       rect(last_moved.SquareX * 100, last_moved.SquareY * 100, piecedim, piecedim);
+      //fill square just left
+      fill(light);
+      stroke(light);
+      rect(main_move_list.tail.previous_x * 100, main_move_list.tail.previous_y * 100, piecedim, piecedim);
     }
   }
   else {
-    rect(current_record.last_moved.SquareX * 100, current_record.last_moved.SquareY * 100, piecedim, piecedim); 
+    fill(70, 141, 156);
+    stroke(70, 141, 156);
+    rect(current_record.notation_col * 100, current_record.notation_row * 100, piecedim, piecedim);
+    fill(87, 175, 194);
+    stroke(87, 175, 194);
+    rect(current_record.previous_x * 100, current_record.previous_y * 100, piecedim, piecedim);
   }
   //display pieces
   for (int i = 0; i < 8; ++i) {

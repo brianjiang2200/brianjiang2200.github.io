@@ -97,6 +97,6 @@ XtoNum.put("f", 5);
 XtoNum.put("g", 6); 
 XtoNum.put("h", 7); 
 
-
-
-
+//Colors for highlighted squares
+color dark = color(70,141,156);
+color light = color(87, 175, 194); 
