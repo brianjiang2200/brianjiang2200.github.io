@@ -39,7 +39,6 @@ void draw_menu() {
   fill(25, 25, 25);
   rect(800,0,600,800);
   fill(43, 43, 43);
-  rect(1230,20,150,50);
   rect(900,100,400,500);
   //Previous Move Button
   rect(900,600,200,70);
@@ -53,8 +52,6 @@ void draw_menu() {
   text("<", 985, 650); 
   text(">", 1185, 650);
   textSize(30);
-  text("QUIT",1265,55);
-  textSize(30); 
   fill(0);
   stroke(0); 
   rect(0,800,1400,100);
