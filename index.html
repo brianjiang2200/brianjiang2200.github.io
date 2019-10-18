@@ -93,7 +93,7 @@
 		
 		function switchSketchState(on) {
 			if (!processingInstance) {
-				processingInstance = Processing.getInstancebyId('sketch'); 
+				processingInstance = Processing.getInstanceById('sketch'); 
 			}
 			
 			if (on) {
@@ -106,7 +106,7 @@
 					     
 		function myFunc() {
 			if (!processingInstance) {
-				processingInstance = Processing.getInstancebyId('sketch'); 
+				processingInstance = Processing.getInstanceById('sketch'); 
 			}
 			processingInstance.load_opening_positions(); 
 			processingInstance.generate_piece_positions(get_position("Nimzo_Indian")); 
