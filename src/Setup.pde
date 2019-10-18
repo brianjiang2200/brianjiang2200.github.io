@@ -326,7 +326,7 @@ String[] get_position(String position_name) {
 }
 
 void generate_piece_positions (String my_strings[]) {
-	//This function should only be called once a round during board setup. 
+	emptyBoard(piece_board);  
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
 			String myChar = str(my_strings[i].charAt(k));
