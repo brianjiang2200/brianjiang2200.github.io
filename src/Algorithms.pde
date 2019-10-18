@@ -53,6 +53,15 @@ Piece [] [] duplicate_board(Piece curr_board[][]) {
 	return copy; 
 } 
 
+//Empty a Board
+void emptyBoard(Piece my_board[][]) {
+	for (int i = 0; i < 8; ++i) {
+		for (int k = 0; k < 8; ++k) {
+			my_board[i][k] = null; 
+		}
+	}
+}
+
 //Duplicate ProtectedSquare Array 
 void duplicate_protected_squares(Piece curr_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][]) {
 	for (int i = 0; i < 8; ++i) {
