@@ -18,7 +18,7 @@ void draw() {
   else {
     fill(dark);
     stroke(dark);
-    rect(current_record.notation_col * 100, current_record.notation_row * 100, piecedim, piecedim);
+    rect(current_record.notation_col * 100, current_record.last_moved.SquareY * 100, piecedim, piecedim);
     fill(light);
     stroke(light);
     rect(current_record.previous_x * 100, (8 - current_record.previous_y) * 100, piecedim, piecedim);
