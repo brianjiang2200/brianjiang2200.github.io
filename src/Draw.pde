@@ -16,11 +16,11 @@ void draw() {
     }
   }
   else {
-    fill(70, 141, 156);
-    stroke(70, 141, 156);
+    fill(dark);
+    stroke(dark);
     rect(current_record.notation_col * 100, current_record.notation_row * 100, piecedim, piecedim);
-    fill(87, 175, 194);
-    stroke(87, 175, 194);
+    fill(light);
+    stroke(light);
     rect(current_record.previous_x * 100, current_record.previous_y * 100, piecedim, piecedim);
   }
   //display pieces
