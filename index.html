@@ -59,11 +59,12 @@
 	<h1>ANALYSIS BOARD BETA</h1> 
 		<canvas id="sketch" data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
-	
-		<button onclick="startSketch('sketch');"> Start </button>
-		<button onclick="stopSketch('sketch');"> Stop </button>
-		<button onclick="switchOpening('sketch', 'Nimzo_Indian')"> Nimzo Indian </button>
-						       
+		<div class="SketchOptions">
+			<button onclick="startSketch('sketch');"> Start </button>
+			<button onclick="stopSketch('sketch');"> Stop </button>
+			<button onclick="switchOpening('sketch', 'Nimzo_Indian')"> Nimzo Indian </button>
+			<button> Reset Board </button> 
+		</div>			       
 		<h2 id=notes>
 			<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
 				<div id=contributors>
