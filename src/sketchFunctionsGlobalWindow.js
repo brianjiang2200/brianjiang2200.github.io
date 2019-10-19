@@ -39,7 +39,7 @@ function flipBoard() {
 	}
 }
 
-function deleteMove() {
+function deleteMove(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
 		if (pjsInstance.game_active) {
