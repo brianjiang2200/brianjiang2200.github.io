@@ -58,4 +58,7 @@ function deleteMove() {
 			pjsInstance.game_active = true; 
 		}
 	}
+	catch(error) {
+		console.error(error); 
+	}
 }
