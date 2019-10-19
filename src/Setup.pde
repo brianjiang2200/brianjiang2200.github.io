@@ -108,6 +108,9 @@ void keyPressed() {
           }
         }
     }
+    if (keyCode == DOWN) {
+      removeVariation(main_move_list, current_record); 
+    }
   }
 }
 

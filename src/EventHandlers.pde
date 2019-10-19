@@ -93,7 +93,6 @@ void promotion_actions() {
 
 //removes a Variation
 void removeVariation(MoveList myList, MoveRecord index) {
-    println(myList.tail.move_num); 
     myList.deleteMoveRecord(index); 
     current_record = myList.tail;
     piece_board = current_record.stored_position; 
