@@ -90,3 +90,13 @@ void promotion_actions() {
   main_move_list.tail.full_move = main_move_list.tail.generate_move(checkNow); 
   main_move_list.tail.stored_position = duplicate_board(piece_board);  
 }
+
+//removes a Variation
+void removeVariation(MoveList myList, MoveRecord index) {
+    myList.deleteMoveRecord(index); 
+    current_record = myList.tail;
+    piece_board = current_record.stored_position; 
+    displayed = piece_board; 
+    white_to_move = !current_record.last_moved.iswhite;
+    game_active = true;
+}

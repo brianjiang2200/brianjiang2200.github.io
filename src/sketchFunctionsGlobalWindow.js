@@ -42,23 +42,9 @@ function flipBoard() {
 function deleteMove(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
-		if (pjsInstance.game_active) {
-			pjsInstance.main_move_list.deleteMoveRecord(pjsInstance.main_move_list.tail);
-			pjsInstance.current_record = pjsInstance.main_move_list.tail; 
-			pjsInstance.piece_board = pjsInstance.current_record.stored_position;
-			pjsInstance.displayed = pjsInstance.piece_board;
-			pjsInstance.white_to_move = !current_record.last_moved.iswhite; 
-		}
-		else {
-			pjsInstance.main_move_list.deleteMoveRecord(pjsInstance.current_record);
-			pjsInstance.current_record = pjsInstance.main_move_list.tail; 
-			pjsInstance.piece_board = pjsInstance.main_move_list.tail.stored_position;
-			pjsInstance.displayed = pjsInstance.piece_board;
-			pjsInstance.white_to_move = !current_record.last_moved.iswhite;
-			pjsInstance.game_active = true; 
-		}
+		pjsInstance.removeVariation(pjsInstance.main_move_list, pjsInstance.current_record); 
 	}
 	catch(error) {
-		console.error(error); 
+		console.error(error) 
 	}
 }
