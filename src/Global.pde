@@ -67,7 +67,7 @@ Piece[][] piece_board = new Piece[8][8];
 Piece[][] displayed = new Piece[8][8]; 
 
 //Main Move List 
-MoveList main_move_list = new MoveList(); 
+MoveList main_move_list; 
 
 //When cycling through moves, current Move Record
 MoveRecord current_record; 

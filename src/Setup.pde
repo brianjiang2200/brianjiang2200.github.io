@@ -30,10 +30,10 @@ void setup() {
   }
   load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
-  
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
+  main_move_list = new MoveList(); 
 } 
 
 
