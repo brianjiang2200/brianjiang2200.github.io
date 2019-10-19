@@ -45,6 +45,6 @@ function deleteMove(sketchname) {
 		pjsInstance.removeVariation(pjsInstance.main_move_list, pjsInstance.current_record); 
 	}
 	catch(error) {
-		console.error(error) 
+		console.error(error); 
 	}
 }
