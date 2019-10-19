@@ -109,6 +109,7 @@ void keyPressed() {
         }
     }
     if (keyCode == DOWN) {
+      println("attempting to remove variation"); 
       removeVariation(main_move_list, current_record); 
     }
   }

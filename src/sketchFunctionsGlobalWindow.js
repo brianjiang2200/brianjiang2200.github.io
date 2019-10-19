@@ -46,6 +46,5 @@ function deleteMove(sketchname) {
 	}
 	catch(error) {
 		console.error(error); 
-		console.log(pjsInstance.main_move_list); 
 	}
 }
