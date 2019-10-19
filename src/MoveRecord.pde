@@ -95,6 +95,12 @@ class MoveList {
     }
   }
   
+  //Delete Current move at move list
+  void deleteMoveRecord(MoveRecord index) {
+    tail = index.prev; 
+    tail.next = null; 
+  }
+  
   //Get a move at Specified Index
   MoveRecord get_move_at_index(int index_no) {
   if (head == null) {
