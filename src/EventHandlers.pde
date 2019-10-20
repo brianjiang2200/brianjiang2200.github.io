@@ -93,10 +93,12 @@ void promotion_actions() {
 
 //removes a Variation
 void removeVariation(MoveList myList, MoveRecord index) {
-    myList.deleteMoveRecord(index); 
-    current_record = myList.tail;
-    piece_board = current_record.stored_position; 
-    displayed = piece_board; 
-    white_to_move = !current_record.last_moved.iswhite;
-    game_active = true;
+    if (myList != null) {
+      myList.deleteMoveRecord(index); 
+      current_record = myList.tail;
+      piece_board = current_record.stored_position; 
+      displayed = piece_board; 
+      white_to_move = !current_record.last_moved.iswhite;
+      game_active = true;
+    }
 }
