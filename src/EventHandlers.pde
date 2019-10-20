@@ -100,6 +100,7 @@ void promotion_actions() {
       my_piece = current_record.last_moved; 
       displayed = piece_board; 
       white_to_move = !current_record.last_moved.iswhite;
+      move_number = (current_record.last_moved.iswhite) ? move_number : move_number - 1; 
       game_active = true;
     }
 }
