@@ -90,3 +90,15 @@ void promotion_actions() {
   main_move_list.tail.full_move = main_move_list.tail.generate_move(checkNow); 
   main_move_list.tail.stored_position = duplicate_board(piece_board);  
 }
+
+  //removes a Variation
+  void removeVariation() {
+    if (main_move_list.head != null) {
+      main_move_list.deleteMoveRecord(current_record); 
+      current_record = main_move_list.tail;
+      piece_board = current_record.stored_position; 
+      displayed = piece_board; 
+      white_to_move = !current_record.last_moved.iswhite;
+      game_active = true;
+    }
+}

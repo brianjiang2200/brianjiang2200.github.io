@@ -40,9 +40,9 @@ function flipBoard() {
 }
 
 function deleteMove(sketchname) {
-	pjsInstance = Processing.getInstanceById(sketchname); 
+	pjsInstance = Processing.getInstanceById(sketchname);
 	try {
-		pjsInstance.window.main_move_list.removeVariation(pjsInstance.window.current_record); 
+		pjsInstance.removeVariation();  
 	}
 	catch(error) {
 		console.error(error); 

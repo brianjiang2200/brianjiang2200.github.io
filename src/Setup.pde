@@ -110,7 +110,7 @@ void keyPressed() {
     }
     if (keyCode == DOWN) {
       println("attempting to remove variation"); 
-      main_move_list.removeVariation(current_record); 
+      removeVariation(); 
     }
   }
 }
