@@ -101,6 +101,18 @@ class MoveList {
     tail.next = null; 
   }
   
+  //removes a Variation
+  void removeVariation(MoveRecord index) {
+    if (head != null) {
+      deleteMoveRecord(index); 
+      current_record = tail;
+      piece_board = current_record.stored_position; 
+      displayed = piece_board; 
+      white_to_move = !current_record.last_moved.iswhite;
+      game_active = true;
+    }
+}
+  
   //Get a move at Specified Index
   MoveRecord get_move_at_index(int index_no) {
   if (head == null) {

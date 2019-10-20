@@ -42,7 +42,7 @@ function flipBoard() {
 function deleteMove(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
-		pjsInstance.removeVariation(pjsInstance.main_move_list, pjsInstance.current_record); 
+		pjsInstance.main_move_list.removeVariation(pjsInstance.current_record); 
 	}
 	catch(error) {
 		console.error(error); 
