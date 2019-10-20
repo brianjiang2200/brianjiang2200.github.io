@@ -96,7 +96,8 @@ void promotion_actions() {
     if (main_move_list.head != null) {
       main_move_list.deleteMoveRecord(current_record); 
       current_record = main_move_list.tail;
-      piece_board = current_record.stored_position; 
+      piece_board = current_record.stored_position;
+      my_piece = current_record.last_moved; 
       displayed = piece_board; 
       white_to_move = !current_record.last_moved.iswhite;
       game_active = true;
