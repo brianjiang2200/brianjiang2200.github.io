@@ -2,6 +2,7 @@ body {
 	background-image: linear-gradient(#404040, black); 
 	text-align: center; 
 }
+
 h1 {
 	color: white; 
 	opacity: 0.7; 
@@ -10,6 +11,7 @@ h1 {
 	margin-top: 30 px; 
 	margin-bottom: 30px; 
 }
+
 canvas {
 	border-width: 10px; 
 	border-color: #143f4f; 
@@ -17,17 +19,27 @@ canvas {
 	box-shadow: 0 0 10px white; 
 	margin-bottom: 100px; 
 }
+
 .github-repo-link {
 	text-decoration: none; 
 	margin-left: 100px; 
 	margin-right: 100px; 
 }
+
 .SketchOptions {
 	margin-bottom: 50px; 
 }
+
 #shortcuts {
+	color: white; 
 	margin-bottom: 50px; 
 }
+
+.shortcutitem {
+	margin-right: 30px; 
+	margin-left: 30px; 
+}
+
 #contributors {
 	color: white; 
 	text-align: center; 
@@ -36,12 +48,14 @@ canvas {
 	display:inline; 
 	text-decoration: none; 
 }
+
 #last-release {
 	color: white; 
 	text-align: center; 
 	display: inline; 
 	margin-bottom: 100px; 
 }
+
 #version {
 	color: white; 
 	text-align: center; 
@@ -50,6 +64,7 @@ canvas {
 	margin-left: 50px; 
 	margin-right: 50px; 
 }
+
 a:hover {
 	text-shadow: 0 0 4p white; 
 }
