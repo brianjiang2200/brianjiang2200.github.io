@@ -7,7 +7,7 @@ PPPPPPPP
 ////////
 pppppppp
 rnbqkbnr
-Nimzo_Indian
+Nimzo Indian Defense
 RNBQK//R
 PPPP/PPP
 ////PN//
@@ -16,7 +16,7 @@ PPPP/PPP
 //n/////
 pp//pppp
 r/bqkbnr
-King's_Indian
+King's Indian Defense
 RNBQ/RK/
 PPP/PPBP
 ///P/NP/
@@ -25,7 +25,7 @@ PPP/PPBP
 //n//n//
 pp///ppp
 r/bqkb/r
-Najdorf
+Sicilian, Najdorf
 RNBQKB/R
 /P//PPPP
 P//P/N//
@@ -34,39 +34,12 @@ P//P/N//
 //n/////
 ppp//ppp
 r/bqkb/r
-Pin_Test
-/////R//
-//////K/
-/////NB/
-////b//q
-//////rr
-////////
-////////
-////k///
-Blockable_Test
-//B/////
-/////P//
-//////R/
-//////bK
-/////p//
-///q////
-//b///pp
-//////k/
-Promotion_Test
-R//K////
-/p//////
-////////
-////////
-////////
-////////
-////////
-////k///
-Stalemate_Test
-R//K////
-/p//////
-////////
-/////P//
-/////p//
-////////
-////////
-////k///
+Ruy Lopez
+R/BQKBNR
+PPPP/PPP
+//N/////
+/b//P///
+////p///
+/////n//
+pppp/ppp
+rnbqk//r
