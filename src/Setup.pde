@@ -309,7 +309,7 @@ void load_opening_positions() {
 String[] get_position(String position_name) {
 	String[] position_string = new String[8]; 
 	for (int i = 0; i < read_positions_repo.length; ++i) {
-		if (read_positions_repo[i] == position_name) {
+		if (read_positions_repo[i].equals(position_name)) {
 			try {
 				position_string[0] = read_positions_repo[i + 1]; 
 				position_string[1] = read_positions_repo[i + 2]; 
