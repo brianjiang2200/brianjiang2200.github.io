@@ -56,7 +56,9 @@ void resetSketch() {
 	emptyBoard(piece_board); 
 	refresh_protected(piece_board, white_protected_squares, black_protected_squares);
 	current_record = null; 
-	main_move_list = null; 
+	main_move_list.head = null; 
+  main_move_list.tail = null; 
+  generate_piece_positions(get_position("Starting_Position")); 
 }
 
 void mouseClicked() {
