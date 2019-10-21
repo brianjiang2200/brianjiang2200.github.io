@@ -1,23 +1,5 @@
 var pjsInstance; 
 
-function startSketch(sketchname) {
-	switchSketchState(true, sketchname); 
-}
-
-function stopSketch(sketchname) {
-	switchSketchState(false, sketchname); 
-}
-
-function switchSketchState(on, sketchname) {
-	pjsInstance = Processing.getInstanceById(sketchname); 
-	if (on) {
-		pjsInstance.loop(); 
-	}
-	else {
-		pjsInstance.noLoop(); 
-	}
-}
-
 function switchOpening(sketchname, openingname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
 	try {

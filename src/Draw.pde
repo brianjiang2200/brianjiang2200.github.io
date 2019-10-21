@@ -44,8 +44,6 @@ void draw_menu() {
   rect(900,600,200,70);
   //Next Move Button
   rect(1100,600,200,70);
-  rect(800,720,300,80);
-  rect(1100,720,300,80);
   textSize(50);
   fill(255);
   //Button Text
