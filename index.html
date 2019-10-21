@@ -2,17 +2,21 @@
 <html> 
 <head> 
 	<title>Analysis Board</title>
+	<!--Processingjs Script converts Processing to JS -->
+	<!--Objects defined in Processing are inaccessible by the Global Window -->
 	<script src = "src/processing.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="src/styles.css">
 </head> 
 <body> 
-	<h1>ANALYSIS BOARD BETA</h1> 
+	<h1>ANALYSIS BOARD BETA</h1>
+		<!--Each canvas should be identified by a unique id --> 
 		<canvas id="sketch" data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
+		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
 			<button onclick="startSketch('sketch');"> Start </button>
 			<button onclick="stopSketch('sketch');"> Stop </button>
-			<button onclick="switchOpening('sketch', 'Nimzo_Indian')"> Nimzo Indian </button>
+			<button onclick="switchOpening('sketch', 'Nimzo Indian Defense')"> Nimzo Indian </button>
 			<button> Reset Board </button>
 			<button onclick="deleteMove('sketch');"> Delete Move </button> 
 		</div>
