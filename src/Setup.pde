@@ -108,8 +108,7 @@ void keyPressed() {
           }
         }
     }
-    if (keyCode == DOWN) {
-      println("attempting to remove variation"); 
+    if (key == BACKSPACE) {
       removeVariation(); 
     }
   }
