@@ -208,7 +208,7 @@ void mouseReleased() {
         }
       }
       
-      MoveRecord new_move = new MoveRecord(my_piece, piece_board, tmp_x, tmp_y, move_number, piece_captured, is_check);
+      MoveRecord new_move = new MoveRecord(my_piece, white_king, black_king, piece_board, tmp_x, tmp_y, move_number, piece_captured, is_check);
       main_move_list.add_move(new_move);
       current_record = main_move_list.tail;
       
