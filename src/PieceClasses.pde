@@ -670,7 +670,7 @@ class King extends Piece {
   //CASTLING KINGSIDE AND QUEENSIDE
   if (y == SquareY && !has_moved) {
     if (x == 6 && my_board[y][7]!= null && my_board[y][7].material_value == 5 && !my_board[y][7].has_moved &&
-      && my_board[y][5] == null && my_board[y][6] == null && !in_check(for_white, for_black)) {
+      my_board[y][5] == null && my_board[y][6] == null && !in_check(for_white, for_black)) {
       if (iswhite && for_black[y][5] == null && for_black[y][6] == null) {
         my_board[y][5] = new Rook(500, 100 * SquareY, true);
         my_board[y][5].has_moved = true;
