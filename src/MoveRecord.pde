@@ -11,13 +11,17 @@ class MoveRecord {
   int previous_y; 
   int notation_col; 
   int notation_row;
+  int wkingy; 
+  int wkingx; 
+  int bkingy; 
+  int bkingx; 
   boolean capture;
   String promotion_piece = ""; 
   String full_move; 
   MoveRecord next;
   MoveRecord prev; 
   
-  MoveRecord (Piece my_piece, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean captureOccur, boolean is_check) {
+  MoveRecord (Piece my_piece, King wKing, King bKing, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean captureOccur, boolean is_check) {
     stored_position = duplicate_board(new_pos);
     last_moved = stored_position[my_piece.SquareY][my_piece.SquareX]; 
     HIGHLIGHT_SQUARES(); 
@@ -26,6 +30,10 @@ class MoveRecord {
     notation_col = last_moved.SquareX;
     previous_y = 8 - prev_y; 
     notation_row = 8 - last_moved.SquareY;
+    wkingy = wKing.SquareY; 
+    wkingx = wKing.SquareX; 
+    bkingy = bKing.SquareY; 
+    bkingx = bKing.SquareX; 
     capture = captureOccur; 
     next = null;
     prev = null;
