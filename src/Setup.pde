@@ -37,7 +37,7 @@ void setup() {
 } 
 
 //RESETS THE PROPERTIES OF THE SKETCH AND THE MAIN BOARD
-void reset() {
+void resetSketch() {
 	move_number = 1; 
 	eval = 0; 
 	white_to_move = true; 

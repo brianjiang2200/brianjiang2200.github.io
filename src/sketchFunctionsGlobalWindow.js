@@ -29,7 +29,7 @@ function switchOpening(sketchname, openingname) {
 	}
 }	
 	
-function flipBoard() {
+function flipBoard(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
 		pjsInstance.flipBoard(); 
@@ -39,6 +39,15 @@ function flipBoard() {
 	}
 }
 
+function resetBoard(sketchname) {
+	pjsInstance = Processing.getInstanceById(sketchname);
+	try {
+		pjsInstance.resetSketch();
+	}
+	catch(error) {
+		console.error(error); 
+	}
+}
 function deleteMove(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
 	try {
