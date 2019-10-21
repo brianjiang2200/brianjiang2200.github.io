@@ -103,7 +103,7 @@ void removeVariation() {
 		last_moved = my_piece; 
 		displayed = piece_board; 
 		white_to_move = !current_record.last_moved.iswhite; 
-		move_number = (current_record.last_moved.iswhite) ? current_record.move_num : current_record.move_num - 1;
+		move_number = (current_record.last_moved.iswhite) ? current_record.move_num : current_record.move_num + 1;
 		white_king = piece_board[current_record.wkingy][current_record.wkingx];
 		black_king = piece_board[current_record.bkingy][current_record.bkingx];
 		refresh_protected(piece_board, white_protected_squares, black_protected_squares);  
