@@ -1,11 +1,55 @@
-
 body {
-	background-image: url("https://github.com/brianjiang2200/brianjiang2200.github.io/blob/master/Images/Ding-Yu.jpeg");
-	background-repeat: no-repeat; 
-	background-attachment: fixed; 
-	background-size: cover; 
-	margin: 0; 
+	background-image: linear-gradient(#404040, black); 
+	text-align: center; 
 }
 h1 {
-	
+	color: white; 
+	opacity: 0.7; 
+	text-align: center; 
+	text-shadow: 0 0 5px white; 
+	margin-top: 30 px; 
+	margin-bottom: 30px; 
+}
+canvas {
+	border-width: 10px; 
+	border-color: #143f4f; 
+	border-style: groove; 
+	box-shadow: 0 0 10px white; 
+	margin-bottom: 100px; 
+}
+.github-repo-link {
+	text-decoration: none; 
+	margin-left: 100px; 
+	margin-right: 100px; 
+}
+.SketchOptions {
+	margin-bottom: 50px; 
+}
+#shortcuts {
+	margin-bottom: 50px; 
+}
+#contributors {
+	color: white; 
+	text-align: center; 
+	font-style: oblique; 
+	margin-bottom: 100px; 
+	display:inline; 
+	text-decoration: none; 
+}
+#last-release {
+	color: white; 
+	text-align: center; 
+	display: inline; 
+	margin-bottom: 100px; 
+}
+#version {
+	color: white; 
+	text-align: center; 
+	display: inline; 
+	margin-bottom: 100px; 
+	margin-left: 50px; 
+	margin-right: 50px; 
+}
+a:hover {
+	text-shadow: 0 0 4p white; 
 }
