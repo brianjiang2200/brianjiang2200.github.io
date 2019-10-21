@@ -86,9 +86,11 @@ void promotion_actions() {
        game_over = true; 
        game_drawn = true; 
       }
+  //DEAL WITH MAIN MOVE LIST 
   main_move_list.tail.promotion_piece = piece_board[my_piece.SquareY][my_piece.SquareX].letter.toUpperCase();
   main_move_list.tail.full_move = main_move_list.tail.generate_move(checkNow); 
-  main_move_list.tail.stored_position = duplicate_board(piece_board);  
+  main_move_list.tail.stored_position = duplicate_board(piece_board);
+  main_move_list.tail.last_moved = main_move_list.tail.stored_position[my_piece.SquareY][my_piece.SquareX]; 
 }
 
   //removes a Variation
