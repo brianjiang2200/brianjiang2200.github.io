@@ -630,27 +630,31 @@ class King extends Piece {
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) { 
     if (inRange(x,y)) {
-  //cannot capture pieces of the same color
+  //CANNOT CAPTURE PIECES OF THE SAME COLOR
   if (my_board[y][x] != null && my_board[y][x].iswhite == iswhite) {
     return false; 
   }
+  //IF WHITE AND BLACK PROTECTS SQUARE
   if (iswhite && for_black[y][x] != null) {
     return false; 
   }
-  else if (in_check(for_white, for_black) && iswhite) {
+  //ELSE IF WHITE AND GOING TO A SQUARE THAT WILL BE PROTECTED ONLY AFTER MOVING THE KING
+  else if (iswhite && in_check(for_white, for_black)) {
     my_board[SquareY][SquareX] = null; 
-  refresh_protected(my_board, for_white, for_black); 
-  if (for_black[y][x] != null) {
-    my_board[SquareY][SquareX] = this;
-    refresh_protected(my_board, for_white, for_black);   
-    return false; 
+    refresh_protected(my_board, for_white, for_black); 
+    if (for_black[y][x] != null) {
+      my_board[SquareY][SquareX] = this;
+      refresh_protected(my_board, for_white, for_black);   
+      return false; 
+    }
+    my_board[SquareY][SquareX] = this; 
+    refresh_protected(my_board, for_white, for_black); 
   }
-  my_board[SquareY][SquareX] = this; 
-  refresh_protected(my_board, for_white, for_black); 
-  }
+  //IF BLACK AND WHITE PROTECTS SQUARE
   if (!iswhite && for_white[y][x] != null) {
     return false; 
   }
+  //ELSE IF BLACK AND GOING TO A SQUARE THAT WILL BE PROTECTED ONLY AFTER MOVING THE KING
   else if (in_check(for_white, for_black) && !iswhite) {
     my_board[SquareY][SquareX] = null; 
   refresh_protected(my_board, for_white, for_black); 
@@ -662,40 +666,42 @@ class King extends Piece {
   my_board[SquareY][SquareX] = this; 
   refresh_protected(my_board, for_white, for_black); 
   }
-  //castling kingside and queenside, fix for protected squares 
+  
+  //CASTLING KINGSIDE AND QUEENSIDE
   if (y == SquareY && !has_moved) {
-    if (x == 6 && (my_board[y][7].letter == "r" || my_board[y][7].letter == "R") 
-      && my_board[y][5] == null && my_board[y][6] == null && !my_board[y][7].has_moved && !in_check(for_white, for_black)) {
+    if (x == 6 && my_board[y][7]!= null && my_board[y][7].material_value == 5 && !my_board[y][7].has_moved &&
+      && my_board[y][5] == null && my_board[y][6] == null && !in_check(for_white, for_black)) {
       if (iswhite && for_black[y][5] == null && for_black[y][6] == null) {
-        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].iswhite);
+        my_board[y][5] = new Rook(500, 100 * SquareY, true);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
-    return true;
+        return true;
       }
       else if (!iswhite && for_white[y][5] == null && for_white[y][6] == null) {
-        my_board[y][5] = new Rook(500, my_board[y][7].y_coord, my_board[y][7].iswhite);
+        my_board[y][5] = new Rook(500, 100 * SquareY, false);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
         return true;
       }
     }
-    else if (x == SquareX - 2 && (my_board[y][x - 2].letter == "r" || my_board[y][x - 2].letter == "R") 
-      && my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][x-2].has_moved && !in_check(for_white, for_black)) {
+    else if (x == SquareX - 2 && my_board[y][0] != null && my_board[y][0].material_value == 5
+      && my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][0].has_moved && 
+      !in_check(for_white, for_black)) {
       if (iswhite && for_black[y][2] == null && for_black[y][3] == null) {
-        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].iswhite); 
+        my_board[y][3] = new Rook(300, 100 * SquareY, true); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
-    return true; 
+        return true; 
       }
       if (!iswhite && for_white[y][2] == null && for_white[y][3] == null) {
-        my_board[y][3] = new Rook(300, my_board[y][0].y_coord, my_board[y][7].iswhite); 
+        my_board[y][3] = new Rook(300, 100 * SquareY, false); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
         return true; 
       }
     }
   }
-  //else can move to any square within 1. 
+  //ELSE KING CAN MOVE TO ANY OF THESE SQUARES 
   if (x == SquareX + 1 || x == SquareX || x == SquareX - 1) {
     if (y == SquareY + 1 || y == SquareY || y == SquareY - 1) {
       return true; 
