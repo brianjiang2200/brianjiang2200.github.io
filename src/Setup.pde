@@ -108,7 +108,7 @@ void keyPressed() {
           }
         }
     }
-    if (key == BACKSPACE) {
+    if (keyCode == ALT) {
       removeVariation(); 
     }
   }
