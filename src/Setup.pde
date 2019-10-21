@@ -1,6 +1,6 @@
 //Author: Brian Jiang
 //Title: Blindfold Tactics Trainer
-//Version 1.136
+//Version 1.67
 //Last Update: 2019-10-17
 
 /* @pjs preload="src/Images/Board.png,src/Images/white_pawn.png,src/Images/white_knight.png,src/Images/white_bishop.png,
@@ -36,6 +36,28 @@ void setup() {
   main_move_list = new MoveList(); 
 } 
 
+//RESETS THE PROPERTIES OF THE SKETCH AND THE MAIN BOARD
+void reset() {
+	move_number = 1; 
+	eval = 0; 
+	white_to_move = true; 
+	piece_selected = false; 
+	game_active = true; 
+	game_over = false; 
+	color_won = 0; 
+	game_drawn = false; 
+	underpromotion_on = false; 
+	my_piece = null; 
+	last_moved = null; 
+	white_king = null; 
+	black_king = null; 
+	copy_white_king = null; 
+	copy_black_king = null;
+	emptyBoard(piece_board); 
+	refresh_protected(piece_board, white_protected_squares, black_protected_squares);
+	current_record = null; 
+	main_move_list = null; 
+}
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
