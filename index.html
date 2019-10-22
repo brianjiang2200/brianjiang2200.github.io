@@ -5,6 +5,7 @@
 	<!--Processingjs Script converts Processing to JS -->
 	<!--Objects defined in Processing are inaccessible by the Global Window -->
 	<script src = "src/processing.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="src/styles.css">
 </head> 
 <body> 
@@ -14,6 +15,7 @@
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
 		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
+			<input type="text" ng-model="openingname" placeholder="Enter Opening Name here">
 			<button onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
 			<button onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
 			<button onclick="deleteMove('sketch');"> Delete Current Move </button> 
