@@ -113,6 +113,7 @@ void keyPressed() {
     if (keyCode == LEFT) {
       if (current_record != main_move_list.head) {
           current_record = current_record.prev;
+          //NO NEED TO DUPLICATE BOARD AS NO MODIFICATIONS ARE BEING MADE TO THE STORED POSITION
           displayed = current_record.stored_position;
           game_active = false; 
         }
@@ -121,6 +122,7 @@ void keyPressed() {
       if (current_record != main_move_list.tail) {
           current_record = current_record.next;
           if (current_record != main_move_list.tail) {
+            //NO NEED TO DUPLICATE BOARD AS NO MODIFICATIONS ARE BEING MADE TO THE STORED POSITION
             displayed = current_record.stored_position;
             game_active = false; 
           }
