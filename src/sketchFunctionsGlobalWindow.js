@@ -44,7 +44,7 @@ function deleteMove(sketchname) {
 function returnOpeningOptions(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
-		return pjsInstance.returnOpeningNames(pOpeningName); 
+		return pjsInstance.returnOpeningNames(); 
 	}
 	catch(error) {
 		console.error(error); 
