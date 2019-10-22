@@ -46,7 +46,7 @@ canvas {
 	font-style: oblique; 
 	margin-bottom: 100px; 
 	display:inline; 
-	text-decoration: none; 
+	text-decoration: none !important; 
 }
 
 #last-release {
