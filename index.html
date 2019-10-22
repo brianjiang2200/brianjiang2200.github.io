@@ -15,10 +15,10 @@
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
 		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
-			<input type="text" ng-model="openingname" placeholder="Enter Opening Name here">
-			<button onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
-			<button onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
-			<button onclick="deleteMove('sketch');"> Delete Current Move </button> 
+			<input type="text" ng-model="openingname" placeholder="Enter Opening Name Here">
+			<button type="button" class="btn btn-primary" onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
+			<button type="button" class="btn btn-danger" onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
+			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button> 
 		</div>
 		<!--Canvas Shortcut Information: should eventually be collapsible -->
 		<div id="shortcuts">
