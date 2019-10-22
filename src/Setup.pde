@@ -332,6 +332,22 @@ void load_opening_positions() {
   }
 }
 
+String[] returnMatchingOpeningNames(String openingName) {
+	//RETURN A MAXIMUM OF 6 OPTIONS 
+	String[] OpeningOptions = new String[6];
+	int optionsCount = 0; 
+	for (int i = 0; i < read_positions_repo.length; ++i) {
+		if (match(openingName, read_positions_repo[i]) != null) {
+			OpeningOptions[optionsCount] = read_positions_repo[i];
+			optionsCount++; 
+		}
+		if (optionsCount > 5) {
+			break; 
+		}
+	}
+	return OpeningOptions; 
+}
+
 String[] get_position(String position_name) {
 	String[] position_string = new String[8]; 
 	for (int i = 0; i < read_positions_repo.length; ++i) {
