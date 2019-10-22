@@ -41,21 +41,30 @@ function deleteMove(sketchname) {
 	}
 }
 
-function returnOpeningOptions(sketchname, pOpeningName) {
+function returnOpeningOptions(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
-		return pjsInstance.returnMatchingOpeningNames(pOpeningName); 
+		return pjsInstance.returnOpeningNames(pOpeningName); 
 	}
 	catch(error) {
 		console.error(error); 
 	}
 }
 
-function displayOpeningOptions(sketchname, inputID, pOpeningName) {
-	var input, filter, li, txtvalue, i; 
-	input = document.getElementById(inputID); 
-	li = returnOpeningOptions(sketchname, pOpeningName); 
+function displayOpeningOptions(sketchname, openingHtmlList, inputID) {
+	var input, filter, ul, li, a, txtValue, i; 
+	input = document.getElementById(inputID);
+	filter = input.value.toUpperCase();
+	ul = document.getElementById(openingHtmlList); 
+	li = ul.getElementsByTagName("li"); 
 	for (i = 0; i < li.length; ++i) {
-		li[i].style.display = ""; 
+		a = li[i].getElementsByTagName("a")[0]; 
+		txtValue = a.textContent || a.innerText; 
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			li[i].style.display=""; 
+		}
+		else {
+			li[i].style.display = "none"; 
+		}
 	}
 }
