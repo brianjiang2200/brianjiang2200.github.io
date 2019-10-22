@@ -18,8 +18,7 @@
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
 		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
-			<input id="openingsearch" type="text" ng-model="openingname" 
-			       onkeyup="displayOpeningOptions('sketch', 'openingsearch', document.getElementById("openingsearch").value);" placeholder="Enter Opening Name Here">
+			<input id="openingsearch" type="text" ng-model="openingname" placeholder="Enter Opening Name Here">
 			<button type="button" class="btn btn-primary" onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
 			<button type="button" class="btn btn-danger" onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
 			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button> 
@@ -49,5 +48,6 @@
 	<!-- Link JS Script -->
 	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js">
 	</script>
+	<script> var OpeningPositionsList = 
 </body> 
 </html>
