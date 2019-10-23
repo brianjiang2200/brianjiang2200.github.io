@@ -1,4 +1,5 @@
-var pjsInstance; 
+var pjsInstance;
+var OpeningPositionsList; 
 
 function switchOpening(sketchname, openingname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
@@ -44,14 +45,23 @@ function deleteMove(sketchname) {
 function returnOpeningOptions(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname); 
 	try {
-		return pjsInstance.returnOpeningNames(); 
+		OpeningPositionsList = pjsInstance.returnOpeningNames(); 
 	}
 	catch(error) {
 		console.error(error); 
 	}
 }
 
-function displayOpeningOptions(sketchname, openingHtmlList, inputID) {
+function generateOpeningsListonWindow(ultitle) {
+		for (var i = 0; i < OpeningPositionsList.length; ++i) {
+		var node = document.createElement("LI"); 
+		var textnode = document.createTextNode(OpeningPositionsList[i]); 
+		node.appendChild(textnode); 
+		document.getElementById(ultitle).appendChild(node); 
+	}
+}
+
+function displayOpeningOptions(openingHtmlList, inputID) {
 	var input, filter, ul, li, a, txtValue, i; 
 	input = document.getElementById(inputID);
 	filter = input.value.toUpperCase();

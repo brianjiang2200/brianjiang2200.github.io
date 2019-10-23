@@ -18,10 +18,13 @@
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
 		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
-			<input id="openingsearch" type="text" ng-model="openingname" placeholder="Enter Opening Name Here">
 			<button type="button" class="btn btn-primary" onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
 			<button type="button" class="btn btn-danger" onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
-			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button> 
+			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button>
+			<input id="openingsearch" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" ng-model="openingname" placeholder="Enter Opening Name Here">
+			<ul id="hiddenOpeningsList">
+				<!-- Items are appended --> 
+			</ul>
 		</div>
 		<!--Canvas Shortcut Information: should eventually be collapsible -->
 		<div id="shortcuts">
@@ -48,6 +51,9 @@
 	<!-- Link JS Script -->
 	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js">
 	</script>
-	<script> var OpeningPositionsList = 
+	<script>
+		returnOpeningOptions('sketch'); 
+		generateOpeningsListonWindow("hiddenOpeningsList");
+	</script>
 </body> 
 </html>
