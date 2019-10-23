@@ -338,8 +338,10 @@ void load_opening_positions() {
 
 String[] returnOpeningNames() 
 	if (read_positions_repo.length % 9 != 0) {
-		println("PositionsRepository Text Invalid Format"); 
-		return {""}; 
+		println("PositionsRepository Text Invalid Format");
+		String[] nullString = new String[1]; 
+		nullString[0] = ""; 
+		return nullString; 
 	}
 	String[] OpeningOptions = new String[read_positions_repo.length/9];
 	int optionsCount = 0; 
