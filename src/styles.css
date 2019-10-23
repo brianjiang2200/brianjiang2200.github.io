@@ -30,6 +30,10 @@ canvas {
 	margin-bottom: 50px; 
 }
 
+#hiddenOpeningsList {
+	margin: 20px; 
+}
+
 #shortcuts {
 	color: white; 
 	margin-bottom: 50px; 
@@ -67,4 +71,8 @@ canvas {
 
 a:hover {
 	text-shadow: 0 0 4p white; 
+}
+
+li {
+	margin: 10px; 
 }
