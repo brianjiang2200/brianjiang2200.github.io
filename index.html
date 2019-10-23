@@ -52,6 +52,9 @@
 	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js">
 	</script>
 	<script>
+		while (!pjsInstance) {
+			pjsInstance = Processing.getElementById('sketch'); 
+		}
 		returnOpeningOptions('sketch'); 
 		generateOpeningsListonWindow("hiddenOpeningsList");
 	</script>
