@@ -68,3 +68,7 @@ canvas {
 a:hover {
 	text-shadow: 0 0 4p white; 
 }
+
+li {
+	color: white; 
+}
