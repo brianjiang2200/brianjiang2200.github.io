@@ -67,9 +67,8 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 	filter = input.value.toUpperCase();
 	ul = document.getElementById(openingHtmlList); 
 	li = ul.getElementsByTagName("li"); 
-	for (i = 0; i < li.length; ++i) {
-		a = li[i].getElementsByTagName("a")[0]; 
-		txtValue = a.textContent || a.innerText; 
+	for (i = 0; i < li.length; ++i) { 
+		txtValue = li[i].textContent || li[i].innerText; 
 		if (txtValue.toUpperCase().indexOf(filter) > -1) {
 			li[i].style.display=""; 
 		}

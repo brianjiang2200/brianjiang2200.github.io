@@ -1,7 +1,7 @@
 //Author: Brian Jiang
 //Title: Blindfold Tactics Trainer
-//Version 1.67
-//Last Update: 2019-10-17
+//Version 1.240
+//Last Update: 2019-10-23
 
 /* @pjs preload="src/Images/Board.png,src/Images/white_pawn.png,src/Images/white_knight.png,src/Images/white_bishop.png,
 src/Images/white_king.png,src/Images/white_queen.png,src/Images/white_rook.png,src/Images/black_pawn.png,src/Images/black_knight.png,
@@ -33,7 +33,11 @@ void setup() {
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
-  main_move_list = new MoveList(); 
+  main_move_list = new MoveList();
+  
+  //Initialize DOM Objects
+  OpeningPositionsList = returnOpeningNames(); 
+  generateOpeningsListonWindow("hiddenOpeningsList"); 
 } 
 
 //RESETS THE PROPERTIES OF THE SKETCH AND THE MAIN BOARD
@@ -333,20 +337,21 @@ void load_opening_positions() {
 }
 
 String[] returnOpeningNames() {
-	//RETURN A MAXIMUM OF 100 OPTIONS
-  load_opening_positions();
-	String[] OpeningOptions = new String[100];
+	if (read_positions_repo.length % 9 != 0) {
+		println("PositionsRepository Text Invalid Format");
+		String[] nullString = new String[1]; 
+		nullString[0] = ""; 
+		return nullString; 
+	}
+	String[] OpeningOptions = new String[read_positions_repo.length/9];
 	int optionsCount = 0; 
-	for (int i = 0; i < read_positions_repo.length; i = i + 8) {
+	for (int i = 0; i < read_positions_repo.length; i = i + 9) {
 		if (!read_positions_repo[i].equals("")) {
 			OpeningOptions[optionsCount] = read_positions_repo[i];
 			optionsCount++; 
 		}
 		else {
 			println("PositionsRepository Text Invalid Format"); 
-			break; 
-		}
-		if (optionsCount > 99) {
 			break; 
 		}
 	}
