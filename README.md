@@ -5,12 +5,12 @@ A Browser-Based Chess Graphical Analysis Board written in Processing/ProccesingJ
 Features: 
 A full Analysis Board implemented with all of the Rules of Chess.  
   -Positions are Drawn if Insufficient Material  
-  -Threefold Repetition and 50 move Rule are Ignored
-Full Algebraic Notation 
-Scroll through Moves Quickly using Arrow Keys  
-Reset Board  
-Delete Game Record from Current Position  
-Search for Opening Position and Display on Board  
+  -Threefold Repetition and 50 move Rule are Ignored  
+  -Full Algebraic Notation 
+  -Scroll through Moves Quickly using Arrow Keys  
+  -Reset Board  
+  -Delete Game Record from Current Position  
+  -Search for Opening Position and Display on Board  
 
   
 Currently under Development  
