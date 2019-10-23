@@ -57,7 +57,9 @@ function generateOpeningsListonWindow(ultitle) {
 		var node = document.createElement("LI"); 
 		var textnode = document.createTextNode(OpeningPositionsList[i]); 
 		node.appendChild(textnode);
-		node.classList.add('card bg-info text-white'); 
+		node.classList.add('card');
+		node.classList.add('bg-info'); 
+		node.classList.add('text-white'); 
 		document.getElementById(ultitle).appendChild(node);
 	}
 }
