@@ -333,11 +333,12 @@ void load_opening_positions() {
 }
 
 String[] returnOpeningNames() {
-	//RETURN A MAXIMUM OF 100 OPTIONS 
+	//RETURN A MAXIMUM OF 100 OPTIONS
+  load_opening_positions();
 	String[] OpeningOptions = new String[100];
 	int optionsCount = 0; 
 	for (int i = 0; i < read_positions_repo.length; i = i + 8) {
-		if (read_positions_repo[i] != null) {
+		if (!read_positions_repo[i].equals("")) {
 			OpeningOptions[optionsCount] = read_positions_repo[i];
 			optionsCount++; 
 		}
