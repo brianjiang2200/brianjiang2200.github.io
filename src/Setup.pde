@@ -336,20 +336,20 @@ void load_opening_positions() {
   }
 }
 
-String[] returnOpeningNames() {
-	//RETURN A MAXIMUM OF 100 OPTIONS
-	String[] OpeningOptions = new String[100];
+String[] returnOpeningNames() 
+	if (read_positions_repo.length/9 != (int)(read_positions_repo.length/9)) {
+		println("PositionsRepository Text Invalid Format"); 
+		return [""]; 
+	}
+	String[] OpeningOptions = new String[read_positions_repo.length/9];
 	int optionsCount = 0; 
-	for (int i = 0; i < read_positions_repo.length; i = i + 8) {
+	for (int i = 0; i < read_positions_repo.length; i = i + 9) {
 		if (!read_positions_repo[i].equals("")) {
 			OpeningOptions[optionsCount] = read_positions_repo[i];
 			optionsCount++; 
 		}
 		else {
 			println("PositionsRepository Text Invalid Format"); 
-			break; 
-		}
-		if (optionsCount > 99) {
 			break; 
 		}
 	}
