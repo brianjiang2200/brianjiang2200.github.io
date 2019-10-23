@@ -336,7 +336,7 @@ void load_opening_positions() {
   }
 }
 
-String[] returnOpeningNames() 
+String[] returnOpeningNames() {
 	if (read_positions_repo.length % 9 != 0) {
 		println("PositionsRepository Text Invalid Format");
 		String[] nullString = new String[1]; 
