@@ -52,11 +52,10 @@
 	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js">
 	</script>
 	<script>
-		while (!pjsInstance) {
-			pjsInstance = Processing.getInstanceById('sketch'); 
-		}
-		returnOpeningOptions('sketch'); 
-		generateOpeningsListonWindow("hiddenOpeningsList");
+		$( document ).ready(function() {
+			returnOpeningOptions('sketch'); 
+			generateOpeningsListonWindow("hiddenOpeningsList");
+		});
 	</script>
 </body> 
 </html>
