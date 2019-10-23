@@ -53,7 +53,7 @@
 	</script>
 	<script>
 		while (!pjsInstance) {
-			pjsInstance = Processing.getElementById('sketch'); 
+			pjsInstance = Processing.getInstanceById('sketch'); 
 		}
 		returnOpeningOptions('sketch'); 
 		generateOpeningsListonWindow("hiddenOpeningsList");
