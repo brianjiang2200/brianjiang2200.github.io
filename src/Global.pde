@@ -16,7 +16,7 @@ PImage blackpawnimg, blackknightimg, blackbishopimg, blackkingimg, blackqueenimg
 //SKETCH PROPERTIES 
 
 //Piece on-screen dimensions
-int piecedim = Xnorm(100);
+int piecedim;
 
 //Main board move number 
 int move_number = 1; 
@@ -73,9 +73,9 @@ MoveList main_move_list;
 MoveRecord current_record; 
 
 //Menu Display Parameters 
-int white_move_list_x = Xnorm(920); 
-int black_move_list_x = Xnorm(1120); 
-int move_list_y = Ynorm(570); 
+white_move_list_x = Xnorm(920); 
+black_move_list_x = Xnorm(1120); 
+move_list_y = Ynorm(570); 
 
 //ARRAYS FOR SQUARES PROTECTED BY PIECES
 
