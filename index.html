@@ -23,6 +23,7 @@
 			<button type="button" class="btn btn-danger" onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
 			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button>
 			<input id="openingsearch" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" ng-model="openingname" placeholder="Enter Opening Name Here">
+			<input id="boardzoom" type="number" min="70" max="100" placeholder="Set Board Size" title="70% to 100%">
 			<ul id="hiddenOpeningsList">
 				<!-- Items are appended --> 
 			</ul>
