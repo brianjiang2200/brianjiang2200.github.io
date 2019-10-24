@@ -2,8 +2,8 @@
 
 A Browser-Based Chess Graphical Analysis Board written in Processing/ProccesingJS with additional features implemented with the help of JS and its libraries. 
 
-Features: 
-A full Analysis Board implemented with all of the Rules of Chess.  
+Features:  
+  -A full Analysis Board implemented with all of the Rules of Chess.  
   -Positions are Drawn if Insufficient Material  
   -Threefold Repetition and 50 move Rule are Ignored  
   -Full Algebraic Notation 
@@ -11,12 +11,13 @@ A full Analysis Board implemented with all of the Rules of Chess.
   -Reset Board  
   -Delete Game Record from Current Position  
   -Search for Opening Position and Display on Board  
-
+  -Scalable Board Size
   
 Currently under Development  
 Features to be added soon:   
-  Board Flip,  
-  Sub Variations    
+  Board Flip(?)    
+  Sub Variations  
+  Annotations  
   Export and Import Stored MoveList  
 
 Written by Brian Jiang  
