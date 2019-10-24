@@ -70,7 +70,7 @@ class MoveRecord {
   }
   
    void print_move(int x_pos, int y_pos) {
-     textSize(27); 
+     textSize(27 * piecedim/100); 
      fill(255);
      text(full_move, x_pos, y_pos); 
   }
