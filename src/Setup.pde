@@ -37,18 +37,19 @@ void setup() {
   catch (Exception e) {
 	  println("There was an error loading the images. Is there a folder titled Images and are all images available?");
   }
+  //Initialize some variables after size() has been formally declared
+  piecedim = Xnorm(100);
+  white_move_list_x = Xnorm(920); 
+  black_move_list_x = Xnorm(1120); 
+  move_list_y = Ynorm(570);
+  
+  //Set up Main Board
   load_opening_positions();
   generate_piece_positions(get_position("Starting_Position"));
   displayed = piece_board; 
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
   main_move_list = new MoveList();
-  
-  //Initialize some variables after size() has been formally declared
-  piecedim = Xnorm(100);
-  white_move_list_x = Xnorm(920); 
-  black_move_list_x = Xnorm(1120); 
-  move_list_y = Ynorm(570); 
   
   //Initialize DOM Objects
   OpeningPositionsList = returnOpeningNames(); 
