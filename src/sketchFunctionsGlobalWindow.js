@@ -1,5 +1,5 @@
 var pjsInstance;
-var OpeningPositionsList; 
+var OpeningPositionsList;
 
 function switchOpening(sketchname, openingname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
@@ -79,4 +79,12 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 			li[i].style.display = "none"; 
 		}
 	}
+}
+
+function getSketchWidth(sketchname) {
+	return document.getElementById(sketchname).width; 
+}
+
+function getSketchHeight(sketchname) {
+	return document.getElementById(sketchname).height; 
 }

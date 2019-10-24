@@ -10,7 +10,7 @@ src/Images/black_bishop.png,src/Images/black_queen.png,src/Images/black_king.png
 void setup() {
   //Set Canvas to size specified by HTML document
   try {
-    size(document.getElementById('sketch').width, document.getElementbyId('sketch').height); 
+    size(getSketchWidth('sketch'), getSketchWidth('sketch')); 
   }
   catch (Exception e) {
    println("Initiating default canvas size"); 
