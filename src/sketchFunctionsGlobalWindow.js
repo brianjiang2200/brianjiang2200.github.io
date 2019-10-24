@@ -3,8 +3,7 @@ var OpeningPositionsList;
 
 function switchOpening(sketchname, openingname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
-	try {
-		pjsInstance.load_opening_positions(); 
+	try { 
 		pjsInstance.generate_piece_positions(pjsInstance.get_position(openingname)); 
 	}
 	catch(error) {
@@ -59,7 +58,8 @@ function generateOpeningsListonWindow(ultitle) {
 		node.appendChild(textnode);
 		node.classList.add('card');
 		node.classList.add('bg-info'); 
-		node.classList.add('text-white'); 
+		node.classList.add('text-white');
+		node.onclick="switchOpening('sketch', node.innerText)"; 
 		document.getElementById(ultitle).appendChild(node);
 	}
 }
