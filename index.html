@@ -22,7 +22,15 @@
 			<button type="button" class="btn btn-primary" onclick="switchOpening('sketch', 'Nimzo Indian Defense');"> Nimzo Indian! </button>
 			<button type="button" class="btn btn-danger" onclick="resetBoard('sketch');"> Reset Board to Starting Position </button>
 			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button>
-			<input id="openingsearch" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" ng-model="openingname" placeholder="Enter Opening Name Here">
+		</div>
+		<div id="OpeningSearchContainer>
+			<form>
+			 	<div class="form-group">
+					<label for="openingsearch">Search Openings and Display on Board</label>
+					<input id="openingsearch" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" placeholder="Enter Opening Name Here">
+					<small id="openingsearchwarning">All moves made will be deleted.</small>
+				</div>
+			</form>
 			<ul id="hiddenOpeningsList">
 				<!-- Items are appended --> 
 			</ul>
