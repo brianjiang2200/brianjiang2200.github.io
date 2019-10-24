@@ -43,7 +43,7 @@ void setup() {
   refresh_protected(piece_board, white_protected_squares, black_protected_squares);
   eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
   main_move_list = new MoveList();
-  println(piecedim); 
+  println(width); 
   
   //Initialize DOM Objects
   OpeningPositionsList = returnOpeningNames(); 
