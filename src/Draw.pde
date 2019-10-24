@@ -37,44 +37,47 @@ void draw_menu() {
   stroke(255);
   strokeWeight(1);
   fill(25, 25, 25);
-  rect(800,0,600,800);
+  rect(Xnorm(800),0,Xnorm(600),Ynorm(800));
   fill(43, 43, 43);
-  rect(900,100,400,500);
+  rect(Xnorm(900),Ynorm(100),Xnorm(400),Ynorm(500));
   //Previous Move Button
-  rect(900,600,200,70);
+  rect(Xnorm(900),Ynorm(600),Xnorm(200),Ynorm(70));
   //Next Move Button
-  rect(1100,600,200,70);
-  textSize(50);
+  rect(Xnorm(1100),Ynorm(600),Xnorm(200),Ynorm(70));
+  textSize(piecedim/2);
   fill(255);
   //Button Text
-  text("<", 985, 650); 
-  text(">", 1185, 650);
-  textSize(30);
+  text("<", Xnorm(985), Ynorm(650)); 
+  text(">", Xnorm(1185), Ynorm(650));
+  textSize(3 * piecedim/10);
+  //Black Bar along Lower Level
   fill(0);
   stroke(0); 
-  rect(0,800,1400,100);
+  rect(0,Ynorm(800),Xnorm(1400),piecedim);
+  //Text in Black Bar
   fill(255); 
-  text("Running Evaluation: " + eval, 30, 860); 
+  text("Running Evaluation: " + eval, Xnorm(30), Ynorm(860)); 
   
+  //PRINTING NOTATION
   try { 
      if (main_move_list.tail != null && !underpromotion_on) {
          if (main_move_list.tail.move_num < 9) {
            for (MoveRecord my_record = main_move_list.head; (my_record != null && my_record.move_num - main_move_list.tail.move_num < 8); my_record = my_record.next) {
              if (my_record.last_moved.iswhite) {
-               my_record.print_move(white_move_list_x, move_list_y - 420 + (my_record.move_num - 1) * 60); 
+               my_record.print_move(white_move_list_x, move_list_y - Ynorm(420) + (my_record.move_num - 1) * Ynorm(60)); 
              }
              else {
-               my_record.print_move(black_move_list_x, move_list_y - 420 + (my_record.move_num - 1) * 60); 
+               my_record.print_move(black_move_list_x, move_list_y - Ynorm(420) + (my_record.move_num - 1) * Ynorm(60)); 
              }
            }
          }
          else {
            for (MoveRecord my_record = main_move_list.tail; (my_record != null && main_move_list.tail.move_num - my_record.move_num < 8); my_record = my_record.prev) {
              if (my_record.last_moved.iswhite) {
-               my_record.print_move(white_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * 60);
+               my_record.print_move(white_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * Ynorm(60));
              }
              else {
-               my_record.print_move(black_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * 60); 
+               my_record.print_move(black_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * Ynorm(60)); 
              }
            }
          }
@@ -84,48 +87,47 @@ void draw_menu() {
      println("Error on printing Move List"); 
   }
   
-  textSize(30); 
   if (game_active) {
     if (white_to_move) {
-      text("White to move", 1010, 865);
+      text("White to move", Xnorm(1010), Ynorm(865));
     }
     else {
-      text("Black to move", 1010, 865);
+      text("Black to move", Xnorm(1010), Ynorm(865));
     } 
   }
   if (!game_active) {
     if (color_won > 0) {
-      textSize(40); 
-      text("0 - 1", 1060, 865);
+      textSize(2*piecedim/5); 
+      text("0 - 1", Xnorm(1065), Ynorm(865));
     }
     else if (color_won < 0) {
-      textSize(40); 
-      text("1 - 0", 1060, 865);
+      textSize(2*piecedim/5); 
+      text("1 - 0", Xnorm(1060), Ynorm(865));
     }
   else if (underpromotion_on) {
-    textSize(30); 
-    text("Select Promotion Piece",945,150);
+    textSize(3*piecedim/10); 
+    text("Select Promotion Piece", Xnorm(945), Ynorm(150));
     if (my_piece.iswhite) {
-      image(whiteknightimg,940,200,70,70); 
-      image(whitebishopimg,1020,200,70,70);
-      image(whiterookimg,1100,200,70,70); 
-      image(whitequeenimg,1180,200,70,70);
+      image(whiteknightimg, Xnorm(940), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(whitebishopimg, Xnorm(1020), Ynorm(200), Xnorm(70), Ynorm(70));
+      image(whiterookimg, Xnorm(1100), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(whitequeenimg, Xnorm(1180), Ynorm(200), Xnorm(70), Ynorm(70));
     }
     else {
-      image(blackknightimg,940,200,70,70); 
-      image(blackbishopimg,1020,200,70,70); 
-      image(blackrookimg,1100,200,70,70); 
-      image(blackqueenimg,1180,200,70,70); 
+      image(blackknightimg, Xnorm(940), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(blackbishopimg, Xnorm(1020), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(blackrookimg, Xnorm(1100), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(blackqueenimg, Xnorm(1180), Ynorm(200), Xnorm(70), Ynorm(70)); 
     }
   }
     else if (game_drawn) {
-      textSize(40); 
-      text("1/2 - 1/2", 1035, 865);
+      textSize(2*piecedim/5); 
+      text("1/2 - 1/2", Xnorm(1035), Ynorm(865));
     }
     else {
       textSize(27);
-      text("Position after", 870, 865); 
-      current_record.print_move(1035, 865);   
+      text("Position after", Xnorm(870), Ynorm(865)); 
+      current_record.print_move(Xnorm(1035), Ynorm(865));   
     }
   }
 }
