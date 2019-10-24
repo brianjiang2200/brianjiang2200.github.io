@@ -20,6 +20,14 @@ canvas {
 	margin-bottom: 20px; 
 }
 
+a:hover {
+	text-shadow: 0 0 4p white; 
+}
+
+li {
+	margin: 10px; 
+}
+
 .github-repo-link {
 	text-decoration: none; 
 	margin-left: 100px; 
@@ -28,10 +36,6 @@ canvas {
 
 .SketchOptions {
 	margin-bottom: 50px; 
-}
-
-#hiddenOpeningsList {
-	margin: 20px; 
 }
 
 .card {
@@ -49,6 +53,15 @@ canvas {
 	display:block; 
 }
 
+.shortcutitem {
+	margin-right: 30px; 
+	margin-left: 30px; 
+}
+
+#hiddenOpeningsList {
+	margin: 20px; 
+}
+
 #openingsearch {
 	color: black !important;
 }
@@ -56,11 +69,6 @@ canvas {
 #shortcuts {
 	color: white; 
 	margin-bottom: 50px; 
-}
-
-.shortcutitem {
-	margin-right: 30px; 
-	margin-left: 30px; 
 }
 
 #contributors {
@@ -86,12 +94,4 @@ canvas {
 	margin-bottom: 100px; 
 	margin-left: 50px; 
 	margin-right: 50px; 
-}
-
-a:hover {
-	text-shadow: 0 0 4p white; 
-}
-
-li {
-	margin: 10px; 
 }
