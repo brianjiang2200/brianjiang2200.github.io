@@ -43,6 +43,8 @@ canvas {
 }
 
 .formgrpelement{
+	color: white;
+	margin: auto;
 	display:block; 
 }
 
