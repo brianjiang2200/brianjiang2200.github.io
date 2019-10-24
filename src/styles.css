@@ -35,17 +35,22 @@ canvas {
 }
 
 .card {
-	width: 20rem; 
+	width: 20rem;
+	margin: auto; 
 }
 
 .form-group {
 	color:white;
 }
 
-.formgrpelement{
+.formgrpelement {
 	color: white;
 	margin: auto;
 	display:block; 
+}
+
+#openingsearch {
+	color: black !important;
 }
 
 #shortcuts {
