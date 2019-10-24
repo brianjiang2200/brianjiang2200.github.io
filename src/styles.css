@@ -38,6 +38,14 @@ canvas {
 	width: 20rem; 
 }
 
+.form-group {
+	color:white;
+}
+
+.formgrpelement{
+	display:block; 
+}
+
 #shortcuts {
 	color: white; 
 	margin-bottom: 50px; 
