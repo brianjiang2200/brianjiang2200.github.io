@@ -17,7 +17,7 @@ canvas {
 	border-color: #143f4f; 
 	border-style: groove; 
 	box-shadow: 0 0 10px white; 
-	margin-bottom: 100px; 
+	margin-bottom: 20px; 
 }
 
 .github-repo-link {
@@ -32,6 +32,10 @@ canvas {
 
 #hiddenOpeningsList {
 	margin: 20px; 
+}
+
+.card {
+	width: 20rem; 
 }
 
 #shortcuts {
