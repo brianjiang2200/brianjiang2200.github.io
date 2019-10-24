@@ -76,33 +76,35 @@ void resetSketch() {
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
-    if (mouseX >= 940 && mouseX <= 1010 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
+    float upperY = Ynorm(200);
+    float lowerY = Ynorm(270);
+    if (mouseX >= Xnorm(940) && mouseX <= Xnorm(1010) && mouseY >= upperY && mouseY <= lowerY) {
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= 1020 && mouseX <= 1090 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
+    else if (mouseX >= Xnorm(1020) && mouseX <= Xnorm(1090) && mouseY >= upperY && mouseY <= lowerY) {
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= 1100 && mouseX <= 1170 && mouseY >= 200 && mouseY <= 270) {
-      piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
+    else if (mouseX >= Xnorm(1100) && mouseX <= Xnorm(1170) && mouseY >= upperY && mouseY <= lowerY) {
+      piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= 1180 && mouseX <= 1250 && mouseY >= 200 && mouseY <= 270) {
-		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.x_coord, my_piece.y_coord, my_piece.iswhite);
+    else if (mouseX >= Xnorm(1180) && mouseX <= Xnorm(1250) && mouseY >= upperY && mouseY <= lowerY) {
+		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
 	}
-  if (!underpromotion_on) {
-    if (mouseX >= 900 && mouseY >= 600 && mouseY <= 800) {
-      if (mouseX <= 1100) {
+  else if (!underpromotion_on) {
+    if (mouseX >= Xnorm(900) && mouseY >= Ynorm(600) && mouseY <= Ynorm(800)) {
+      if (mouseX <= Xnorm(1100)) {
         if (current_record != main_move_list.head) {
           current_record = current_record.prev;
           displayed = current_record.stored_position;
           game_active = false; 
         }
       }
-      else if (mouseX <= 1300) {
+      else if (mouseX <= Xnorm(1300)) {
         if (current_record != main_move_list.tail) {
           current_record = current_record.next;
           displayed = current_record.stored_position;
@@ -158,17 +160,17 @@ void mouseDragged() {
 		//highlight the correct square
 	     if (game_active) {
           int tmpy, tmpx;
-          if (!piece_selected && mouseX <= 800 && mouseX >= 0 && mouseY <= 800 && mouseY >= 0) {
-            tmpy = floor(mouseY/100); 
-            tmpx = floor(mouseX/100);
+          if (!piece_selected && mouseX <= Xnorm(800) && mouseX >= 0 && mouseY <= Ynorm(800) && mouseY >= 0) {
+            tmpy = floor(invYNorm(mouseY)/100); 
+            tmpx = floor(invXNorm(mouseX)/100);
             if (piece_board[tmpy][tmpx] != null && piece_board[tmpy][tmpx].iswhite == white_to_move) {
               my_piece = piece_board[tmpy][tmpx];
               piece_selected = true; 
             }
           }
           else if (piece_selected) {
-            my_piece.x_coord = mouseX - 50; 
-            my_piece.y_coord = mouseY - 50; 
+            my_piece.x_coord = mouseX - piecedim/2; 
+            my_piece.y_coord = mouseY - piecedim/2; 
           }
         }
 }
@@ -183,28 +185,28 @@ void mouseReleased() {
     if (mouseX <= 0) {
       newX = 0; 
     }
-    else if (mouseX >= 800) {
+    else if (mouseX >= Xnorm(800)) {
       newX = 7;
     }
     else {
-      newX = floor(mouseX/100);
+      newX = floor(invXNorm(mouseX)/100);
     }
     if (mouseY <= 0) {
       newY = 0; 
     }
-    else if (mouseY >= 800) {
+    else if (mouseY >= Ynorm(800)) {
       newY = 7; 
     }
     else {
-      newY = floor(mouseY/100);
+      newY = floor(invYNorm(mouseY)/100);
     }
     if (my_piece.is_legal(piece_board, white_protected_squares, black_protected_squares, newX, newY)) {
       
       //for captures in notation
       material_count = (white_to_move) ? CountMaterial(piece_board, false) : CountMaterial(piece_board, true); 
       
-      my_piece.x_coord = newX * 100; 
-      my_piece.y_coord = newY * 100; 
+      my_piece.x_coord = newX * piecedim; 
+      my_piece.y_coord = newY * piecedim; 
       piece_board[my_piece.SquareY][my_piece.SquareX] = null;
 	  
       //special case of removing a piece captured by en passant
@@ -328,8 +330,8 @@ void mouseReleased() {
     }
     //ELSE FROM .is_legal() condition
     else {
-      my_piece.x_coord = my_piece.SquareX * 100; 
-      my_piece.y_coord = my_piece.SquareY * 100; 
+      my_piece.x_coord = my_piece.SquareX * piecedim; 
+      my_piece.y_coord = my_piece.SquareY * piecedim; 
     }
   }
   piece_selected = false; 
@@ -398,42 +400,42 @@ void generate_piece_positions (String my_strings[]) {
 			if (!myChar.equals("/")) {
 			//SHOW WHITE PIECES
 				if (myChar.equals("p")) {
-					piece_board[i][k] = new Pawn(k * 100, i * 100, true); 
+					piece_board[i][k] = new Pawn(k, i, true); 
 				}
 				else if (myChar.equals("b")) {
-					piece_board[i][k] = new Bishop(k * 100, i * 100, true);
+					piece_board[i][k] = new Bishop(k, i, true);
 				}
 				else if (myChar.equals("n")) {
-          				piece_board[i][k] = new Knight(k * 100, i * 100, true);
+          				piece_board[i][k] = new Knight(k, i, true);
 				}
 				else if (myChar.equals("r")) {
-          				piece_board[i][k] = new Rook(k * 100, i * 100, true);
+          				piece_board[i][k] = new Rook(k, i, true);
 				}
 				else if (myChar.equals("q")) {
-          				piece_board[i][k] = new Queen(k * 100, i * 100, true); 
+          				piece_board[i][k] = new Queen(k, i, true); 
 				}
 				else if (myChar.equals("k")) {
-					white_king = new King(k * 100, i * 100, true);
+					        white_king = new King(k, i, true);
           				piece_board[i][k] = white_king; 
 				}
 			//SHOW BLACK PIECES 
 				else if (myChar.equals("P")) {
-          				piece_board[i][k] = new Pawn(k * 100, i * 100, false); 
+          				piece_board[i][k] = new Pawn(k, i, false); 
 				}
 				else if (myChar.equals("B")) {
-          				piece_board[i][k] = new Bishop(k * 100, i * 100, false); 
+          				piece_board[i][k] = new Bishop(k, i, false); 
 				}
 				else if (myChar.equals("N")) {
-          				piece_board[i][k] = new Knight(k * 100, i * 100, false); 
+          				piece_board[i][k] = new Knight(k, i, false); 
 				}
 				else if (myChar.equals("R")) { 
-          				piece_board[i][k] = new Rook(k * 100, i * 100, false);
+          				piece_board[i][k] = new Rook(k, i, false);
 				}
 				else if (myChar.equals("Q")) {
-          				piece_board[i][k] = new Queen(k * 100, i * 100, false); 
+          				piece_board[i][k] = new Queen(k, i, false); 
 				}
 				else if (myChar.equals("K")) {
-					black_king = new King(k * 100, i * 100, false);
+					black_king = new King(k, i, false);
           				piece_board[i][k] = black_king; 
 				}
 			}

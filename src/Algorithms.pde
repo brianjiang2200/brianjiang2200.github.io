@@ -20,27 +20,27 @@ Piece [] [] duplicate_board(Piece curr_board[][]) {
 		for (int k = 0; k < 8; ++k) {
 			if (curr_board[i][k] != null) {
 				if (curr_board[i][k].material_value == 1) {
-					copy[i][k] = new Pawn(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
+					copy[i][k] = new Pawn(curr_board[i][k].SquareX, curr_board[i][k].SquareY, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].letter == "n" || curr_board[i][k].letter == "N") {
-					copy[i][k] = new Knight(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
+					copy[i][k] = new Knight(curr_board[i][k].SquareX, curr_board[i][k].SquareY, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].letter == "b" || curr_board[i][k].letter == "B") {
-					copy[i][k] = new Bishop(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
+					copy[i][k] = new Bishop(curr_board[i][k].SquareX, curr_board[i][k].SquareY, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].material_value == 5) {
-					copy[i][k] = new Rook(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
+					copy[i][k] = new Rook(curr_board[i][k].SquareX, curr_board[i][k].SquareY, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].material_value == 9) {
-					copy[i][k] = new Queen(curr_board[i][k].x_coord, curr_board[i][k].y_coord, curr_board[i][k].iswhite);
+					copy[i][k] = new Queen(curr_board[i][k].SquareX, curr_board[i][k].SquareY, curr_board[i][k].iswhite);
 				}
 				else if (curr_board[i][k].material_value == 50) {
 					if (curr_board[i][k].letter == "k") {
-						copy_white_king = new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, true);
+						copy_white_king = new King(curr_board[i][k].SquareX, curr_board[i][k].SquareY, true);
 						copy[i][k] = copy_white_king; 
 					}
 					if (curr_board[i][k].letter == "K") {
-						copy_black_king = new King(curr_board[i][k].x_coord, curr_board[i][k].y_coord, false);
+						copy_black_king = new King(curr_board[i][k].SquareX, curr_board[i][k].SquareY, false);
 						copy[i][k] = copy_black_king; 
 					}
 				}
@@ -95,4 +95,21 @@ int CountMaterial(Piece my_board[][], boolean piececolor) {
 		}
 	}
 	return Material; 
+}
+
+//Display Purposes: Norm a value from default width/height to current width/height
+float Xnorm(int initX) {
+  return map(initX, 0, 1400, 0, width); 
+}
+
+float Ynorm(int initY) {
+  return map(initY, 0, 900, 0, height); 
+}
+
+float invXNorm(int scaledX) {
+  return map(scaledX, 0, width, 0, 1400);
+}
+
+float invYNorm(int scaledY) {
+  return map(scaledY, 0, height, 0, 900); 
 }

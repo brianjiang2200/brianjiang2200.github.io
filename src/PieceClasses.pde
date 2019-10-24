@@ -4,9 +4,9 @@ class Piece {
   //MATERIAL VALUE
   int material_value;
   //X COORDINATE IN PIXELS
-  int x_coord;
+  float x_coord;
   //Y COORDINATE IN PIXELS
-  int y_coord;
+  float y_coord;
   //ROW OCCUPIED BY PIECE (0-7)
   int SquareX; 
   //COLUMN OCCUPIED BY PIECE (0-7)
@@ -24,10 +24,10 @@ class Piece {
 
   //CONSTRUCTOR
   Piece(int xpos, int ypos, boolean white) {
-  x_coord = xpos; 
-  y_coord = ypos;
-  SquareX = xpos/100; 
-  SquareY = ypos/100; 
+  x_coord = xpos * piecedim; 
+  y_coord = ypos * piecedim;
+  SquareX = xpos;
+  SquareY = ypos; 
   iswhite = white;  
   }
   
@@ -594,17 +594,17 @@ class Queen extends Piece {
   }
   
   void assign_protected_squares(Piece my_board[][], ProtectedSquare white_protected[][], ProtectedSquare black_protected[][]) {
-    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, iswhite);
+    Bishop my_bish = new Bishop(SquareX, SquareY, iswhite);
     my_bish.material_value = 9; 
-    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, iswhite);
+    Rook my_rook = new Rook(SquareX, SquareY, iswhite);
     my_rook.material_value = 9; 
     my_bish.assign_protected_squares(my_board, white_protected, black_protected); 
     my_rook.assign_protected_squares(my_board, white_protected, black_protected); 
   }
   
   boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
-    Bishop my_bish = new Bishop(SquareX * 100, SquareY * 100, iswhite); 
-    Rook my_rook = new Rook(SquareX * 100, SquareY * 100, iswhite); 
+    Bishop my_bish = new Bishop(SquareX, SquareY, iswhite); 
+    Rook my_rook = new Rook(SquareX, SquareY, iswhite); 
     if (my_bish.blockable(my_board, for_white, for_black, king_x, king_y)) {
       return true; 
     }
@@ -672,13 +672,13 @@ class King extends Piece {
     if (x == 6 && my_board[y][7]!= null && my_board[y][7].material_value == 5 && !my_board[y][7].has_moved &&
       my_board[y][5] == null && my_board[y][6] == null && !in_check(for_white, for_black)) {
       if (iswhite && for_black[y][5] == null && for_black[y][6] == null) {
-        my_board[y][5] = new Rook(500, 100 * SquareY, true);
+        my_board[y][5] = new Rook(5, SquareY, true);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
         return true;
       }
       else if (!iswhite && for_white[y][5] == null && for_white[y][6] == null) {
-        my_board[y][5] = new Rook(500, 100 * SquareY, false);
+        my_board[y][5] = new Rook(5, SquareY, false);
         my_board[y][5].has_moved = true;
         my_board[y][7] = null;  
         return true;
@@ -688,13 +688,13 @@ class King extends Piece {
       && my_board[y][1] == null && my_board[y][2] == null && my_board[y][3] == null && !my_board[y][0].has_moved && 
       !in_check(for_white, for_black)) {
       if (iswhite && for_black[y][2] == null && for_black[y][3] == null) {
-        my_board[y][3] = new Rook(300, 100 * SquareY, true); 
+        my_board[y][3] = new Rook(3, SquareY, true); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
         return true; 
       }
       if (!iswhite && for_white[y][2] == null && for_white[y][3] == null) {
-        my_board[y][3] = new Rook(300, 100 * SquareY, false); 
+        my_board[y][3] = new Rook(3, SquareY, false); 
         my_board[y][3].has_moved = true; 
         my_board[y][0] = null; 
         return true; 

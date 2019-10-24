@@ -1,27 +1,27 @@
 void draw() {
   draw_menu(); 
   //display board
-  image(boardimg, 0, 0, 800, 800);
+  image(boardimg, 0, 0, Xnorm(800), Ynorm(800));
   //display highlighted squares
   if (game_active) {
     if (last_moved != null) {
       //fill square currently occupied
       fill(dark);
       stroke(dark);
-      rect(last_moved.SquareX * 100, last_moved.SquareY * 100, piecedim, piecedim);
+      rect(last_moved.SquareX * piecedim, last_moved.SquareY * piecedim, piecedim, piecedim);
       //fill square just left
       fill(light);
       stroke(light);
-      rect(main_move_list.tail.previous_x * 100, (8 - main_move_list.tail.previous_y) * 100, piecedim, piecedim);
+      rect(main_move_list.tail.previous_x * piecedim, (8 - main_move_list.tail.previous_y) * piecedim, piecedim, piecedim);
     }
   }
   else {
     fill(dark);
     stroke(dark);
-    rect(current_record.notation_col * 100, current_record.last_moved.SquareY * 100, piecedim, piecedim);
+    rect(current_record.notation_col * piecedim, current_record.last_moved.SquareY * piecedim, piecedim, piecedim);
     fill(light);
     stroke(light);
-    rect(current_record.previous_x * 100, (8 - current_record.previous_y) * 100, piecedim, piecedim);
+    rect(current_record.previous_x * piecedim, (8 - current_record.previous_y) * piecedim, piecedim, piecedim);
   }
   //display pieces
   for (int i = 0; i < 8; ++i) {
