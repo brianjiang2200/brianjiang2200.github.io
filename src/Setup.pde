@@ -8,7 +8,15 @@ src/Images/white_king.png,src/Images/white_queen.png,src/Images/white_rook.png,s
 src/Images/black_bishop.png,src/Images/black_queen.png,src/Images/black_king.png,src/Images/black_rook.png"; */
 
 void setup() {
- size(1400, 900);
+  //Set Canvas to size specified by HTML document
+  try {
+    size(document.getElementById('sketch').width, document.getElementbyId('sketch').height); 
+  }
+  catch (Exception e) {
+   println("Initiating default canvas size"); 
+   size(1400, 900);
+  }
+  
   frameRate(60);
   try {
 	  boardimg = loadImage("src/Images/Board.png");
