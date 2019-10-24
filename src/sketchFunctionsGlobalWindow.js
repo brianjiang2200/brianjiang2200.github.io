@@ -53,11 +53,11 @@ function returnOpeningOptions(sketchname) {
 
 function generateOpeningsListonWindow(ultitle) {
 		for (var i = 0; i < OpeningPositionsList.length; ++i) {
-		var node = document.createElement("LI"); 
+		var node = document.createElement("BUTTON"); 
 		var textnode = document.createTextNode(OpeningPositionsList[i]); 
 		node.appendChild(textnode);
-		node.classList.add('card');
-		node.classList.add('bg-info'); 
+		node.classList.add('btn');
+		node.classList.add('btn-success'); 
 		node.classList.add('text-white'); 
 		document.getElementById(ultitle).appendChild(node);
 	}
@@ -68,12 +68,12 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 	input = document.getElementById(inputID);
 	filter = input.value.toUpperCase();
 	ul = document.getElementById(openingHtmlList); 
-	li = ul.getElementsByTagName("li"); 
+	li = ul.getElementsByTagName("button"); 
 	for (i = 0; i < li.length; ++i) { 
 		txtValue = li[i].textContent || li[i].innerText; 
 		if (txtValue.toUpperCase().indexOf(filter) > -1) {
 			li[i].style.display="";
-			li[i].onclick = switchOpening('sketch', li[i].innerText);
+			li[i].onclick = switchOpening('sketch', li[i].txtValue);
 		}
 		else {
 			li[i].style.display = "none"; 
