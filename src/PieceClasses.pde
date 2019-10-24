@@ -582,8 +582,8 @@ class Queen extends Piece {
   }
   
   boolean is_legal(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int x, int y) {
-    Bishop local_bishop = new Bishop(SquareX * 100, SquareY * 100, iswhite); 
-    Rook local_rook = new Rook(SquareX * 100, SquareY * 100, iswhite); 
+    Bishop local_bishop = new Bishop(SquareX, SquareY, iswhite); 
+    Rook local_rook = new Rook(SquareX, SquareY, iswhite); 
     if (local_bishop.is_legal(my_board, for_white, for_black, x, y)) {
     return true; 
     }
