@@ -108,6 +108,7 @@ void removeVariation() {
 		black_king = piece_board[current_record.bkingy][current_record.bkingx];
 		refresh_protected(piece_board, white_protected_squares, black_protected_squares);  
 		game_active = true;
+		game_drawn = false;
 		color_won = 0; 
 	}
 }
