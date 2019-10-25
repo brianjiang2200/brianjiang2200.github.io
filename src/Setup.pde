@@ -1,7 +1,7 @@
 //Author: Brian Jiang
 //Title: Blindfold Tactics Trainer
-//Version 1.240
-//Last Update: 2019-10-23
+//Version 1.293
+//Last Update: 2019-10-25
 
 /* @pjs preload="src/Images/Board.png,src/Images/white_pawn.png,src/Images/white_knight.png,src/Images/white_bishop.png,
 src/Images/white_king.png,src/Images/white_queen.png,src/Images/white_rook.png,src/Images/black_pawn.png,src/Images/black_knight.png,
@@ -76,6 +76,7 @@ void resetSketch() {
 	copy_black_king = null;
 	emptyBoard(piece_board); 
 	refresh_protected(piece_board, white_protected_squares, black_protected_squares);
+	displayed = piece_board; 
 	current_record = null; 
 	main_move_list.head = null; 
   	main_move_list.tail = null;  
