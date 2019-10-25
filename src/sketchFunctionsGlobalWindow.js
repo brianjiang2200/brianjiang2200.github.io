@@ -72,10 +72,10 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 	ul = document.getElementById(openingHtmlList); 
 	li = ul.getElementsByTagName("button"); 
 	for (i = 0; i < li.length; ++i) { 
-		txtValue = li[i].textContent || li[i].innerText; 
+		txtValue = li[i].textContent || li[i].innerText;
 		if (!(filter === "") && txtValue.toUpperCase().indexOf(filter) > -1) {
 			li[i].style.display = "block";
-			li[i].onclick = function() {switchOpening('sketch', li[i].innerText)};
+			li[i].onclick = switchOpening('sketch', txtValue);
 		}
 		else {
 			li[i].style.display = "none"; 
