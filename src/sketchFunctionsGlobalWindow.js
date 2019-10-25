@@ -24,7 +24,7 @@ function flipBoard(sketchname) {
 function resetBoard(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
 	try {
-		pjsInstance.resetSketch();
+		pjsInstance.generate_piece_positions('Starting_Position'); 
 	}
 	catch(error) {
 		console.error(error); 
