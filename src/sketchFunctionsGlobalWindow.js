@@ -21,16 +21,6 @@ function flipBoard(sketchname) {
 	}
 }
 
-function resetBoard(sketchname) {
-	pjsInstance = Processing.getInstanceById(sketchname);
-	try {
-		pjsInstance.generate_piece_positions('Starting_Position'); 
-	}
-	catch(error) {
-		console.error(error); 
-	}
-}
-
 function deleteMove(sketchname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
 	try {
