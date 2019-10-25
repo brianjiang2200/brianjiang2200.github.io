@@ -75,7 +75,7 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 		txtValue = li[i].textContent || li[i].innerText;
 		if (!(filter === "") && txtValue.toUpperCase().indexOf(filter) > -1) {
 			li[i].style.display = "block";
-			li[i].onclick = switchOpening('sketch', txtValue);
+			li[i].addEventListener("click", switchOpening('sketch', txtValue));
 		}
 		else {
 			li[i].style.display = "none"; 
