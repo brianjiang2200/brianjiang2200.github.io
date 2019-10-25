@@ -74,9 +74,9 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 	for (i = 0; i < li.length; ++i) { 
 		txtValue = li[i].textContent || li[i].innerText;
 		if (!(filter === "") && txtValue.toUpperCase().indexOf(filter) > -1) {
+			let result = txtValue;
 			li[i].style.display = "block";
-			console.log(txtValue); 
-			li[i].addEventListener("click", function() {switchOpening('sketch', txtValue)});
+			li[i].addEventListener("click", function() {switchOpening('sketch', result)});
 		}
 		else {
 			li[i].style.display = "none"; 
