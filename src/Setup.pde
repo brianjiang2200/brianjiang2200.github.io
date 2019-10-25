@@ -42,6 +42,10 @@ void setup() {
   white_move_list_x = Xnorm(920); 
   black_move_list_x = Xnorm(1120); 
   move_list_y = Ynorm(570);
+  Xmap800 = Xnorm(800); 
+  Ymap800 = Ynorm(800);
+  MCupperY = Ynorm(200);
+  MClowerY = Ynorm(270);
   
   //Set up Main Board
   load_opening_positions();
@@ -85,25 +89,25 @@ void mouseClicked() {
 	if (!game_active && underpromotion_on) {
     float upperY = Ynorm(200);
     float lowerY = Ynorm(270);
-    if (mouseX >= Xnorm(940) && mouseX <= Xnorm(1010) && mouseY >= upperY && mouseY <= lowerY) {
+    if (mouseX >= Xnorm(940) && mouseX <= Xnorm(1010) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1020) && mouseX <= Xnorm(1090) && mouseY >= upperY && mouseY <= lowerY) {
+    else if (mouseX >= Xnorm(1020) && mouseX <= Xnorm(1090) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1100) && mouseX <= Xnorm(1170) && mouseY >= upperY && mouseY <= lowerY) {
+    else if (mouseX >= Xnorm(1100) && mouseX <= Xnorm(1170) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1180) && mouseX <= Xnorm(1250) && mouseY >= upperY && mouseY <= lowerY) {
+    else if (mouseX >= Xnorm(1180) && mouseX <= Xnorm(1250) && mouseY >= MCupperY && mouseY <= MClowerY) {
 		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
 	}
   else if (!underpromotion_on) {
-    if (mouseX >= Xnorm(900) && mouseY >= Ynorm(600) && mouseY <= Ynorm(800)) {
+    if (mouseX >= Xnorm(900) && mouseY >= Ynorm(600) && mouseY <= Ymap800) {
       if (mouseX <= Xnorm(1100)) {
         if (current_record != main_move_list.head) {
           current_record = current_record.prev;
@@ -167,7 +171,7 @@ void mouseDragged() {
 		//highlight the correct square
 	     if (game_active) {
           int tmpy, tmpx;
-          if (!piece_selected && mouseX <= Xnorm(800) && mouseX >= 0 && mouseY <= Ynorm(800) && mouseY >= 0) {
+          if (!piece_selected && mouseX <= Xmap800 && mouseX >= 0 && mouseY <= Ymap800 && mouseY >= 0) {
             tmpy = floor(invYNorm(mouseY)/100); 
             tmpx = floor(invXNorm(mouseX)/100);
             if (piece_board[tmpy][tmpx] != null && piece_board[tmpy][tmpx].iswhite == white_to_move) {
@@ -192,7 +196,7 @@ void mouseReleased() {
     if (mouseX <= 0) {
       newX = 0; 
     }
-    else if (mouseX >= Xnorm(800)) {
+    else if (mouseX >= Xmap800) {
       newX = 7;
     }
     else {
@@ -201,7 +205,7 @@ void mouseReleased() {
     if (mouseY <= 0) {
       newY = 0; 
     }
-    else if (mouseY >= Ynorm(800)) {
+    else if (mouseY >= Ymap800) {
       newY = 7; 
     }
     else {

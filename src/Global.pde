@@ -73,9 +73,15 @@ MoveList main_move_list;
 MoveRecord current_record; 
 
 //Menu Display Parameters 
-white_move_list_x = Xnorm(920); 
-black_move_list_x = Xnorm(1120); 
-move_list_y = Ynorm(570); 
+int white_move_list_x; 
+int black_move_list_x; 
+int move_list_y;
+
+//Store some mapped values 
+int Xmap800;
+int Ymap800; 
+float MCupperY;
+float MClowerY; 
 
 //ARRAYS FOR SQUARES PROTECTED BY PIECES
 

@@ -1,7 +1,7 @@
 void draw() {
   draw_menu(); 
   //display board
-  image(boardimg, 0, 0, Xnorm(800), Ynorm(800));
+  image(boardimg, 0, 0, Xmap800, Ymap800);
   //display highlighted squares
   if (game_active) {
     if (last_moved != null) {
@@ -37,7 +37,7 @@ void draw_menu() {
   stroke(255);
   strokeWeight(1);
   fill(25, 25, 25);
-  rect(Xnorm(800),0,Xnorm(600),Ynorm(800));
+  rect(Xmap800,0,Xnorm(600),Ymap800);
   fill(43, 43, 43);
   rect(Xnorm(900),Ynorm(100),Xnorm(400),Ynorm(500));
   //Previous Move Button
@@ -53,7 +53,7 @@ void draw_menu() {
   //Black Bar along Lower Level
   fill(0);
   stroke(0); 
-  rect(0,Ynorm(800),Xnorm(1400),piecedim);
+  rect(0, Ymap800, width, piecedim);
   //Text in Black Bar
   fill(255); 
   text("Running Evaluation: " + eval, Xnorm(30), Ynorm(860)); 
@@ -108,16 +108,16 @@ void draw_menu() {
     textSize(3*piecedim/10); 
     text("Select Promotion Piece", Xnorm(945), Ynorm(150));
     if (my_piece.iswhite) {
-      image(whiteknightimg, Xnorm(940), Ynorm(200), Xnorm(70), Ynorm(70)); 
-      image(whitebishopimg, Xnorm(1020), Ynorm(200), Xnorm(70), Ynorm(70));
-      image(whiterookimg, Xnorm(1100), Ynorm(200), Xnorm(70), Ynorm(70)); 
-      image(whitequeenimg, Xnorm(1180), Ynorm(200), Xnorm(70), Ynorm(70));
+      image(whiteknightimg, Xnorm(940), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
+      image(whitebishopimg, Xnorm(1020), Ynorm(200), 7*piecedim/10, 7*piecedim/10);
+      image(whiterookimg, Xnorm(1100), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
+      image(whitequeenimg, Xnorm(1180), Ynorm(200), 7*piecedim/10, 7*piecedim/10);
     }
     else {
-      image(blackknightimg, Xnorm(940), Ynorm(200), Xnorm(70), Ynorm(70)); 
-      image(blackbishopimg, Xnorm(1020), Ynorm(200), Xnorm(70), Ynorm(70)); 
-      image(blackrookimg, Xnorm(1100), Ynorm(200), Xnorm(70), Ynorm(70)); 
-      image(blackqueenimg, Xnorm(1180), Ynorm(200), Xnorm(70), Ynorm(70)); 
+      image(blackknightimg, Xnorm(940), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
+      image(blackbishopimg, Xnorm(1020), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
+      image(blackrookimg, Xnorm(1100), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
+      image(blackqueenimg, Xnorm(1180), Ynorm(200), 7*piecedim/10, 7*piecedim/10); 
     }
   }
     else if (game_drawn) {
