@@ -58,7 +58,8 @@ function generateOpeningsListonWindow(ultitle) {
 		node.appendChild(textnode);
 		node.classList.add('btn');
 		node.classList.add('btn-success'); 
-		node.classList.add('text-white'); 
+		node.classList.add('text-white');
+		node.style.display = "none"; 
 		document.getElementById(ultitle).appendChild(node);
 	}
 }
@@ -72,8 +73,8 @@ function displayOpeningOptions(openingHtmlList, inputID) {
 	for (i = 0; i < li.length; ++i) { 
 		txtValue = li[i].textContent || li[i].innerText; 
 		if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			li[i].style.display="";
-			li[i].onclick = switchOpening('sketch', li[i].innerText);
+			li[i].style.display = block;
+			li[i].onclick = function() {switchOpening('sketch', li[i].innerText)};
 		}
 		else {
 			li[i].style.display = "none"; 
