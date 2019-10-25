@@ -81,8 +81,7 @@ void resetSketch() {
 	refresh_protected(piece_board, white_protected_squares, black_protected_squares);
 	current_record = null; 
 	main_move_list.head = null; 
-  main_move_list.tail = null; 
-  generate_piece_positions(get_position("Starting_Position")); 
+  	main_move_list.tail = null;  
 }
 
 void mouseClicked() {
@@ -404,7 +403,7 @@ String[] get_position(String position_name) {
 }
 
 void generate_piece_positions (String my_strings[]) {
-	emptyBoard(piece_board);  
+	resetSketch();  
 	for (int i = 0; i < 8; ++i) {
 		for (int k = 0; k < 8; ++k) {
 			String myChar = str(my_strings[i].charAt(k));
