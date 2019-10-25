@@ -53,6 +53,7 @@ function returnOpeningOptions(sketchname) {
 
 function generateOpeningsListonWindow(ultitle) {
 		for (var i = 0; i < OpeningPositionsList.length; ++i) {
+		console.log(OpeningPositionsList[i]);
 		var node = document.createElement("BUTTON"); 
 		var textnode = document.createTextNode(OpeningPositionsList[i]); 
 		node.appendChild(textnode);
