@@ -13,9 +13,8 @@ h1 {
 }
 
 canvas {
-	border-width: 10px; 
-	border-color: #143f4f; 
-	border-style: groove; 
+	display: flex;
+	flex-direction: column;  
 	box-shadow: 0 0 10px white; 
 	margin-bottom: 20px; 
 }
@@ -30,10 +29,15 @@ li {
 
 .sketch-upper-level {
 	margin: auto;
+	display: flex; 
+	justify-content: center; 
+	flex-direction: row; 
 }
 
 .sketch-upper-right-container {
-	display: inline; 
+	padding: 20px; 
+	display: flex; 
+	flex-direction: column; 
 }
 
 .github-repo-link {
