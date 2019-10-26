@@ -40,6 +40,10 @@ li {
 	flex-direction: column; 
 }
 
+.variations-container {
+	margin: auto; 
+}
+
 .github-repo-link {
 	font-size: initial;
 	text-decoration: none; 
@@ -64,17 +68,17 @@ li {
 }
 
 .annotations {
+	margin: 10px; 
 	display: flex; 
 }
 
 .form-group {
-	color:white;
+	color: white;
 }
 
 .formgrpelement {
-	color: white;
 	margin: auto;
-	display:block; 
+	display: block; 
 }
 
 .shortcutitem {
