@@ -28,6 +28,14 @@ li {
 	margin: auto; 
 }
 
+.sketch-upper-level {
+	margin: auto;
+}
+
+.sketch-upper-right-container {
+	display: inline; 
+}
+
 .github-repo-link {
 	text-decoration: none; 
 	margin-left: 100px; 

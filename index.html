@@ -14,32 +14,43 @@
 </head> 
 <body> 
 	<h1>ANALYSIS BOARD BETA</h1>
+	<div class="sketch-upper-level">
 		<!--Each canvas should be identified by a unique id --> 
 		<canvas id="sketch" width=1120 height=720 data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
 		src/Global.pde src/MoveRecord.pde src/PieceClasses.pde src/ProtectedSquare.pde src/Setup.pde"></canvas>
+		<div class="sketch-upper-right-container">
+			<div class="variations-container">
+				<button type="button" class="btn btn-info">1.e4</button>
+				<button type="button" class="btn btn-info">1.d4</button>
+				<button type="button" class="btn btn-info">1.c4</button>
+			</div>
+			<div id="OpeningSearchContainer>
+				<form>
+					<div class="form-group">
+						<label class="formgrpelement" for="openingsearch">Search Openings and Display on Board</label>
+						<input id="openingsearch" class="formgrpelement" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" size="40">
+						<small id="openingsearchwarning" class="formgrpelement">All moves made will be deleted.</small>
+					</div>
+				</form>
+				<ul id="hiddenOpeningsList">
+					<!-- Items are appended --> 
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="sketch-lower-level">
 		<!--Options that can call Processing functions from the Window -->
 		<div class="SketchOptions">
 			<button type="button" class="btn btn-danger" onclick="switchOpening('sketch', 'Starting_Position');"> Reset Board to Starting Position </button>
 			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button>
-		</div>
-		<div id="OpeningSearchContainer>
-			<form>
-			 	<div class="form-group">
-					<label class="formgrpelement" for="openingsearch">Search Openings and Display on Board</label>
-					<input id="openingsearch" class="formgrpelement" type="text" onkeyup="displayOpeningOptions('hiddenOpeningsList', 'openingsearch');" size="40">
-					<small id="openingsearchwarning" class="formgrpelement">All moves made will be deleted.</small>
-				</div>
-			</form>
-			<ul id="hiddenOpeningsList">
-				<!-- Items are appended --> 
-			</ul>
 		</div>
 		<!--Canvas Shortcut Information: should eventually be collapsible -->
 		<div id="shortcuts">
 			<span class="shortcutitem">GO BACK 1 MOVE: LEFT ARROW</span>
 			<span class="shortcutitem">GO FORWARD 1 MOVE: RIGHT ARROW</span>
 			<span class="shortcutitem">DELETE CURRENT MOVE: ALT</span>
-		</div> 
+		</div>
+	</div>
 		<h2 id=notes>
 			<a href="https://github.com/brianjiang2200/brianjiang2200.github.io" class=github-repo-link>
 				<div id=contributors>
