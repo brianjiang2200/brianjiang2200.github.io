@@ -39,13 +39,14 @@ void setup() {
   }
   //Initialize some variables after size() has been formally declared
   piecedim = Xnorm(100);
-  white_move_list_x = Xnorm(920); 
-  black_move_list_x = Xnorm(1120); 
-  move_list_y = Ynorm(570);
+  white_move_list_x = Xnorm(870); 
+  black_move_list_x = Xnorm(1070); 
+  move_list_y = Ynorm(520);
   Xmap800 = Xnorm(800); 
   Ymap800 = Ynorm(800);
-  MCupperY = Ynorm(200);
-  MClowerY = Ynorm(270);
+  //For Promotion Pieces
+  MCupperY = Ynorm(150);
+  MClowerY = Ynorm(220);
   
   //Set up Main Board
   main_move_list = new MoveList();
@@ -84,51 +85,23 @@ void resetSketch() {
 
 void mouseClicked() {
 	if (!game_active && underpromotion_on) {
-    float upperY = Ynorm(200);
-    float lowerY = Ynorm(270);
-    if (mouseX >= Xnorm(940) && mouseX <= Xnorm(1010) && mouseY >= MCupperY && mouseY <= MClowerY) {
+    if (mouseX >= Xnorm(890) && mouseX <= Xnorm(960) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Knight(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1020) && mouseX <= Xnorm(1090) && mouseY >= MCupperY && mouseY <= MClowerY) {
+    else if (mouseX >= Xnorm(970) && mouseX <= Xnorm(1040) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Bishop(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1100) && mouseX <= Xnorm(1170) && mouseY >= MCupperY && mouseY <= MClowerY) {
+    else if (mouseX >= Xnorm(1050) && mouseX <= Xnorm(1120) && mouseY >= MCupperY && mouseY <= MClowerY) {
       piece_board[my_piece.SquareY][my_piece.SquareX] = new Rook(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
-    else if (mouseX >= Xnorm(1180) && mouseX <= Xnorm(1250) && mouseY >= MCupperY && mouseY <= MClowerY) {
+    else if (mouseX >= Xnorm(1130) && mouseX <= Xnorm(1210) && mouseY >= MCupperY && mouseY <= MClowerY) {
 		  piece_board[my_piece.SquareY][my_piece.SquareX] = new Queen(my_piece.SquareX, my_piece.SquareY, my_piece.iswhite);
       promotion_actions(); 
     }
 	}
-  else if (!underpromotion_on) {
-    if (mouseX >= Xnorm(900) && mouseY >= Ynorm(600) && mouseY <= Ymap800) {
-      if (mouseX <= Xnorm(1100)) {
-        if (current_record != main_move_list.head) {
-          current_record = current_record.prev;
-          displayed = current_record.stored_position;
-          game_active = false; 
-        }
-      }
-      else if (mouseX <= Xnorm(1300)) {
-        if (current_record != main_move_list.tail) {
-          current_record = current_record.next;
-          displayed = current_record.stored_position;
-          if (current_record != main_move_list.tail) {
-            game_active = false; 
-          }
-          else {
-            displayed = piece_board; 
-            if (!game_over) {
-              game_active = true;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
 void keyPressed() {

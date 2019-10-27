@@ -99,7 +99,7 @@ int CountMaterial(Piece my_board[][], boolean piececolor) {
 
 //Display Purposes: Norm a value from default width/height to current width/height
 float Xnorm(int initX) {
-  return map(initX, 0, 1400, 0, width); 
+  return map(initX, 0, 1300, 0, width); 
 }
 
 float Ynorm(int initY) {
@@ -107,7 +107,7 @@ float Ynorm(int initY) {
 }
 
 float invXNorm(int scaledX) {
-  return map(scaledX, 0, width, 0, 1400);
+  return map(scaledX, 0, width, 0, 1300);
 }
 
 float invYNorm(int scaledY) {
