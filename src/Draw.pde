@@ -34,14 +34,14 @@ void draw() {
 }
 
 void draw_menu() {
+  noStroke(); 
   fill(25, 25, 25);
   rect(Xmap800,0,Xnorm(600),Ymap800);
   fill(43, 43, 43);
   rect(Xnorm(850),Ynorm(50),Xnorm(400),Ynorm(500));
   textSize(3 * piecedim/10);
   //Black Bar along Lower Level
-  fill(0);
-  stroke(0); 
+  fill(0); 
   rect(0, Ymap800, width, piecedim);
   //Text in Black Bar
   fill(255); 
@@ -114,7 +114,7 @@ void draw_menu() {
       text("1/2 - 1/2", Xnorm(985), Ynorm(865));
     }
     else {
-      textSize(27);
+      textSize(piecedim/5);
       text("Position after", Xnorm(820), Ynorm(865)); 
       current_record.print_move(Xnorm(985), Ynorm(865));   
     }
