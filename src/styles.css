@@ -49,7 +49,10 @@ button:hover {
 }
 
 .variations-container {
-	margin: auto; 
+	margin: auto;
+	display: flex;
+	flex-direction: column; 
+	justify-content: left; 
 }
 
 .github-repo-link {
