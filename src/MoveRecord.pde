@@ -17,7 +17,8 @@ class MoveRecord {
   int bkingx; 
   boolean capture;
   String promotion_piece = ""; 
-  String full_move; 
+  String full_move;
+  String annotation;
   MoveRecord next;
   MoveRecord prev; 
   
