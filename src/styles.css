@@ -27,6 +27,14 @@ li {
 	margin: auto; 
 }
 
+button {
+	margin: 5px; 
+}
+
+button:hover {
+	text-shadow: 0 0 5px white; 
+}
+
 .sketch-upper-level {
 	margin-bottom: 10px; 
 	display: flex; 

@@ -114,7 +114,7 @@ void draw_menu() {
       text("1/2 - 1/2", Xnorm(985), Ynorm(865));
     }
     else {
-      textSize(piecedim/5);
+      textSize(27*piecedim/100);
       text("Position after", Xnorm(820), Ynorm(865)); 
       current_record.print_move(Xnorm(985), Ynorm(865));   
     }
