@@ -76,6 +76,10 @@ void draw_menu() {
      println("Error on printing Move List"); 
   }
   
+  //Print Annotations
+  textSize(piecedim/4); 
+  text("Black has the Bishop Pair", Xnorm(880), Ynorm(580));
+  
   if (game_active) {
     if (white_to_move) {
       text("White to move", Xnorm(960), Ynorm(865));
