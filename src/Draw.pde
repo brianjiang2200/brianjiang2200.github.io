@@ -94,19 +94,19 @@ void draw_menu() {
       text("1 - 0", Xnorm(1015), Ynorm(865));
     }
   else if (underpromotion_on) {
-    textSize(3*piecedim/10); 
-    text("Select Promotion Piece", Xnorm(895), Ynorm(150));
+    textSize(piecedim/5); 
+    text("Select Promotion Piece", Xnorm(895), piecedim);
     if (my_piece.iswhite) {
-      image(whiteknightimg, Xnorm(890), MCupper, 7*piecedim/10, 7*piecedim/10); 
-      image(whitebishopimg, Xnorm(970), MCupper, 7*piecedim/10, 7*piecedim/10);
-      image(whiterookimg, Xnorm(1050), MCupper, 7*piecedim/10, 7*piecedim/10); 
-      image(whitequeenimg, Xnorm(1130), MCupper, 7*piecedim/10, 7*piecedim/10);
+      image(whiteknightimg, Xnorm(890), MCupperY, 7*piecedim/10, 7*piecedim/10); 
+      image(whitebishopimg, Xnorm(970), MCupperY, 7*piecedim/10, 7*piecedim/10);
+      image(whiterookimg, Xnorm(1050), MCupperY, 7*piecedim/10, 7*piecedim/10); 
+      image(whitequeenimg, Xnorm(1130), MCupperY, 7*piecedim/10, 7*piecedim/10);
     }
     else {
-      image(blackknightimg, Xnorm(890), MCupper, 7*piecedim/10, 7*piecedim/10); 
-      image(blackbishopimg, Xnorm(1020), MCupper, 7*piecedim/10, 7*piecedim/10); 
-      image(blackrookimg, Xnorm(1100), MCupper, 7*piecedim/10, 7*piecedim/10); 
-      image(blackqueenimg, Xnorm(1180), MCupper, 7*piecedim/10, 7*piecedim/10); 
+      image(blackknightimg, Xnorm(890), MCupperY, 7*piecedim/10, 7*piecedim/10); 
+      image(blackbishopimg, Xnorm(1020), MCupperY, 7*piecedim/10, 7*piecedim/10); 
+      image(blackrookimg, Xnorm(1100), MCupperY, 7*piecedim/10, 7*piecedim/10); 
+      image(blackqueenimg, Xnorm(1180), MCupperY, 7*piecedim/10, 7*piecedim/10); 
     }
   }
     else if (game_drawn) {
