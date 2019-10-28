@@ -129,5 +129,7 @@ class MoveList {
 
 //add Annotation to current MoveRecord
 void addAnnotation(String input) {
-  current_record.annotation = input; 
+  if (current_record != null) {
+    current_record.annotation = input;
+  }
 }
