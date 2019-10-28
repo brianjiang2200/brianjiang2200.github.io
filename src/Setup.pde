@@ -83,7 +83,7 @@ void resetSketch() {
 	displayed = piece_board; 
 	current_record = null; 
 	main_move_list.head = null; 
-  	main_move_list.tail = null;  
+  main_move_list.tail = null;  
 }
 
 void mouseClicked() {

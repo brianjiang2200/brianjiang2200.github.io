@@ -78,7 +78,9 @@ void draw_menu() {
   
   //Print Annotations
   textSize(piecedim/4); 
-  text(current_record.annotation, Xnorm(850), Ynorm(600));
+  if (current_record != null) {
+    text(current_record.annotation, Xnorm(850), Ynorm(600));
+  }
   
   if (game_active) {
     if (white_to_move) {
