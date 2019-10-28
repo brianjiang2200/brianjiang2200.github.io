@@ -61,7 +61,7 @@ void draw_menu() {
            }
          }
          else {
-           for (MoveRecord my_record = main_move_list.tail; (my_record != null && main_move_list.tail.move_num - my_record.move_num < 8); my_record = my_record.prev) {
+           for (MoveRecord my_record = notation_top; (my_record != null && notation_top.move_num - my_record.move_num < 8); my_record = my_record.prev) {
              if (my_record.last_moved.iswhite) {
                my_record.print_move(white_move_list_x, move_list_y + (my_record.move_num - main_move_list.tail.move_num) * Ynorm(60));
              }

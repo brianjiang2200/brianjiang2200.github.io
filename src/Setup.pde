@@ -117,7 +117,7 @@ void keyPressed() {
           game_active = false; 
         }
     }
-    if (keyCode == RIGHT) {
+    else if (keyCode == RIGHT) {
       if (current_record != main_move_list.tail) {
           current_record = current_record.next;
           if (current_record != main_move_list.tail) {
@@ -133,7 +133,19 @@ void keyPressed() {
           }
         }
     }
-    if (keyCode == ALT) {
+    else if (keyCode == UP) {
+      if (notation_top.move_num > 8) {
+        notation_top = notation_top.prev; 
+        notation_top = notation_top.prev; 
+      }
+    }
+    else if (keyCode == DOWN) {
+      if (notation_top != main_move_list.tail) {
+        notation_top = notation_top.next; 
+        notation_top = notation_top.next; 
+      }
+    }
+    else if (keyCode == ALT) {
       removeVariation(); 
     }
   }
@@ -235,6 +247,7 @@ void mouseReleased() {
       MoveRecord new_move = new MoveRecord(my_piece, white_king, black_king, piece_board, tmp_x, tmp_y, move_number, piece_captured, is_check);
       main_move_list.add_move(new_move);
       current_record = main_move_list.tail;
+      notation_top = main_move_list.tail; 
       
       if (!white_to_move) {
         move_number++;
