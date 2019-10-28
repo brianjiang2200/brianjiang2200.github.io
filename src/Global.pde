@@ -71,6 +71,8 @@ MoveList main_move_list;
 
 //When cycling through moves, current Move Record
 MoveRecord current_record; 
+//When scrolling through notation, Move Record at bottom of list
+MoveRecord notation_top;
 
 //Menu Display Parameters 
 int white_move_list_x; 
