@@ -126,3 +126,8 @@ class MoveList {
   return stepper;
   }
 }
+
+//add Annotation to current MoveRecord
+void addAnnotation(String input) {
+  current_record.annotation = input; 
+}

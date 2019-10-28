@@ -55,7 +55,10 @@ void setup() {
   
   //Initialize DOM Objects
   OpeningPositionsList = returnOpeningNames(); 
-  generateOpeningsListonWindow("hiddenOpeningsList"); 
+  generateOpeningsListonWindow("hiddenOpeningsList");
+  document.getElementById("addAnnotationBtn").addEventListener("click", function() {
+    addAnnotation('sketch', document.getElementById("annotationinput").value)
+  }); 
 } 
 
 //RESETS THE PROPERTIES OF THE SKETCH AND THE MAIN BOARD

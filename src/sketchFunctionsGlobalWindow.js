@@ -41,9 +41,18 @@ function returnOpeningOptions(sketchname) {
 	}
 }
 
+function addAnnotation(sketchname, annotationtext) {
+	pjsInstance = Processing.getInstanceById(sketchname); 
+	try {
+		pjsInstance.addAnnotation(annotationtext);  
+	}
+	catch(error) {
+		console.error(error); 
+	}
+}
+
 function generateOpeningsListonWindow(ultitle) {
 		for (var i = 0; i < OpeningPositionsList.length; ++i) {
-		console.log(OpeningPositionsList[i]);
 		var node = document.createElement("BUTTON"); 
 		var textnode = document.createTextNode(OpeningPositionsList[i]); 
 		node.appendChild(textnode);
