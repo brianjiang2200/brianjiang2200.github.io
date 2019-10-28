@@ -57,7 +57,7 @@ void setup() {
   OpeningPositionsList = returnOpeningNames(); 
   generateOpeningsListonWindow("hiddenOpeningsList");
   document.getElementById("addAnnotationBtn").addEventListener("click", function() {
-    addAnnotation('sketch', document.getElementById("annotationinput").value)
+    addAnnotation(document.getElementById("annotationinput").value)
   }); 
 } 
 
