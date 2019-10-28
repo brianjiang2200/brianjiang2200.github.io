@@ -78,7 +78,7 @@ void draw_menu() {
   
   //Print Annotations
   textSize(piecedim/4); 
-  text("Black has the Bishop Pair", Xnorm(850), Ynorm(600));
+  text(current_record.annotation, Xnorm(850), Ynorm(600));
   
   if (game_active) {
     if (white_to_move) {
