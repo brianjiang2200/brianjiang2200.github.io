@@ -43,3 +43,12 @@ PPPP/PPP
 /////n//
 pppp/ppp
 rnbqk//r
+Sicilian, Sveshnikov
+R/BQKB/R
+PP///PPP
+//NP/N//
+/n//P///
+////p///
+//n/////
+ppp//ppp
+r/bqkb/r
