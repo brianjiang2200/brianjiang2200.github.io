@@ -136,13 +136,13 @@ void keyPressed() {
     else if (keyCode == UP) {
       if (notation_top.move_num > 8) {
         notation_top = notation_top.prev; 
-        notation_top = notation_top.prev; 
+        notation_top = (notation_top.prev.last_moved.iswhite) ? notation_top : notation_top.prev;
       }
     }
     else if (keyCode == DOWN) {
       if (notation_top != main_move_list.tail) {
         notation_top = notation_top.next; 
-        notation_top = notation_top.next; 
+        notation_top = (notation_top == main_move_list.tail) ? notation_top : notation_top.next; 
       }
     }
     else if (keyCode == ALT) {
