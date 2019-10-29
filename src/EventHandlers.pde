@@ -97,7 +97,8 @@ void promotion_actions() {
 void removeVariation() {
 	if (main_move_list.head != null && main_move_list.head != main_move_list.tail) {
 		main_move_list.deleteMoveRecord(current_record); 
-		current_record = main_move_list.tail; 
+		current_record = main_move_list.tail;
+    notation_top = main_move_list.tail;
 		piece_board = duplicate_board(current_record.stored_position); 
 		my_piece = piece_board[current_record.last_moved.SquareY][current_record.last_moved.SquareX]; 
 		last_moved = my_piece; 
