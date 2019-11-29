@@ -385,57 +385,6 @@ String get_position(String position_name) {
 	return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; 
 }
 
-void generate_piece_positions (String my_strings[]) {
-	resetSketch();  
-	for (int i = 0; i < 8; ++i) {
-		for (int k = 0; k < 8; ++k) {
-			String myChar = str(my_strings[i].charAt(k));
-			if (!myChar.equals("/")) {
-			//SHOW WHITE PIECES
-				if (myChar.equals("p")) {
-					piece_board[i][k] = new Pawn(k, i, true); 
-				}
-				else if (myChar.equals("b")) {
-					piece_board[i][k] = new Bishop(k, i, true);
-				}
-				else if (myChar.equals("n")) {
-          				piece_board[i][k] = new Knight(k, i, true);
-				}
-				else if (myChar.equals("r")) {
-          				piece_board[i][k] = new Rook(k, i, true);
-				}
-				else if (myChar.equals("q")) {
-          				piece_board[i][k] = new Queen(k, i, true); 
-				}
-				else if (myChar.equals("k")) {
-					        white_king = new King(k, i, true);
-          				piece_board[i][k] = white_king; 
-				}
-			//SHOW BLACK PIECES 
-				else if (myChar.equals("P")) {
-          				piece_board[i][k] = new Pawn(k, i, false); 
-				}
-				else if (myChar.equals("B")) {
-          				piece_board[i][k] = new Bishop(k, i, false); 
-				}
-				else if (myChar.equals("N")) {
-          				piece_board[i][k] = new Knight(k, i, false); 
-				}
-				else if (myChar.equals("R")) { 
-          				piece_board[i][k] = new Rook(k, i, false);
-				}
-				else if (myChar.equals("Q")) {
-          				piece_board[i][k] = new Queen(k, i, false); 
-				}
-				else if (myChar.equals("K")) {
-					black_king = new King(k, i, false);
-          				piece_board[i][k] = black_king; 
-				}
-			}
-		}
-	}
-}
-
 /***********************SAMPLE INPUT*****************
 rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 After 1.e4
@@ -453,13 +402,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Too many arguments");
     return false; 
   }
-  println(list[0]); 
-  println(list[1]); 
-  println(list[2]); 
-  println(list[3]); 
-  println(list[4]); 
-  println(list[5]); 
-  
+
   //list[0]
   int row = 7; 
   int column = 0;
@@ -525,7 +468,7 @@ boolean ParseFEN(String FEN) {
         white_king = piece_board[row][column]; 
         break; 
       case "K":
-        piece_board[row][column] = new King(column, true, false);
+        piece_board[row][column] = new King(column, row, false);
         black_king = piece_board[row][column]; 
         break; 
       default:
@@ -618,7 +561,8 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_num = (int) list[5]; 
+  move_num = (int) list[5];
+  println(move_num); 
   
   //reset board if function returns false
   return true; 
