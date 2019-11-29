@@ -51,7 +51,10 @@ void setup() {
   //Set up Main Board
   main_move_list = new MoveList();
   load_opening_positions();
-  generate_piece_positions(get_position("Starting_Position")); 
+  if (!ParseFEN(get_position("Starting Position")) {
+    println("Cannot Parse FEN"); 
+    resetSketch(); 
+  }
   
   //Initialize DOM Objects
   OpeningPositionsList = returnOpeningNames(); 
@@ -337,56 +340,49 @@ void mouseReleased() {
 //GET ALL OPENING POSITIONS 
 void load_opening_positions() {
   try {
-	  read_positions_repo = loadStrings("src/Positions_Repository.txt");
+	  read_positions_repo = loadStrings("src/OpeningRepository.txt");
   } 
   catch (Exception e) {
-	  println("There was an error loading the Positions_Repository File.");
+	  println("There was an error loading the Opening Repository File.");
   }
 }
 
 String[] returnOpeningNames() {
-	if (read_positions_repo.length % 9 != 0) {
-		println("PositionsRepository Text Invalid Format");
+	if (read_positions_repo.length % 2 != 0) {
+		println("Opening Repository Text Invalid Format");
 		String[] nullString = new String[1]; 
 		nullString[0] = ""; 
 		return nullString; 
 	}
-	String[] OpeningOptions = new String[read_positions_repo.length/9];
+	String[] OpeningOptions = new String[read_positions_repo.length/2];
 	int optionsCount = 0; 
-	for (int i = 0; i < read_positions_repo.length; i = i + 9) {
+	for (int i = 0; i < read_positions_repo.length; i += 2) {
 		if (!read_positions_repo[i].equals("")) {
 			OpeningOptions[optionsCount] = read_positions_repo[i];
 			optionsCount++; 
 		}
 		else {
-			println("PositionsRepository Text Invalid Format"); 
+			println("Opening Repository Text File Invalid Format"); 
 			break; 
 		}
 	}
 	return OpeningOptions; 
 }
 
-String[] get_position(String position_name) {
-	String[] position_string = new String[8]; 
+String get_position(String position_name) {
 	for (int i = 0; i < read_positions_repo.length; ++i) {
 		if (read_positions_repo[i].equals(position_name)) {
-			try {
-				position_string[0] = read_positions_repo[i + 1]; 
-				position_string[1] = read_positions_repo[i + 2]; 
-				position_string[2] = read_positions_repo[i + 3]; 
-				position_string[3] = read_positions_repo[i + 4]; 
-				position_string[4] = read_positions_repo[i + 5]; 
-				position_string[5] = read_positions_repo[i + 6]; 
-				position_string[6] = read_positions_repo[i + 7]; 
-				position_string[7] = read_positions_repo[i + 8];
-			}
-			catch (Exception e) {
-				println("There was an error loading the specified position. Check that that no rows or columns have been deleted from the Positions_Repository file.");
-			}
-			break; 
+      if (i != read_positions_repo.length - 1) {
+        return read_positions_repo[i + 1]; 
+      }
+      else {
+        //return starting position
+        return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; 
+      }
 		}
-	}
-	return position_string; 
+  }
+  //return starting position
+	return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; 
 }
 
 void generate_piece_positions (String my_strings[]) {
@@ -438,4 +434,193 @@ void generate_piece_positions (String my_strings[]) {
 			}
 		}
 	}
+}
+
+/***********************SAMPLE INPUT*****************
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+After 1.e4
+rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
+After 1...c5
+rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2
+After 2.Nf3
+rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
+**********************************************************/
+
+boolean ParseFEN(String FEN) {
+  resetSketch(); 
+  String [] list = split(FEN, ' '); 
+  if (list.length != 6) {
+    println("FEN Too many arguments");
+    return false; 
+  }
+  
+  //list[0]
+  int row = 7; 
+  int column = 0;
+  for (int k = 0; k < list[0].length; ++k) {
+    switch (list[0].charAt(k)) {
+      //Cases ordered by most frequently occurring values
+      case 'p': 
+        piece_board[row][column] = new Pawn(column, row, true); 
+        break; 
+      case 'P': 
+        piece_board[row][column] = new Pawn(column, row, false);
+        break;
+      case '1': 
+        column++;
+        break; 
+      case '2': 
+        column += 2; 
+        break; 
+      case '3': 
+        column += 3;
+        break; 
+      case '4': 
+        column += 4; 
+        break; 
+      case '5': 
+        column += 5; 
+        break; 
+      case 'n': 
+        piece_board[row][column] = new Knight(column, row, true); 
+        break;
+      case 'N': 
+        piece_board[row][column] = new Knight(column, row, false); 
+        break; 
+      case 'b': 
+        piece_board[row][column] = new Bishop(column, row, true); 
+        break; 
+      case 'B': 
+        piece_board[row][column] = new Bishop(column, row, false); 
+        false; 
+      case 'r': 
+        piece_board[row][column] = new Rook(column, row, true); 
+        break; 
+      case 'R': 
+        piece_board[row][column] = new Rook(column, row, false); 
+        break;
+      case '6': 
+        column += 6; 
+        break; 
+      case 'q': 
+        piece_board[row][column] = new Queen(column, row, true); 
+        break; 
+      case 'Q': 
+        piece_board[row][column] = new Queen(column, row, false); 
+        break;
+      case '7': 
+        column += 7; 
+        break; 
+      case '8':
+        column += 8; 
+      case 'k': 
+        piece_board[row][column] = new King(column, row, true);
+        white_king = piece_board[row][column]; 
+        break; 
+      case 'K':
+        piece_board[row][column] = new King(column, true, false);
+        black_king = piece_board[row][column]; 
+        break; 
+      default:
+        //this case will also trap instances of '/' that occur early
+        println("Invalid Character in FEN Board Descriptor"); 
+        return false;
+    }
+    //must trap error instances here
+    column++;
+    if (k != list[0].length - 1) {
+      if (column == 8) {
+        k++; 
+        if (list[0].charAt(k) == '/') {
+          column = 0; 
+          if (row > 0) {
+            row--; 
+          }
+          else {
+            println("Invalid FEN Board Descriptor Format"); 
+            return false; 
+          }
+        }
+        else {
+          println("Invalid FEN Board Descriptor Format"); 
+          return false; 
+        }
+      }
+    }
+  }
+  
+  //list[1]
+  if (list[1].length == 1) {
+    //set white to move by default even if error case
+    white_to_move = (list[1].charAt(0) == 'b') ? false : true; 
+  }
+  else {
+    println("Invalid FEN: Color to Move"); 
+    return false; 
+  }
+  
+  //list[2] - castling
+  if (match(list[2], "k") == null) {
+    if (piece_board[7][7] != null && piece_board[7][7].letter.equals("r")) {
+      piece_board[7][7].has_moved = true; 
+    }
+  }
+  if (match(list[2], "K") == null) {
+    if (piece_board[0][7] != null && piece_board[7][7].letter.equals("R")) {
+      piece_board[0][7].has_moved = true; 
+    }
+  }
+  if (match(list[2], "q") == null) {
+    if (piece_board[7][0] != null && piece_board[7][0].letter.equals("r")) {
+      piece_board[7][0].has_moved = true; 
+    }
+  }
+  if (match(list[2], "Q") == null) {
+    if (piece_board[0][0] != null && piece_board[0][0].letter.equals("R")) {
+      piece_board[0][0].has_moved = true; 
+    }
+  }
+  
+  //list[3] - en passant
+  if (!list[3].equals("-")) {
+    if (list[3].length != 2) {
+      println("Invalid FEN"); 
+      return false; 
+    }
+    else if (list[3].charAt(1) == '3' && XtoNum.get(list[3].charAt(0)) != null) {
+      Piece dummy = piece_board[4][XtoNum.get(list[3])]; 
+      if (dummy != null && dummy.letter.equals("p")) {
+        dummy.en_passant = true;
+        last_moved = dummy; 
+      }
+    }
+    else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0) != null) {
+      Piece dummy = piece_board[3][XtoNum.get(list[3])]; 
+      if (dummy != null && dummy.letter.equals("P")) {
+        dummy.en_passant = true; 
+        last_moved = dummy; 
+      }
+    }
+  }
+  
+  //list[4] - half moves since last capture
+  //Do nothing
+  
+  //list[5] - full moves played, incremented after black has moved
+  if (list[5].length > 3) {
+    println("FEN Move Number Too Large"); 
+    return false; 
+  }
+  move_num = 0; 
+  for (int k = 0; k < list[5].length; ++k) {
+    int num = list[5].charAt(k) - '0'; 
+    if (num < 0 || num > 9) {
+      println("Invalid FEN move number"); 
+      return false; 
+    }
+    move_num = move_num * 10 + list[5].charAt(k) - '0'; 
+  }
+  
+  //reset board if function returns false
+  return true; 
 }
