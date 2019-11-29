@@ -601,7 +601,7 @@ boolean ParseFEN(String FEN) {
         last_moved = dummy; 
       }
     }
-    else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0)) != null) {
+    else if (list[3].charAt(1) == '6' && XtoNum.get(str(list[3].charAt(0))) != null) {
       Piece dummy = piece_board[3][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("P")) {
         dummy.en_passant = true; 
@@ -618,15 +618,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_num = 0; 
-  for (int k = 0; k < list[5].length; ++k) {
-    int num = list[5].charAt(k) - '0'; 
-    if (num < 0 || num > 9) {
-      println("Invalid FEN move number"); 
-      return false; 
-    }
-    move_num = move_num * 10 + list[5].charAt(k) - '0'; 
-  }
+  move_num = (int) list[5]; 
   
   //reset board if function returns false
   return true; 
