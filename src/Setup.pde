@@ -491,7 +491,7 @@ boolean ParseFEN(String FEN) {
         break; 
       case 'B': 
         piece_board[row][column] = new Bishop(column, row, false); 
-        false; 
+        break; 
       case 'r': 
         piece_board[row][column] = new Rook(column, row, true); 
         break; 
