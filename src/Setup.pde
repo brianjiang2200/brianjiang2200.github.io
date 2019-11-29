@@ -453,6 +453,12 @@ boolean ParseFEN(String FEN) {
     println("FEN Too many arguments");
     return false; 
   }
+  println(list[0]); 
+  println(list[1]); 
+  println(list[2]); 
+  println(list[3]); 
+  println(list[4]); 
+  println(list[5]); 
   
   //list[0]
   int row = 7; 
