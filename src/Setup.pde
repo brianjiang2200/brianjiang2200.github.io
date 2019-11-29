@@ -530,7 +530,7 @@ boolean ParseFEN(String FEN) {
     //must trap error instances here
     column++;
     if (k != list[0].length - 1) {
-      if (column == 8) {
+      if (column >= 8) {
         k++; 
         if (list[0].charAt(k) == '/') {
           column = 0; 
