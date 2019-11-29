@@ -447,6 +447,7 @@ rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
 **********************************************************/
 
 boolean ParseFEN(String FEN) {
+	resetSketch(); 
   String[] list = split(FEN, ' '); 
   if (list.length != 6) {
     println("FEN Too many arguments");
@@ -511,7 +512,8 @@ boolean ParseFEN(String FEN) {
         column += 7; 
         break; 
       case '8':
-        column += 8; 
+        column += 8;
+	break;
       case 'k': 
         piece_board[row][column] = new King(column, row, true);
         white_king = piece_board[row][column]; 
@@ -593,7 +595,7 @@ boolean ParseFEN(String FEN) {
         last_moved = dummy; 
       }
     }
-    else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0) != null) {
+    else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0)) != null) {
       Piece dummy = piece_board[3][XtoNum.get(list[3])]; 
       if (dummy != null && dummy.letter.equals("P")) {
         dummy.en_passant = true; 
