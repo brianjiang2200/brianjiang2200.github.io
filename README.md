@@ -11,13 +11,14 @@ Features:
   -Reset Board  
   -Delete Game Record from Current Position  
   -Search for Opening Position and Display on Board  
-  -Scalable Board Size
+  -Scalable Board Size  
+  -FEN Compatibility  
+  -Annotations  
   
 Currently under Development  
 Features to be added soon:   
   Board Flip(?)    
-  Sub Variations  
-  Annotations  
+  Sub Variations   
   Export and Import Stored MoveList  
 
 Written by Brian Jiang  
