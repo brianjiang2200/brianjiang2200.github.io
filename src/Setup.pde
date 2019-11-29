@@ -530,7 +530,7 @@ boolean ParseFEN(String FEN) {
         break; 
       default:
         //this case will also trap instances of '/' that occur early
-        println("Invalid Character in FEN Board Descriptor: ", list[0].charAt(k), " at ", k); 
+        println("Invalid Character in FEN Board Descriptor: " + list[0].charAt(k) + " at " + k); 
         return false;
     }
     //must trap error instances here
