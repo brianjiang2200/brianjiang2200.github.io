@@ -416,19 +416,18 @@ boolean ParseFEN(String FEN) {
         piece_board[row][column] = new Pawn(column, row, false);
         break;
       case "1": 
-        column++;
         break; 
       case "2": 
-        column += 2; 
+        column += 1; 
         break; 
       case "3": 
-        column += 3;
+        column += 2;
         break; 
       case "4": 
-        column += 4; 
+        column += 3; 
         break; 
       case "5": 
-        column += 5; 
+        column += 4; 
         break; 
       case "n": 
         piece_board[row][column] = new Knight(column, row, true); 
@@ -449,7 +448,7 @@ boolean ParseFEN(String FEN) {
         piece_board[row][column] = new Rook(column, row, false); 
         break;
       case "6": 
-        column += 6; 
+        column += 5; 
         break; 
       case "q": 
         piece_board[row][column] = new Queen(column, row, true); 
@@ -458,10 +457,10 @@ boolean ParseFEN(String FEN) {
         piece_board[row][column] = new Queen(column, row, false); 
         break;
       case "7": 
-        column += 7; 
+        column += 6; 
         break; 
       case "8":
-        column += 8;
+        column += 7;
 	break;
       case "k": 
         piece_board[row][column] = new King(column, row, true);
