@@ -51,7 +51,7 @@ void setup() {
   //Set up Main Board
   main_move_list = new MoveList();
   load_opening_positions();
-  if (!ParseFEN(get_position("Starting Position")) {
+  if (!ParseFEN(get_position("Starting Position"))) {
     println("Cannot Parse FEN"); 
     resetSketch(); 
   }
