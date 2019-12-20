@@ -397,7 +397,7 @@ rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
 
 boolean ParseFEN(String FEN) {
   resetSketch();
-  String[] list = split(FEN, " "); 
+  String[] list = split(FEN, ' '); 
   if (list.length != 6) {
     println("FEN Too many arguments");
     return false; 
@@ -537,14 +537,14 @@ boolean ParseFEN(String FEN) {
       return false; 
     }
     else if (list[3].charAt(1) == '3' && XtoNum.get(list[3].charAt(0)) != null) {
-      Piece dummy = piece_board[4][XtoNum.get(list[3])]; 
+      Piece dummy = piece_board[4][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("p")) {
         dummy.en_passant = true;
         last_moved = dummy; 
       }
     }
     else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0) != null) {
-      Piece dummy = piece_board[3][XtoNum.get(list[3])]; 
+      Piece dummy = piece_board[3][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("P")) {
         dummy.en_passant = true; 
         last_moved = dummy; 
@@ -560,7 +560,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_number = (int)list[5]; 
+  move_number = (int) list[5]; 
   
   //reset board if function returns false
   return true; 
