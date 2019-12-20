@@ -560,15 +560,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_num = 0; 
-  for (int k = 0; k < list[5].length; ++k) {
-    int num = list[5].charAt(k) - '0'; 
-    if (num < 0 || num > 9) {
-      println("Invalid FEN move number"); 
-      return false; 
-    }
-    move_num = move_num * 10 + list[5].charAt(k) - '0'; 
-  }
+  move_number = (int) list[5]; 
   
   //reset board if function returns false
   return true; 
