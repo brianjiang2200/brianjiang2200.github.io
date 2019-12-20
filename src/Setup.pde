@@ -536,14 +536,14 @@ boolean ParseFEN(String FEN) {
       println("Invalid FEN"); 
       return false; 
     }
-    else if (list[3].charAt(1) == '3' && XtoNum.get(list[3].charAt(0)) != null) {
+    else if (str(list[3].charAt(1)) == "3" && XtoNum.get(list[3].charAt(0)) != null) {
       Piece dummy = piece_board[4][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("p")) {
         dummy.en_passant = true;
         last_moved = dummy; 
       }
     }
-    else if (list[3].charAt(1) == '6' && XtoNum.get(list[3].charAt(0) != null) {
+    else if (str(list[3].charAt(1)) == "6" && XtoNum.get(str(list[3].charAt(0))) != null) {
       Piece dummy = piece_board[3][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("P")) {
         dummy.en_passant = true; 
