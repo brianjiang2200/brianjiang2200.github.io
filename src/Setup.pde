@@ -396,7 +396,6 @@ rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
 **********************************************************/
 
 boolean ParseFEN(String FEN) {
-  resetSketch(); 
   String[] list = split(FEN, ' '); 
   if (list.length != 6) {
     println("FEN Too many arguments");
@@ -560,7 +559,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_number = (int) list[5]; 
+  move_number = (int)list[5]; 
   
   //reset board if function returns false
   return true; 
