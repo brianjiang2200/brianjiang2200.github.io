@@ -396,91 +396,91 @@ rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
 **********************************************************/
 
 boolean ParseFEN(String FEN) {
-  resetSketch();
+	resetSketch(); 
   String[] list = split(FEN, ' '); 
   if (list.length != 6) {
     println("FEN Too many arguments");
     return false; 
   }
-  
+
   //list[0]
   int row = 7; 
   int column = 0;
   for (int k = 0; k < list[0].length; ++k) {
-    switch (list[0].charAt(k)) {
+    switch (str(list[0].charAt(k))) {
       //Cases ordered by most frequently occurring values
-      case 'p': 
+      case "p": 
         piece_board[row][column] = new Pawn(column, row, true); 
         break; 
-      case 'P': 
+      case "P": 
         piece_board[row][column] = new Pawn(column, row, false);
         break;
-      case '1': 
-        column++;
+      case "1": 
         break; 
-      case '2': 
-        column += 2; 
+      case "2": 
+        column += 1; 
         break; 
-      case '3': 
-        column += 3;
+      case "3": 
+        column += 2;
         break; 
-      case '4': 
+      case "4": 
+        column += 3; 
+        break; 
+      case "5": 
         column += 4; 
         break; 
-      case '5': 
-        column += 5; 
-        break; 
-      case 'n': 
+      case "n": 
         piece_board[row][column] = new Knight(column, row, true); 
         break;
-      case 'N': 
+      case "N": 
         piece_board[row][column] = new Knight(column, row, false); 
         break; 
-      case 'b': 
+      case "b": 
         piece_board[row][column] = new Bishop(column, row, true); 
         break; 
-      case 'B': 
+      case "B": 
         piece_board[row][column] = new Bishop(column, row, false); 
-        false; 
-      case 'r': 
+        break; 
+      case "r": 
         piece_board[row][column] = new Rook(column, row, true); 
         break; 
-      case 'R': 
+      case "R": 
         piece_board[row][column] = new Rook(column, row, false); 
         break;
-      case '6': 
-        column += 6; 
+      case "6": 
+        column += 5; 
         break; 
-      case 'q': 
+      case "q": 
         piece_board[row][column] = new Queen(column, row, true); 
         break; 
-      case 'Q': 
+      case "Q": 
         piece_board[row][column] = new Queen(column, row, false); 
         break;
-      case '7': 
-        column += 7; 
+      case "7": 
+        column += 6; 
         break; 
-      case '8':
-        column += 8; 
-      case 'k': 
+      case "8":
+        column += 7;
+	break;
+      case "k": 
         piece_board[row][column] = new King(column, row, true);
         white_king = piece_board[row][column]; 
         break; 
-      case 'K':
-        piece_board[row][column] = new King(column, true, false);
+      case "K":
+        piece_board[row][column] = new King(column, row, false);
         black_king = piece_board[row][column]; 
         break; 
       default:
         //this case will also trap instances of '/' that occur early
-        println("Invalid Character in FEN Board Descriptor"); 
+        println("Invalid Character in FEN Board Descriptor: " + list[0].charAt(k) + " at " + k); 
         return false;
     }
     //must trap error instances here
     column++;
     if (k != list[0].length - 1) {
-      if (column == 8) {
+      if (column >= 8) {
         k++; 
-        if (list[0].charAt(k) == '/') {
+        if (str(list[0].charAt(k)) == "/") {
           column = 0; 
           if (row > 0) {
             row--; 
@@ -501,7 +501,7 @@ boolean ParseFEN(String FEN) {
   //list[1]
   if (list[1].length == 1) {
     //set white to move by default even if error case
-    white_to_move = (list[1].charAt(0) == 'b') ? false : true; 
+    white_to_move = (str(list[1].charAt(0)) == "b") ? false : true; 
   }
   else {
     println("Invalid FEN: Color to Move"); 
@@ -536,14 +536,14 @@ boolean ParseFEN(String FEN) {
       println("Invalid FEN"); 
       return false; 
     }
-    else if (str(list[3].charAt(1)) == "3" && XtoNum.get(list[3].charAt(0)) != null) {
+    else if (str(list[3].charAt(1)) == "3" && XtoNum.get(str(list[3].charAt(0))) != null) {
       Piece dummy = piece_board[4][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("p")) {
         dummy.en_passant = true;
         last_moved = dummy; 
       }
     }
-    else if (str(list[3].charAt(1)) == "6" && XtoNum.get(str(list[3].charAt(0))) != null) {
+    else if (list[3].charAt(1) == '6' && XtoNum.get(str(list[3].charAt(0))) != null) {
       Piece dummy = piece_board[3][XtoNum.get(str(list[3].charAt(0)))]; 
       if (dummy != null && dummy.letter.equals("P")) {
         dummy.en_passant = true; 
@@ -560,7 +560,7 @@ boolean ParseFEN(String FEN) {
     println("FEN Move Number Too Large"); 
     return false; 
   }
-  move_number = (int) list[5]; 
+  move_number = (int) list[5];
   
   //reset board if function returns false
   return true; 

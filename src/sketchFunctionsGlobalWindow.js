@@ -3,9 +3,9 @@ var OpeningPositionsList;
 
 function switchOpening(sketchname, openingname) {
 	pjsInstance = Processing.getInstanceById(sketchname);
-	try { 
+	try {
 		if (!pjsInstance.ParseFEN(pjsInstance.get_position(openingname))) {
-			console.log("Failure to Parse FEN"); 
+			console.log("Error calling switchOpening");  
 		}			
 	}
 	catch(error) {
