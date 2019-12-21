@@ -38,7 +38,9 @@ class Piece {
   }
   
   //CHECK GIVEN BY THIS PIECE CAN BE BLOCKED
-  boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], ProtectedSquare for_black[][], int king_x, int king_y) {
+  boolean blockable(Piece my_board[][], ProtectedSquare for_white[][], 
+  ProtectedSquare for_black[][], int king_x, int king_y) 
+  {
     //will be overridden by subclasses
     return false; 
   }
@@ -110,11 +112,15 @@ class Pawn extends Piece {
     
       if (y == SquareY - 1) {
         //CAPTURING TO THE LEFT OR RIGHT
-        if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY - 1][x] != null && my_board[SquareY - 1][x].iswhite == false) {
+        if ((x == SquareX - 1 || x == SquareX + 1) 
+        && my_board[SquareY - 1][x] != null 
+        && my_board[SquareY - 1][x].iswhite == false) {
           return verify_not_check(my_board, y, x); 
         }
         //EN PASSANT TO THE LEFT AND RIGHT
-        else if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
+        else if ((x == SquareX - 1 || x == SquareX + 1) 
+        && my_board[SquareY][x] != null 
+        && my_board[SquareY][x].en_passant) {
           Piece[][] local_board = duplicate_board(my_board);
           ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
           ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
@@ -144,11 +150,15 @@ class Pawn extends Piece {
        }
       if (y == SquareY + 1) {
         //CAPTURING TO THE LEFT OR RIGHT
-        if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY + 1][x] != null && my_board[SquareY + 1][x].iswhite == true) {
+        if ((x == SquareX - 1 || x == SquareX + 1) 
+        && my_board[SquareY + 1][x] != null 
+        && my_board[SquareY + 1][x].iswhite == true) {
           return verify_not_check(my_board, y, x); 
         }
         //EN PASSANT TO THE LEFT AND RIGHT
-        else if ((x == SquareX - 1 || x == SquareX + 1) && my_board[SquareY][x] != null && my_board[SquareY][x].en_passant) {
+        else if ((x == SquareX - 1 || x == SquareX + 1) 
+        && my_board[SquareY][x] != null 
+        && my_board[SquareY][x].en_passant) {
            Piece[][] local_board = duplicate_board(my_board);
            ProtectedSquare [][] whites_squares = new ProtectedSquare[8][8]; 
            ProtectedSquare [][] blacks_squares = new ProtectedSquare[8][8]; 
@@ -770,7 +780,9 @@ class King extends Piece {
              else {
                SquareDefender stepper = white_defender.primary; 
                while (stepper != null) {
-                 if (!stepper.defending_piece.is_legal(my_board, for_white, for_black, black_square.primary.defending_piece.SquareX, black_square.primary.defending_piece.SquareY)) {
+                 if (!stepper.defending_piece.is_legal(
+                     my_board, for_white, for_black,
+                     black_square.primary.defending_piece.SquareX, black_square.primary.defending_piece.SquareY)) {
                    stepper = stepper.next;
                  }
                  else {
@@ -812,7 +824,9 @@ class King extends Piece {
              else {
                SquareDefender stepper = black_defender.primary;
                 while (stepper != null) {
-                 if (!stepper.defending_piece.is_legal(my_board, for_white, for_black, white_square.primary.defending_piece.SquareX, white_square.primary.defending_piece.SquareY)) {
+                 if (!stepper.defending_piece.is_legal(
+                     my_board, for_white, for_black, 
+                     white_square.primary.defending_piece.SquareX, white_square.primary.defending_piece.SquareY)) {
                    stepper = stepper.next;
                  }
                  else {

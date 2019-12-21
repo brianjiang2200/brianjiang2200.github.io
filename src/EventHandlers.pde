@@ -67,21 +67,27 @@ void promotion_actions() {
          game_over = true;
          color_won = -1; 
     }
-    else if (white_king.in_check(white_protected_squares, black_protected_squares) || black_king.in_check(white_protected_squares, black_protected_squares)) {
+    else if (white_king.in_check(white_protected_squares, black_protected_squares) 
+      || black_king.in_check(white_protected_squares, black_protected_squares)) {
       checkNow = true;  
     }
-    else if (check_stalemate(white_king, piece_board, white_protected_squares, black_protected_squares) || check_stalemate(black_king, piece_board, white_protected_squares, black_protected_squares)) {
+    else if (check_stalemate(white_king, piece_board, white_protected_squares, black_protected_squares) 
+      || check_stalemate(black_king, piece_board, white_protected_squares, black_protected_squares)) {
       game_active = false;
       game_drawn = true;
       game_over = true; 
     }
-    else if (CountMaterial(piece_board, true) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, false) == 50) {
+    else if (CountMaterial(piece_board, true) == 53 
+      && piece_on_board(piece_board) 
+      && CountMaterial(piece_board, false) == 50) {
         game_active = false; 
         game_over = true; 
         game_drawn = true; 
       }
       
-    else if (CountMaterial(piece_board, false) == 53 && piece_on_board(piece_board) && CountMaterial(piece_board, true) == 50) {
+    else if (CountMaterial(piece_board, false) == 53 
+      && piece_on_board(piece_board) 
+      && CountMaterial(piece_board, true) == 50) {
        game_active = false; 
        game_over = true; 
        game_drawn = true; 

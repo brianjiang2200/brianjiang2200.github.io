@@ -22,7 +22,9 @@ class MoveRecord {
   MoveRecord next;
   MoveRecord prev; 
   
-  MoveRecord (Piece my_piece, King wKing, King bKing, Piece new_pos[][], int prev_x, int prev_y, int move_no, boolean captureOccur, boolean is_check) {
+  MoveRecord (Piece my_piece, King wKing, King bKing, Piece new_pos[][], 
+  int prev_x, int prev_y, int move_no, boolean captureOccur, boolean is_check) 
+  {
     stored_position = duplicate_board(new_pos);
     last_moved = stored_position[my_piece.SquareY][my_piece.SquareX]; 
     HIGHLIGHT_SQUARES(); 
@@ -62,10 +64,12 @@ class MoveRecord {
        }
     else {
       if (check) {
-        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures + XtoLet[notation_col] + notation_row + promotion_piece + ((color_won != 0) ? "#" : "+");
+        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures 
+        + XtoLet[notation_col] + notation_row + promotion_piece + ((color_won != 0) ? "#" : "+");
       }
       else {
-        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures + XtoLet[notation_col] + notation_row + promotion_piece;
+        return str(move_num) + ". " + pieceUpper + XtoLet[previous_x] + previous_y + captures 
+        + XtoLet[notation_col] + notation_row + promotion_piece;
       }
     }
   }
@@ -131,5 +135,24 @@ class MoveList {
 void addAnnotation(String input) {
   if (current_record != null) {
     current_record.annotation = input;
+  }
+}
+
+class Variations {
+  MoveRecord head; 
+  MoveRecord tail;
+  MoveRecord root; 
+  
+  Variations(MoveRecord origin) {
+    root = origin;
+    head = null; 
+    tail = null; 
+  }
+  
+  void add_move(MoveRecord new_record) {
+    if (head == null) {
+      head = new_record; 
+      tail = head;
+    }
   }
 }

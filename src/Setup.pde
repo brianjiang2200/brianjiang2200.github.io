@@ -202,7 +202,9 @@ void mouseReleased() {
     if (my_piece.is_legal(piece_board, white_protected_squares, black_protected_squares, newX, newY)) {
       
       //for captures in notation
-      material_count = (white_to_move) ? CountMaterial(piece_board, false) : CountMaterial(piece_board, true); 
+      material_count = (white_to_move) ? 
+      CountMaterial(piece_board, false) : 
+      CountMaterial(piece_board, true); 
       
       my_piece.x_coord = newX * piecedim; 
       my_piece.y_coord = newY * piecedim; 
@@ -210,7 +212,9 @@ void mouseReleased() {
 	  
       //special case of removing a piece captured by en passant
       if (my_piece.material_value == 1 && last_moved != null && last_moved.en_passant) {
-         if (newX == last_moved.SquareX && my_piece.SquareY == last_moved.SquareY && newY != last_moved.SquareY) {
+         if (newX == last_moved.SquareX 
+         && my_piece.SquareY == last_moved.SquareY 
+         && newY != last_moved.SquareY) {
            piece_board[last_moved.SquareY][last_moved.SquareX] = null;
          }
       }
@@ -247,7 +251,10 @@ void mouseReleased() {
         }
       }
       
-      MoveRecord new_move = new MoveRecord(my_piece, white_king, black_king, piece_board, tmp_x, tmp_y, move_number, piece_captured, is_check);
+      MoveRecord new_move = new MoveRecord
+        (my_piece, white_king, black_king, piece_board, 
+        tmp_x, tmp_y, move_number, piece_captured, is_check);
+        
       main_move_list.add_move(new_move);
       current_record = main_move_list.tail;
       notation_top = main_move_list.tail; 
@@ -291,7 +298,6 @@ void mouseReleased() {
       }
       
       refresh_protected(piece_board, white_protected_squares, black_protected_squares);
-	    //eval = get_eval(piece_board, white_protected_squares, black_protected_squares);
       current_record = main_move_list.tail; 
       
       //CASES WHEN GAME ENDS IN DRAW AUTOMATICALLY
