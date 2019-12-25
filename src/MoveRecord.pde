@@ -139,20 +139,38 @@ void addAnnotation(String input) {
 }
 
 class Variations {
-  MoveRecord head; 
-  MoveRecord tail;
+  MoveRecord branches[20]; 
   MoveRecord root; 
   
   Variations(MoveRecord origin) {
     root = origin;
-    head = null; 
-    tail = null; 
   }
   
   void add_move(MoveRecord new_record) {
-    if (head == null) {
-      head = new_record; 
-      tail = head;
+    int k = 0; 
+    while (k < 20 && branches[k] != null) {
+      k++; 
+    }
+    if (k == 20) {
+      println("Could not add additional variation: Maximum number of variations reached."); 
+    }
+    else {
+      branches[k] == new_record;
     }
   }
+  
+  void make_main_line(int index) {
+    if (index < 20 && branches[index] != null) {
+      MoveRecord tmp = branches[index]; 
+      for (int k = index - 1; k > 0; --k) {
+        branches[k + 1] = branches[k]; 
+      }
+      branches[0] = tmp; 
+    }
+  }
+  
+  boolean empty() {
+    return (branches[0] == null); 
+  }
+  
 }
