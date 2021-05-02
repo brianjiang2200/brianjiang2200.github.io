@@ -13,7 +13,15 @@
 	<link rel="stylesheet" type="text/css" href="src/styles.css">
 </head> 
 <body> 
-	<h1>ANALYSIS BOARD BETA</h1>
+	<header>
+		<h1 id="site-title">ANALYSIS BOARD BETA</h1>
+		<a href="https://lichess.org/@/JiangoFett" title="My Lichess Profile">
+			<img src="src/Images/lichess_icon.png" style="max-height: 3rem;">
+		</a>
+		<a href="https://www.chess.com/member/jiangofett" title="My Chess.com Profile">
+			<img src="src/Images/chess_com_logo.png" style="max-height: 3rem;">
+		</a>
+	</header>
 	<div class="sketch-upper-level">
 		<!--Each canvas should be identified by a unique id --> 
 		<canvas id="sketch" width=1040 height=720 data-processing-sources="src/Algorithms.pde src/Draw.pde src/Engine.pde src/EventHandlers.pde 
@@ -40,27 +48,53 @@
 		</div>
 	</div>
 	<div class="sketch-lower-level">
+		<!--Options that can call Processing functions from the Window -->
+		<div class="SketchOptions">
+			<button type="button" class="btn btn-danger" 
+				onclick="switchOpening('sketch', 'Starting_Position');"
+				title="Reset Board to Starting Position">
+				 Reset
+			</button>
+			<button type="button" class="btn btn-warning" 
+				onclick="deleteMove('sketch');"
+				title="Delete Current Move"> 
+				Delete 
+			</button>
+		</div>
 		<div class="annotations">
 			<form>
 				<div class="form-group">
 					<label class="formgrpelement" for="annotationinput">Add Annotation to Current Position</label>
-					<textarea id="annotationinput" class="formgrpelement" type="text" cols="50" rows="3"></textarea>
+					<textarea id="annotationinput" class="formgrpelement" type="text" cols="50" rows="4"></textarea>
 					<button id="addAnnotationBtn" type="button" class="btn btn-success">Add</button>
 				</div>
 			</form>
 		</div>
-		<!--Options that can call Processing functions from the Window -->
-		<div class="SketchOptions">
-			<button type="button" class="btn btn-danger" onclick="switchOpening('sketch', 'Starting_Position');"> Reset Board to Starting Position </button>
-			<button type="button" class="btn btn-warning" onclick="deleteMove('sketch');"> Delete Current Move </button>
-		</div>
 		<!--Canvas Shortcut Information: should eventually be collapsible -->
 		<div id="shortcuts">
-			<div class="shortcutitem">GO BACK 1 MOVE: LEFT ARROW</div>
-			<div class="shortcutitem">GO FORWARD 1 MOVE: RIGHT ARROW</div>
-			<div class="shortcutitem">SCROLL UP THROUGH NOTATION: UP ARROW</div>
-			<div class="shortcutitem">SCROLL DOWN THROUGH NOTATION: DOWN ARROW</div>
-			<div class="shortcutitem">DELETE CURRENT MOVE: ALT</div>
+			<h5>Shortcuts</h5>
+			<table>
+				<tr>
+					<td class="key-img">←</td>
+					<td>Go Back 1 Move</td>
+				</tr>
+				<tr>
+					<td class="key-img">→</td>
+					<td>Go Forward 1 Move</td>
+				</tr>
+				<tr>
+					<td class="key-img">↑</td>
+					<td>Scroll up through Notation</td>
+				</tr>
+				<tr>
+					<td class="key-img">↓</td>
+					<td>Scroll Down through Notation</td>
+				</tr>
+				<tr>
+					<td>Alt</td>
+					<td>Delete Current Move</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 		<h2 id=notes>
@@ -75,18 +109,11 @@
 				</div>
 			</a>
 			<p id=version>
-				Version: 1.67
+				Version: 1.68
 			</p>
 		</h2>
 	
 	<!-- Link JS Script -->
-	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js">
-	</script>
-	<script>
-		$( document ).ready(function() {
-			console.log("canvas width: " + document.getElementById('sketch').width);
-			console.log("canvas height: " + document.getElementById('sketch').height); 
-		});
-	</script>
+	<script type="application/javascript" src="src/sketchFunctionsGlobalWindow.js"></script>
 </body> 
 </html>

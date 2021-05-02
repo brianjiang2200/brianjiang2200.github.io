@@ -1,5 +1,5 @@
 body {
-	background-image: linear-gradient(#404040, black);
+	background: rgb(0, 0, 0);
 	background-attachment: fixed; 
 	text-align: center;
 	color: white !important;
@@ -7,12 +7,21 @@ body {
 	padding-right: 10px; 
 }
 
+header {
+	display: flex;
+	margin: auto;
+}
+
 h1 {
 	color: white;  
 	text-align: center; 
-	text-shadow: 0 0 5px white; 
-	margin-top: 30px; 
-	margin-bottom: 30px; 
+	text-shadow: 0 0 3px white; 
+	font-size: 2rem;
+	margin: 2rem 0rem;
+}
+
+h5 {
+	margin: 0rem 2rem;
 }
 
 canvas {
@@ -20,6 +29,10 @@ canvas {
 	flex-direction: column;  
 	box-shadow: 0 0 10px white; 
 	margin: 20px; 
+}
+
+a {
+	margin: auto;
 }
 
 a:hover {
@@ -36,6 +49,11 @@ button {
 
 button:hover {
 	text-shadow: 0 0 5px white; 
+}
+
+td {
+	font-size: small; 
+	padding: 0.2rem 0.4rem;
 }
 
 .sketch-upper-level {
@@ -66,7 +84,7 @@ button:hover {
 }
 
 .SketchOptions {
-	margin-bottom: 50px; 
+	margin: 0px auto;
 }
 
 .card {
@@ -82,7 +100,7 @@ button:hover {
 }
 
 .annotations {
-	margin: 10px; 
+	margin: 0rem 0.5rem; 
 	display: flex; 
 }
 
@@ -95,10 +113,13 @@ button:hover {
 	display: block; 
 }
 
-.shortcutitem {
-	font-size: small; 
-	flex-direction: column; 
-	margin: auto; 
+.key-img {
+	font-size: 1.4rem;
+}
+
+#site-title {
+	margin-left: 3rem;
+	margin-right: 60rem;
 }
 
 #hiddenOpeningsList {
@@ -117,7 +138,11 @@ button:hover {
 #shortcuts {
 	display: flex; 
 	color: white; 
-	margin-bottom: 50px; 
+	margin: auto;
+}
+
+#notes {
+	margin: 2rem 0rem;
 }
 
 #contributors {
